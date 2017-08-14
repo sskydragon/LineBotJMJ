@@ -41,8 +41,7 @@ func determineReply(msg string) string{
 			replyMsg = "在測試啥呢喵~"
 		case (strings.Contains(msg,"日本麻將介紹網站")):
 			replyMsg = "介紹網站在 http://jmj.tw 喵~"
-		case (strings.Contains(msg,"婊池田")):
-		case (strings.Contains(msg,"打爆池田")):
+		case (strings.Contains(msg,"婊池田")),(strings.Contains(msg,"打爆池田")):
 			replyMsg = "不要欺負池田喵好嗎 QQ"
 		default:
 	}
