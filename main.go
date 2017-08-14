@@ -63,9 +63,9 @@ func determineReply(msg string) string{
 			replyMsg = "雀鳳盃是目前臺灣北部最大的例行比賽 通常在三月\n"+
 						"第四屆/2017年辦法請參考 http://goo.gl/SB4yth\n"+
 						"好期待明年的比賽呢喵~ (滾來滾去)"
-		case (string.Contains(msg,"日麻行事曆")):
+		case (strings.Contains(msg,"日麻行事曆")):
 			replyMsg = "在這在這~~ http://goo.gl/fqwswg"
-		case (string.Contains(msg,"過去的活動")):
+		case (strings.Contains(msg,"過去的活動")):
 			replyMsg = "喵知道過去的比賽活動有這些~！\n"+
 						"https://goo.gl/KH00SO\n" +
 						"還想提供些什麼的話也請讓喵知道喔喵~ "
