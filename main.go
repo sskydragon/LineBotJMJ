@@ -33,7 +33,7 @@ func main() {
 	http.ListenAndServe(addr, nil)
 }
 
-func determineReply(msg string) {
+func determineReply(msg string) string{
 	return
 }
 
