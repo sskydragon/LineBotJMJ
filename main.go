@@ -46,7 +46,11 @@ func determineReply(msg string) string{
 		case (strings.Contains(msg,"IORMC資訊")):
 			replyMsg =  "IORMC是韓國辦的國際交流賽\n" +
 						"2017的預選資訊在 https://goo.gl/2XJyYw\n" +
-						"2016的比賽結果在 http://goo.gl/jatIHN"
+						"2016的比賽結果在 https://goo.gl/jatIHN"
+		case (strings.Contains(msg,"WRC資訊")):
+			replyMsg =  "WRC是三年一次的世界日麻大賽(暫譯)\n"+
+						"2017.10.4-8在拉斯維加斯, 網站在 http://www.wrc2017vegas.com/\n"+
+						"預計2020年在歐洲、2023年在日本舉行"
 		default:
 	}
 	return replyMsg
