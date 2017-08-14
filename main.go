@@ -35,7 +35,7 @@ func main() {
 
 func determineReply(msg string) string{
 	var replyMsg string = ""
-	if(msg == "測試") {replyMsg := "在測試啥呢喵~"}
+	if(msg == "測試") {replyMsg = "在測試啥呢喵~"}
 	return replyMsg
 }
 
