@@ -73,6 +73,8 @@ func determineReply(msg string) string{
 			replyMsg = "喵知道過去的比賽活動有這些~！\n"+
 						"https://goo.gl/KH00SO\n" +
 						"還想提供些什麼的話也請讓喵知道喔喵~ "
+		case (strings.Contains(msg,"萌新")):
+			replyMsg = "萌新是在說我嗎喵~ (探頭"
 		default:
 	}
 	return replyMsg
