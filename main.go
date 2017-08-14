@@ -43,6 +43,8 @@ func determineReply(msg string) string{
 			replyMsg = "介紹網站在 http://jmj.tw 喵~"
 		case (strings.Contains(msg,"婊池田")),(strings.Contains(msg,"打爆池田")):
 			replyMsg = "不要欺負池田喵好嗎 QQ"
+		case (strings.Contains(msg,"龍哥救我")):
+			replyMsg = "需要幫忙嗎喵~？"
 		case (strings.Contains(msg,"IORMC資訊")):
 			replyMsg =  "IORMC是韓國辦的國際交流賽\n" +
 						"2017的預選資訊在 https://goo.gl/2XJyYw\n" +
@@ -52,7 +54,11 @@ func determineReply(msg string) string{
 						"2017.10.4-8在拉斯維加斯, 網站在 http://www.wrc2017vegas.com/\n"+
 						"預計2020年在歐洲、2023年在日本舉行"
 		case (strings.Contains(msg,"同好會社團")):
-			replyMsg = "我們的社團在這喔喵．▽．)つ https://www.facebook.com/groups/twjmj/"
+			replyMsg = "我們的社團在這喔喵つ https://www.facebook.com/groups/twjmj/"
+		case (strings.Contains(msg,"般若盃資訊")):
+			replyMsg = "般若盃是目前臺灣南部最大的例行比賽 通常在十月\n"+
+						"簡章請參考 https://goo.gl/XjHCfW\n"+
+						"今年報名時間已經過囉 下次請早喔喵QwQ"
 		default:
 	}
 	return replyMsg
