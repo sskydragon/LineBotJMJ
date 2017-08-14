@@ -34,7 +34,7 @@ func main() {
 }
 
 func determineReply(msg string) string{
-	return
+	return msg
 }
 
 func callbackHandler(w http.ResponseWriter, r *http.Request) {
