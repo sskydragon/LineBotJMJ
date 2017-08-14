@@ -36,8 +36,13 @@ func main() {
 
 func determineReply(msg string) string{
 	var replyMsg string = ""
-	if(string.Contains(msg,"測試")) {replyMsg = "在測試啥呢喵~"}
-	else if(string.Contains(msg,"日本麻將介紹網站")) {replyMsg = "介紹網站在 http://jmj.tw 喵~"}
+	switch {
+		case (strings.Contains(msg,"測試")):
+			replyMsg = "在測試啥呢喵~"
+		case (strings.Contains(msg,"日本麻將介紹網站")):
+			replyMsg = "介紹網站在 http://jmj.tw 喵~"
+		default:
+	}
 	return replyMsg
 }
 
