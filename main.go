@@ -34,7 +34,9 @@ func main() {
 }
 
 func determineReply(msg string) string{
-	return msg
+	var replyMsg string
+	if(msg == "測試") replyMsg := "在測試啥呢喵~"
+	return replyMsg
 }
 
 func callbackHandler(w http.ResponseWriter, r *http.Request) {
