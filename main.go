@@ -43,6 +43,10 @@ func determineReply(msg string) string{
 			replyMsg = "介紹網站在 http://jmj.tw 喵~"
 		case (strings.Contains(msg,"婊池田")),(strings.Contains(msg,"打爆池田")):
 			replyMsg = "不要欺負池田喵好嗎 QQ"
+		case (strings.Contains(msg,"IORMC資訊")):
+			replyMsg =  "IORMC是韓國辦的國際交流賽\n" +
+						"2017的預選資訊在 https://goo.gl/2XJyYw\n" +
+						"2016的比賽結果在 http://goo.gl/jatIHN"
 		default:
 	}
 	return replyMsg
