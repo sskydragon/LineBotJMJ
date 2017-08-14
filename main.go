@@ -52,7 +52,7 @@ func determineReply(msg string) string{
 						"2017.10.4-8在拉斯維加斯, 網站在 http://www.wrc2017vegas.com/\n"+
 						"預計2020年在歐洲、2023年在日本舉行"
 		case (strings.Contains(msg,"同好會社團")):
-			replyMsg = "我們的社團在這喔喵つ https://www.facebook.com/groups/twjmj/"
+			replyMsg = "我們的社團在這喔喵．▽．)つ https://www.facebook.com/groups/twjmj/"
 		default:
 	}
 	return replyMsg
