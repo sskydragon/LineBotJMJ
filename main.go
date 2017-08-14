@@ -33,6 +33,10 @@ func main() {
 	http.ListenAndServe(addr, nil)
 }
 
+func determineReply(msg string) {
+	return msg;
+}
+
 func callbackHandler(w http.ResponseWriter, r *http.Request) {
 	events, err := bot.ParseRequest(r)
 
@@ -49,7 +53,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 		if event.Type == linebot.EventTypeMessage {
 			switch message := event.Message.(type) {
 			case *linebot.TextMessage:
-				if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(message.ID+":"+message.Text+" OK123!")).Do(); err != nil {
+				if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(determineReply(message.Text))).Do(); err != nil {
 					log.Print(err)
 				}
 			}
