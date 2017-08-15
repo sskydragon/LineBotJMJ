@@ -64,6 +64,9 @@ func determineReply(msg string) string{
 		case (strings.Contains(msg,"大會室")&&strings.Contains(msg,"在哪")):
 			replyMsg = "限時開放的IORMC練習大會室在這喔喵~\n"+ 
 			"http://tenhou.net/0/?C85193656"
+		case (strings.Contains(msg,"個室")&&strings.Contains(msg,"在哪")):
+			replyMsg = "平常用來交流的個室在這喔喵~\n"+ 
+			"http://tenhou.net/0/?L1120"
 		case (strings.Contains(msg,"般若盃資訊")):
 			replyMsg = "般若盃是目前臺灣南部最大的例行比賽 通常在十月\n"+
 						"簡章請參考 https://goo.gl/XjHCfW\n"+
