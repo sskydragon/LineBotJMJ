@@ -75,6 +75,8 @@ func determineReply(msg string) string{
 						"還想提供些什麼的話也請讓喵知道喔喵~ "
 		case (strings.Contains(msg,"萌新")):
 			replyMsg = "萌新是在說我嗎喵~ (探頭"
+		case (strings.Contains(msg,"池田銀行")):
+			replyMsg = "點數太多嗎？歡迎存點數進來悠喵OwO"
 		default:
 	}
 	return replyMsg
