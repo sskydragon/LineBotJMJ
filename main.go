@@ -85,11 +85,11 @@ func determineReply(msg string) string{
 			result := "";
 			reply := "";
 			status := 0;
-			for i := 0, wlen:= len(words); i < wlen; i++ {
+			for i := 0; i < len(words); i++ {
 				result = re.FindString(words[i]);
 				numAmount := 0;
 
-				for j := 0, rlen:=len(result) ; j < rlen ; j++ {
+				for j := 0 ; j < len(result) ; j++ {
 					_, err := strconv.ParseFloat(string(result[j]), 64)
 					if(err == nil) {numAmount++}
 				}
