@@ -95,9 +95,10 @@ func determineReply(msg string) string{
 					if(err == nil) {numAmount++}
 				}
 				fmt.Println(numAmount % 3 )
-				if numAmount % 3 != 2 {
+				if numAmount > 0 && numAmount % 3 != 2 {
 				 status = -1
-				 reply="這樣好像不能拿去問天鳳姬呢喵~\n"+"手牌必須是0~9接花色mpsz的組合\n"+"而且丟完牌必須是3n+1張才不會出錯唷~"
+				 reply="這樣好像不能拿去問天鳳姬呢喵~\n"+"手牌必須是0~9接花色mpsz的組合\n"+
+				 "(0是赤 m萬p筒s索z字 字牌只有1-7)\n"+"而且丟完牌必須是3n+1張才不會出錯唷~"
 				} else {
 					status = 1
 					reply = "天鳳姬是這樣說的呢喵~\n"+"http://tenhou.net/2/?q="+result+"\n"
