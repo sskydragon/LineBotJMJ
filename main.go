@@ -18,7 +18,9 @@ import (
 	"net/http"
 	"strings"
 	"os"
-
+	"regexp"
+	"strconv"
+	
 	"github.com/line/line-bot-sdk-go/linebot"
 )
 
@@ -77,6 +79,33 @@ func determineReply(msg string) string{
 			replyMsg = "萌新是在說我嗎喵~ (探頭"
 		case (strings.Contains(msg,"池田銀行")):
 			replyMsg = "點數太多嗎？歡迎存點數進來悠喵OwO"
+		case (strings.Contains(msg,"何切")):
+			words := strings.Fields(someString)
+			re := regexp.MustCompile("(([0-9]+[MmPpSs])|([1-7]+[Zz]))+")
+			result := "";
+			reply := "";
+			status := 0;
+			for i := 0; i < len(words); i++ {
+				fmt.Println(words[i])
+				result = re.FindString(words[i]);
+				numAmount := 0;
+
+				for j := 0 ; j < len(result) ; j++ {
+					_, err := strconv.ParseFloat(string(result[j]), 64)			
+					if(err == nil) {numAmount++}
+				}
+				fmt.Println(numAmount % 3 )
+				if numAmount % 3 != 2 {
+				 status = -1
+				 reply="這樣好像不能拿去問天鳳姬呢喵~\n"+"手牌必須是0~9接花色mpsz的組合\n"+"而且丟完牌必須是3n+1張才不會出錯唷~"
+				} else {
+					status = 1
+					reply = "天鳳姬是這樣說的呢喵~\n"+"http://tenhou.net/2/?q="+result+"\n"
+					break
+				}		
+
+			}
+			if(status != 0) {replyMsg = reply}
 		default:
 	}
 	return replyMsg
