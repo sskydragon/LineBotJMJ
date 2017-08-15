@@ -86,7 +86,6 @@ func determineReply(msg string) string{
 			reply := "";
 			status := 0;
 			for i := 0; i < len(words); i++ {
-				fmt.Println(words[i])
 				result = re.FindString(words[i]);
 				numAmount := 0;
 
@@ -128,8 +127,11 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 		if event.Type == linebot.EventTypeMessage {
 			switch message := event.Message.(type) {
 			case *linebot.TextMessage:
-				if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(determineReply(message.Text))).Do(); err != nil {
-					log.Print(err)
+				replyMsg := determineReply(message.Text)
+				if replyMsg != "" {
+					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(replyMsg).Do(); err != nil {
+						log.Print(err)
+					}
 				}
 			}
 		}
