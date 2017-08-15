@@ -61,6 +61,9 @@ func determineReply(msg string) string{
 						"預計2020年在歐洲、2023年在日本舉行"
 		case (strings.Contains(msg,"同好會社團")):
 			replyMsg = "我們的社團在這喔喵つ https://www.facebook.com/groups/twjmj/"
+		case (strings.Contains(msg,"大會室")&&strings.Contains(msg,"在哪")):
+			replyMsg = "限時開放的IORMC練習大會室在這喔喵~\n"+ 
+			"http://tenhou.net/0/?C85193656"
 		case (strings.Contains(msg,"般若盃資訊")):
 			replyMsg = "般若盃是目前臺灣南部最大的例行比賽 通常在十月\n"+
 						"簡章請參考 https://goo.gl/XjHCfW\n"+
