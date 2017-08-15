@@ -41,7 +41,7 @@ func determineReply(msg string) string{
 	switch {
 		case (strings.Contains(msg,"!指令")):
 			replyMsg = "測試 / 同好會社團 / 日本麻將介紹網站 / \n"+
-						"日麻行事曆 / 過去的活動 / [IORMC|WRC|雀鳳盃|般若盃]資訊\n"+
+						"日麻行事曆 / 過去的活動 / [IORMC|WRC|雀鳳盃|般若盃]資訊 / 何切[0-9][mpsz]\n"+
 						"覺得有漏可以tag龍哥幫忙加, 還有一些小彩蛋就不說了喵~"
 		case (strings.Contains(msg,"測試")):
 			replyMsg = "在測試啥呢喵~"
@@ -85,12 +85,12 @@ func determineReply(msg string) string{
 			result := "";
 			reply := "";
 			status := 0;
-			for i := 0; i < len(words); i++ {
+			for i := 0, wlen:= len(words); i < wlen; i++ {
 				result = re.FindString(words[i]);
 				numAmount := 0;
 
-				for j := 0 ; j < len(result) ; j++ {
-					_, err := strconv.ParseFloat(string(result[j]), 64)			
+				for j := 0, rlen:=len(result) ; j < rlen ; j++ {
+					_, err := strconv.ParseFloat(string(result[j]), 64)
 					if(err == nil) {numAmount++}
 				}
 				if numAmount > 0 {
