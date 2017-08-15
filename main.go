@@ -127,9 +127,9 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 		if event.Type == linebot.EventTypeMessage {
 			switch message := event.Message.(type) {
 			case *linebot.TextMessage:
-				replyMsg = determineReply(message.Text)
-				if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(replyMsg).Do(); err != nil {
-					log.Print(err)
+				replyMsg := determineReply(message.Text)
+				if replyMsg != "" , err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(replyMsg)).Do(); err != nil {
+						log.Print(err)
 				}
 			}
 		}
