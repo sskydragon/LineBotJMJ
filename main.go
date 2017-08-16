@@ -26,24 +26,24 @@ import (
 )
 
 var bot *linebot.Client
-cdCmdList := 60*time.Second
-cdTest := 60*time.Second
-cdNewbie := 60*time.Second
-cdBank := 60*time.Second
-cdTeachMe := 60*time.Second
-cdLobby := 60*time.Second
-cdL1120 := 60*time.Second
-cdBullyCat := 60*time.Second
-cdSaveMe := 60*time.Second
-lastCmdList := time.Now().Add(-cdCmdList)
-lastTest := time.Now().Add(-cdTest)
-lastNewbie := time.Now().Add(-cdNewbie)
-lastBank := time.Now().Add(-cdBank)
-lastTeachMe := time.Now().Add(-cdTeachMe)
-lastLobby := time.Now().Add(-cdLobby)
-lastL1120 := time.Now().Add(-cdL1120)
-lastBullyCat := time.Now().Add(-cdBullyCat)
-lastSaveMe := time.Now().Add(-cdSaveMe)
+var cdCmdList = 60*time.Second
+var cdTest = 60*time.Second
+var cdNewbie = 60*time.Second
+var cdBank = 60*time.Second
+var cdTeachMe = 60*time.Second
+var cdLobby = 60*time.Second
+var cdL1120 = 60*time.Second
+var cdBullyCat = 60*time.Second
+var cdSaveMe = 60*time.Second
+var lastCmdList = time.Now().Add(-cdCmdList)
+var lastTest = time.Now().Add(-cdTest)
+var lastNewbie = time.Now().Add(-cdNewbie)
+var lastBank = time.Now().Add(-cdBank)
+var lastTeachMe = time.Now().Add(-cdTeachMe)
+var lastLobby = time.Now().Add(-cdLobby)
+var lastL1120 = time.Now().Add(-cdL1120)
+var lastBullyCat = time.Now().Add(-cdBullyCat)
+var lastSaveMe = time.Now().Add(-cdSaveMe)
 
 
 func main() {
