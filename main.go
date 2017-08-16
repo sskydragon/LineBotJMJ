@@ -24,7 +24,7 @@ import (
 	
 	"github.com/line/line-bot-sdk-go/linebot"
 )
-
+//global cd會造成不同對話群組間互相影響的問題(再研究)
 var bot *linebot.Client
 var cdCmdList = 60*time.Second
 var cdTest = 60*time.Second
