@@ -20,11 +20,31 @@ import (
 	"os"
 	"regexp"
 	"strconv"
+	"time"
 	
 	"github.com/line/line-bot-sdk-go/linebot"
 )
 
 var bot *linebot.Client
+cdCmdList := 60*time.Second
+cdTest := 60*time.Second
+cdNewbie := 60*time.Second
+cdBank := 60*time.Second
+cdTeachMe := 60*time.Second
+cdLobby := 60*time.Second
+cdL1120 := 60*time.Second
+cdBullyCat := 60*time.Second
+cdSaveMe := 60*time.Second
+lastCmdList := time.Now().Add(-cdCmdList)
+lastTest := time.Now().Add(-cdTest)
+lastNewbie := time.Now().Add(-cdNewbie)
+lastBank := time.Now().Add(-cdBank)
+lastTeachMe := time.Now().Add(-cdTeachMe)
+lastLobby := time.Now().Add(-cdLobby)
+lastL1120 := time.Now().Add(-cdL1120)
+lastBullyCat := time.Now().Add(-cdBullyCat)
+lastSaveMe := time.Now().Add(-cdSaveMe)
+
 
 func main() {
 	var err error
@@ -45,18 +65,23 @@ func teachMe(msg string) bool {
 
 func determineReply(msg string) string{
 	var replyMsg string = ""
+	t := time.Now()
 	switch {
-		case (strings.Contains(msg,"!指令")):
+		case (t.Sub(lastCmdList) > cdCmdList && strings.Contains(msg,"!指令")):
+			lastCmdList = t
 			replyMsg = "測試 / 同好會社團 / 日本麻將介紹網站 / \n"+
 						"日麻行事曆 / 過去的活動 / [IORMC|WRC|雀鳳盃|般若盃]資訊 / \n" + "何切[0-9][mpsz] / 我想學日麻\n"+
 						"覺得有漏可以tag龍哥幫忙加, 還有一些小彩蛋就不說了喵~"
-		case (strings.Contains(msg,"測試")):
+		case (t.Sub(lastTest) > cdTest && strings.Contains(msg,"測試")):
+			lastTest = t
 			replyMsg = "在測試啥呢喵~"
-		case (strings.Contains(msg,"日本麻將介紹網站")):
+		case ((strings.Contains(msg,"日麻") || strings.Contains(msg,"麻將")) && strings.Contains(msg,"介紹") && strings.Contains(msg,"網站")):
 			replyMsg = "介紹網站在 http://jmj.tw 喵~"
-		case (strings.Contains(msg,"婊池田")),(strings.Contains(msg,"打爆池田")):
+		case (t.Sub(lastBullyCat) > cdBullyCat && strings.Contains(msg,"婊池田")),(strings.Contains(msg,"打爆池田")):
+			lastBullyCat = t
 			replyMsg = "不要欺負池田喵好嗎 QQ"
-		case (strings.Contains(msg,"龍哥救我")):
+		case (t.Sub(lastSaveMe) > cdSaveMe && strings.Contains(msg,"龍哥救我")):
+			lastSaveMe = t
 			replyMsg = "需要幫忙嗎喵~？"
 		case (strings.Contains(msg,"IORMC資訊")):
 			replyMsg =  "IORMC是韓國辦的國際交流賽\n" +
@@ -68,10 +93,12 @@ func determineReply(msg string) string{
 						"預計2020年在歐洲、2023年在日本舉行"
 		case (strings.Contains(msg,"同好會社團")):
 			replyMsg = "我們的社團在這喔喵つ https://www.facebook.com/groups/twjmj/"
-		case (strings.Contains(msg,"大會室")&&strings.Contains(msg,"在哪")):
+		case (t.Sub(lastLobby) > cdLobby && strings.Contains(msg,"大會室")&&strings.Contains(msg,"在哪")):
+			lastLobby = t
 			replyMsg = "限時開放的IORMC練習大會室在這喔喵~\n"+ 
 			"http://tenhou.net/0/?C85193656"
-		case (strings.Contains(msg,"個室")&&strings.Contains(msg,"在哪")):
+		case (t.Sub(lastL1120) > cdL1120 && strings.Contains(msg,"個室")&&strings.Contains(msg,"在哪")):
+			lastL1120 = t
 			replyMsg = "平常用來交流的個室在這喔喵~\n"+ 
 			"http://tenhou.net/0/?L1120"
 		case (strings.Contains(msg,"般若盃資訊")):
@@ -88,11 +115,14 @@ func determineReply(msg string) string{
 			replyMsg = "喵知道過去的比賽活動有這些~！\n"+
 						"https://goo.gl/KH00SO\n" +
 						"還想提供些什麼的話也請讓喵知道喔喵~ "
-		case (strings.Contains(msg,"萌新")):
+		case (t.Sub(lastNewbie) > cdNewbie && strings.Contains(msg,"萌新")):
+			lastNewbie = t
 			replyMsg = "萌新是在說我嗎喵~ (探頭"
-		case (strings.Contains(msg,"池田銀行")):
+		case (t.Sub(lastBank) > cdBank && strings.Contains(msg,"池田銀行")):
+			lastBank = t
 			replyMsg = "點數太多嗎？歡迎存點數進來悠喵OwO"
-		case teachMe(msg):
+		case (t.Sub(lastTeachMe) > cdTeachMe && teachMe(msg)):
+			lastTeachMe = t
 			replyMsg = "http://jmj.tw 左上角有些教學可以看\n請多加利用喔喵~"
 		case (strings.Contains(msg,"何切")):
 			words := strings.Fields(msg)
