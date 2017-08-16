@@ -36,6 +36,13 @@ func main() {
 	http.ListenAndServe(addr, nil)
 }
 
+func teachMe(msg string) bool {
+	if ((strings.Contains(msg,"日麻") || strings.Contains(msg,"麻將")) && strings.Contains(msg,"教學") && (strings.Contains(msg,"嗎") || strings.Contains(msg,"哪"))) || ((strings.Contains(msg,"日麻") || strings.Contains(msg,"麻將")) && strings.Contains(msg,"想") && strings.Contains(msg,"學") && strings.Contains(msg,"我")) || ((strings.Contains(msg,"日麻") || strings.Contains(msg,"麻將")) && strings.Contains(msg,"教我")) {
+		return true
+	}
+	return false
+}
+
 func determineReply(msg string) string{
 	var replyMsg string = ""
 	switch {
@@ -85,11 +92,7 @@ func determineReply(msg string) string{
 			replyMsg = "萌新是在說我嗎喵~ (探頭"
 		case (strings.Contains(msg,"池田銀行")):
 			replyMsg = "點數太多嗎？歡迎存點數進來悠喵OwO"
-		case ((strings.Contains(msg,"日麻") || strings.Contains(msg,"麻將")) && strings.Contains(msg,"教學") && (strings.Contains(msg,"嗎") || strings.Contains(msg,"哪"))) :
-			replyMsg = "http://jmj.tw 左上角有些教學可以看\n請多加利用喔喵~"
-		case ((strings.Contains(msg,"日麻") || strings.Contains(msg,"麻將")) && strings.Contains(msg,"想") && strings.Contains(msg,"學") && strings.Contains(msg,"我")) :
-			replyMsg = "http://jmj.tw 左上角有些教學可以看\n請多加利用喔喵~"
-		case ((strings.Contains(msg,"日麻") || strings.Contains(msg,"麻將")) && strings.Contains(msg,"教我")) :
+		case teachMe(msg):
 			replyMsg = "http://jmj.tw 左上角有些教學可以看\n請多加利用喔喵~"
 		case (strings.Contains(msg,"何切")):
 			words := strings.Fields(msg)
