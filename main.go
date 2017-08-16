@@ -86,9 +86,9 @@ func determineReply(msg string) string{
 		case (strings.Contains(msg,"池田銀行")):
 			replyMsg = "點數太多嗎？歡迎存點數進來悠喵OwO"
 		case ((strings.Contains(msg,"日麻") || strings.Contains(msg,"麻將")) && strings.Contains(msg,"教學") && (strings.Contains(msg,"嗎") || strings.Contains(msg,"哪"))) :
-			replyMsg = "http://jmj.tw 左上角有些教學可以看\n 請多加利用喔喵~"
+			replyMsg = "http://jmj.tw 左上角有些教學可以看\n請多加利用喔喵~"
 		case ((strings.Contains(msg,"日麻") || strings.Contains(msg,"麻將")) && strings.Contains(msg,"想") && strings.Contains(msg,"學") && strings.Contains(msg,"我")) :
-			replyMsg = "http://jmj.tw 左上角有些教學可以看\n 請多加利用喔喵~"
+			replyMsg = "http://jmj.tw 左上角有些教學可以看\n請多加利用喔喵~"
 		case (strings.Contains(msg,"何切")):
 			words := strings.Fields(msg)
 			re := regexp.MustCompile("(([0-9]+[MmPpSs])|([1-7]+[Zz]))+")
