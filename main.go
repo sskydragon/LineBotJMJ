@@ -35,6 +35,7 @@ var cdLobby = 60*time.Second
 var cdL1120 = 60*time.Second
 var cdBullyCat = 60*time.Second
 var cdSaveMe = 60*time.Second
+var cdGiveUp = 60*time.Second
 var lastCmdList = time.Now().Add(-cdCmdList)
 var lastTest = time.Now().Add(-cdTest)
 var lastNewbie = time.Now().Add(-cdNewbie)
@@ -44,6 +45,7 @@ var lastLobby = time.Now().Add(-cdLobby)
 var lastL1120 = time.Now().Add(-cdL1120)
 var lastBullyCat = time.Now().Add(-cdBullyCat)
 var lastSaveMe = time.Now().Add(-cdSaveMe)
+var lastGiveUp = time.Now().Add(-cdGiveUp)
 
 
 func main() {
@@ -151,6 +153,9 @@ func determineReply(msg string) string{
 				}
 			}
 			if(status != 0) {replyMsg = reply}
+		case (t.Sub(lastGiveUp) > cdGiveUp && strings.Contains(msg,"棄麻")) :
+			lastGiveUp = t
+			replyMsg = "棄麻"
 		default:
 	}
 	return replyMsg
@@ -173,6 +178,14 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 			switch message := event.Message.(type) {
 			case *linebot.TextMessage:
 				replyMsg := determineReply(message.Text)
+				
+				if replyMsg == "棄麻" {
+					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewImageMessage("https://i.imgur.com/9kmdMYH.jpg", "https://i.imgur.com/9kmdMYH.jpg")).Do(); err != nil {
+						log.Print(err)
+					}
+					return
+				}
+				
 				if replyMsg != "" {
 					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(replyMsg)).Do(); err != nil {
 						log.Print(err)
