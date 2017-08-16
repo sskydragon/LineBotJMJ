@@ -138,7 +138,7 @@ func determineReply(msg string) string{
 					_, err := strconv.ParseFloat(string(result[j]), 64)
 					if(err == nil) {numAmount++}
 				}
-				if numAmount > 3 {
+				if numAmount > 6 {
 					if numAmount % 3 != 2 {
 					 status = -1
 					 reply="這樣好像不能拿去問天鳳姬呢喵~\n"+"手牌必須是0~9接花色mpsz的組合\n"+
