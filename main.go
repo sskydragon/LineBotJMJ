@@ -59,9 +59,37 @@ func main() {
 }
 
 func teachMe(msg string) bool {
-	if ((strings.Contains(msg,"日麻") || strings.Contains(msg,"麻將")) && strings.Contains(msg,"教學") && (strings.Contains(msg,"嗎") || strings.Contains(msg,"哪"))) || ((strings.Contains(msg,"日麻") || strings.Contains(msg,"麻將")) && strings.Contains(msg,"想") && strings.Contains(msg,"學") && strings.Contains(msg,"我")) || ((strings.Contains(msg,"日麻") || strings.Contains(msg,"麻將")) && strings.Contains(msg,"教我")) {
+	if ((strings.Contains(msg,"日麻") || strings.Contains(msg,"麻將")) && strings.Contains(msg,"教學") && (strings.Contains(msg,"嗎") || strings.Contains(msg,"哪"))) {
 		return true
 	}
+	if ((strings.Contains(msg,"日麻") || strings.Contains(msg,"麻將")) && strings.Contains(msg,"想") && strings.Contains(msg,"學") && strings.Contains(msg,"我")) {
+		return true
+	}
+	if ((strings.Contains(msg,"日麻") || strings.Contains(msg,"麻將")) && strings.Contains(msg,"教我")) {
+		return true
+	}
+	return false
+}
+
+func askingLobby(msg string) bool {
+	if(strings.Contains(msg,"大會室")&&strings.Contains(msg,"在哪")) {
+		return true
+	}
+	if(strings.Contains(msg,"大會室")&&(strings.Contains(msg,"連結") || strings.Contains(msg,"網址")) &&(!strings.Contains(msg,".net") && !strings.Contains(msg,"http"))) {
+		return true
+	}
+	
+	return false
+}
+
+func askingL1120(msg string) bool {
+	if(strings.Contains(msg,"個室")&&strings.Contains(msg,"在哪")) {
+		return true
+	}
+	if(strings.Contains(msg,"個室")&&(strings.Contains(msg,"連結") || strings.Contains(msg,"網址")) &&(!strings.Contains(msg,".net") && !strings.Contains(msg,"http"))) {
+		return true
+	}
+	
 	return false
 }
 
@@ -95,11 +123,11 @@ func determineReply(msg string) string{
 						"預計2020年在歐洲、2023年在日本舉行"
 		case (strings.Contains(msg,"同好會社團")):
 			replyMsg = "我們的社團在這喔喵つ https://www.facebook.com/groups/twjmj/"
-		case (t.Sub(lastLobby) > cdLobby && strings.Contains(msg,"大會室")&&strings.Contains(msg,"在哪")):
+		case (t.Sub(lastLobby) > cdLobby && askingLobby(msg)):
 			lastLobby = t
 			replyMsg = "限時開放的IORMC練習大會室在這喔喵~\n"+ 
 			"http://tenhou.net/0/?C85193656"
-		case (t.Sub(lastL1120) > cdL1120 && strings.Contains(msg,"個室")&&strings.Contains(msg,"在哪")):
+		case (t.Sub(lastL1120) > cdL1120 && askingL1120(msg)):
 			lastL1120 = t
 			replyMsg = "平常用來交流的個室在這喔喵~\n"+ 
 			"http://tenhou.net/0/?L1120"
