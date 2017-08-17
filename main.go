@@ -113,7 +113,7 @@ func determineReply(msg string) string{
 		case (t.Sub(lastSaveMe) > cdSaveMe && strings.Contains(msg,"龍哥救我")):
 			lastSaveMe = t
 			replyMsg = "需要幫忙嗎喵~？"
-		case (strings.Contains(msg,"IORMC資訊")):
+		case (strings.Contains(msg,"IORMC") && strings.Contains(msg,"資訊")):
 			replyMsg =  "IORMC是韓國辦的國際交流賽\n" +
 						"2017的預選資訊在 https://goo.gl/2XJyYw\n" +
 						"2016的比賽結果在 https://goo.gl/jatIHN"
@@ -131,11 +131,11 @@ func determineReply(msg string) string{
 			lastL1120 = t
 			replyMsg = "平常用來交流的個室在這喔喵~\n"+ 
 			"http://tenhou.net/0/?L1120"
-		case (strings.Contains(msg,"般若盃資訊")):
+		case (strings.Contains(msg,"般若盃") && strings.Contains(msg,"資訊")):
 			replyMsg = "般若盃是目前臺灣南部最大的例行比賽 通常在十月\n"+
 						"簡章請參考 https://goo.gl/XjHCfW\n"+
 						"今年第四屆報名時間已經過囉 下次請早喔喵QwQ"
-		case (strings.Contains(msg,"雀鳳盃資訊")):
+		case (strings.Contains(msg,"雀鳳盃") && strings.Contains(msg,"資訊")):
 			replyMsg = "雀鳳盃是目前臺灣北部最大的例行比賽 通常在三月\n"+
 						"第四屆/2017年辦法請參考 http://goo.gl/SB4yth\n"+
 						"好期待明年的比賽呢喵~ (滾來滾去)"
