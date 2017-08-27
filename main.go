@@ -72,6 +72,9 @@ func teachMe(msg string) bool {
 }
 
 func askingLobby(msg string) bool {
+	if(strings.Contains(msg,"!大會") {
+		return true
+	}
 	if(strings.Contains(msg,"大會室")&&strings.Contains(msg,"在哪")) {
 		return true
 	}
@@ -83,6 +86,9 @@ func askingLobby(msg string) bool {
 }
 
 func askingL1120(msg string) bool {
+	if(strings.Contains(msg,"!個室") {
+		return true
+	}
 	if(strings.Contains(msg,"個室")&&strings.Contains(msg,"在哪")) {
 		return true
 	}
@@ -113,15 +119,15 @@ func determineReply(msg string) string{
 		case (t.Sub(lastSaveMe) > cdSaveMe && strings.Contains(msg,"龍哥救我")):
 			lastSaveMe = t
 			replyMsg = "需要幫忙嗎喵~？"
-		case (strings.Contains(msg,"IORMC") && strings.Contains(msg,"資訊")):
+		case ((strings.Contains(msg,"IORMC") && strings.Contains(msg,"資訊")) || (strings.Contains(msg,"!IORMC"))):
 			replyMsg =  "IORMC是韓國辦的國際交流賽\n" +
 						"2017的預選資訊在 https://goo.gl/2XJyYw\n" +
 						"2016的比賽結果在 https://goo.gl/jatIHN"
-		case (strings.Contains(msg,"WRC資訊")):
+		case (strings.Contains(msg,"WRC資訊") || (strings.Contains(msg,"!WRC"))):
 			replyMsg =  "WRC是三年一次的世界日麻大賽(暫譯)\n"+
 						"2017.10.4-8在拉斯維加斯, 網站在 http://www.wrc2017vegas.com/\n"+
 						"預計2020年在歐洲、2023年在日本舉行"
-		case (strings.Contains(msg,"同好會社團")):
+		case (strings.Contains(msg,"同好會社團") || (strings.Contains(msg,"!社團"))):
 			replyMsg = "我們的社團在這喔喵つ https://www.facebook.com/groups/twjmj/"
 		case (t.Sub(lastLobby) > cdLobby && askingLobby(msg)):
 			lastLobby = t
@@ -131,15 +137,15 @@ func determineReply(msg string) string{
 			lastL1120 = t
 			replyMsg = "平常用來交流的個室在這喔喵~\n"+ 
 			"http://tenhou.net/0/?L1120"
-		case (strings.Contains(msg,"般若盃") && strings.Contains(msg,"資訊")):
+		case ((strings.Contains(msg,"般若盃") && strings.Contains(msg,"資訊")) || (strings.Contains(msg,"!般若"))):
 			replyMsg = "般若盃是目前臺灣南部最大的例行比賽 通常在十月\n"+
 						"簡章請參考 https://goo.gl/XjHCfW\n"+
 						"今年第四屆報名時間已經過囉 下次請早喔喵QwQ"
-		case (strings.Contains(msg,"雀鳳盃") && strings.Contains(msg,"資訊")):
+		case ((strings.Contains(msg,"雀鳳盃") && strings.Contains(msg,"資訊")) || (strings.Contains(msg,"!雀鳳"))):
 			replyMsg = "雀鳳盃是目前臺灣北部最大的例行比賽 通常在三月\n"+
 						"第四屆/2017年辦法請參考 http://goo.gl/SB4yth\n"+
 						"好期待明年的比賽呢喵~ (滾來滾去)"
-		case (strings.Contains(msg,"日麻行事曆")):
+		case (strings.Contains(msg,"日麻行事曆") || (strings.Contains(msg,"!行事曆"))):
 			replyMsg = "在這在這~~ http://goo.gl/fqwswg"
 		case (strings.Contains(msg,"過去的活動")):
 			replyMsg = "喵知道過去的比賽活動有這些~！\n"+
