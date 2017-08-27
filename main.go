@@ -72,7 +72,7 @@ func teachMe(msg string) bool {
 }
 
 func askingLobby(msg string) bool {
-	if(strings.Contains(msg,"!大會") {
+	if(strings.Contains(msg,"!大會")) {
 		return true
 	}
 	if(strings.Contains(msg,"大會室")&&strings.Contains(msg,"在哪")) {
@@ -86,7 +86,7 @@ func askingLobby(msg string) bool {
 }
 
 func askingL1120(msg string) bool {
-	if(strings.Contains(msg,"!個室") {
+	if(strings.Contains(msg,"!個室")) {
 		return true
 	}
 	if(strings.Contains(msg,"個室")&&strings.Contains(msg,"在哪")) {
