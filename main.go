@@ -36,6 +36,7 @@ var cdL1120 = 60*time.Second
 var cdBullyCat = 60*time.Second
 var cdSaveMe = 60*time.Second
 var cdGiveUp = 60*time.Second
+var cdWhatCutHelp = 60*time.Second
 var lastCmdList = time.Now().Add(-cdCmdList)
 var lastTest = time.Now().Add(-cdTest)
 var lastNewbie = time.Now().Add(-cdNewbie)
@@ -46,6 +47,7 @@ var lastL1120 = time.Now().Add(-cdL1120)
 var lastBullyCat = time.Now().Add(-cdBullyCat)
 var lastSaveMe = time.Now().Add(-cdSaveMe)
 var lastGiveUp = time.Now().Add(-cdGiveUp)
+var lastWhatCutHelp = time.Now().Add(-cdWhatCutHelp)
 
 
 func main() {
@@ -161,6 +163,7 @@ func determineReply(msg string) string{
 			lastTeachMe = t
 			replyMsg = "http://jmj.tw 左上角有些教學可以看\n請多加利用喔喵~"
 		case (strings.Contains(msg,"何切")):
+			msg = strings.Replace(msg, " ", "", -1)
 			words := strings.Fields(msg)
 			re := regexp.MustCompile("(([0-9]+[MmPpSs])|([1-7]+[Zz]))+")
 			result := "";
@@ -168,25 +171,93 @@ func determineReply(msg string) string{
 			status := 0;
 			for i := 0; i < len(words); i++ {
 				result = re.FindString(words[i]);
+				result = strings.ToLower(result);
 				numAmount := 0;
 
 				for j := 0 ; j < len(result) ; j++ {
 					_, err := strconv.ParseFloat(string(result[j]), 64)
 					if(err == nil) {numAmount++}
 				}
-				if numAmount > 6 {
-					if numAmount % 3 != 2 {
-					 status = -1
-					 reply="這樣好像不能拿去問天鳳姬呢喵~\n"+"手牌必須是0~9接花色mpsz的組合\n"+
-					 "(0是赤 m萬p筒s索z字 字牌只有1-7)\n"+"而且丟完牌必須是3n+1張才不會出錯唷~"
+				if numAmount > 6 && numAmount < 15{
+					if numAmount%3 == 0 {
+						status = -1
+						reply = "張數不對 這樣不能拿去問天鳳姬呢喵~ (需要說明嗎?)"
 					} else {
+						countAry := make([]int, 35)
+						for j := 0; j <= 34; j++ {
+							countAry[j] = 0
+						}
+
+						pointer := 0
+						countAmtAvailable := true;
+						for j := len(result) - 1; j >= 0; j-- {
+							if result[j] == 'z' {
+								pointer = 27
+							} else if result[j] == 's' {
+								pointer = 18
+							} else if result[j] == 'p' {
+								pointer = 9
+							} else if result[j] == 'm' {
+								pointer = 0
+							} else {
+								num := int(result[j] - '0')
+								if num == 0 {
+									num = 5
+								}
+								countAry[num+pointer]++
+								if countAry[num+pointer] > 4 {
+									status = -1
+									reply = "每種牌只能有四張喔！ (需要說明嗎?)"
+									countAmtAvailable = false;
+									break;
+								}
+							}
+						}
+						if(!countAmtAvailable ) {continue;}
+
+						if(numAmount%3 == 1)  {
+							filled := false;
+							for j := 1 ; j <= 7 ; j++ {
+								if countAry[27+j] == 0 {
+									result += strconv.Itoa(j) + "z";
+									filled = true;
+									break;
+								}
+							}
+							if filled == false {
+								kind := "mps";
+								for j := 1 ; j <= 27 ; j++ {
+									for k:= -2 ; k <= 2 ; k++ {
+										if j+k < 1 {continue;}
+										if k < 0 && (j + k-1) % 9 > (j-1) % 9 {continue;}
+										if k > 0 && (j + k -1) % 9 < (j-1) % 9 {continue;}
+									
+										if countAry[j+k] > 0 {break;}
+										if k == 2 {
+											result +=  strconv.Itoa(((j-1)%9)+1) + string(kind[j/9]);
+											filled = true;
+											break;
+										}
+									}
+									if filled == true {break; }
+								}
+							}
+						}
 						status = 1
-						reply = "天鳳姬是這樣說的呢喵~\n"+"http://tenhou.net/2/?q="+result+"\n"
-						break
+						reply = "天鳳姬是這樣說的呢喵~\n" + "http://tenhou.net/2/?q=" + result + "\n";
+						break;
 					}
 				}
 			}
 			if(status != 0) {replyMsg = reply}
+			if(t.Sub(lastWhatCutHelp) > cdWhatCutHelp && (strings.Contains(msg,"說明") || strings.Contains(msg,"用法"))) {
+				replyMsg = "手牌必須是數字接花色的組合 m萬p筒s索 z字\n" +
+				"三色牌數字是0~9 其中0是赤\n" +
+				"字牌的話數字只能用1-7\n" + 
+				"同一種牌最多只會有四張 不要自己刻不存在的牌嘿乖～\n\n"+
+				"問何切要3n+2張牌 不然丟一張出去會相公喔！\n"+
+				"問聽牌則是要3n+1張, 可以在後面多加一張無關牌"
+			}
 		case (t.Sub(lastGiveUp) > cdGiveUp && strings.Contains(msg,"棄麻")) :
 			lastGiveUp = t
 			replyMsg = "棄麻"
