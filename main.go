@@ -22,11 +22,11 @@ import (
 	"strconv"
 	"time"
 	
-	"io/ioutil"	
-	"bytes"
+//	"io/ioutil"	
+//	"bytes"
 	
 	"github.com/line/line-bot-sdk-go/linebot"
-	"github.com/PuerkitoBio/goquery"
+//	"github.com/PuerkitoBio/goquery"
 )
 //global cd會造成不同對話群組間互相影響的問題(再研究)
 var bot *linebot.Client
@@ -249,7 +249,7 @@ func determineReply(msg string) string{
 						}
 						status = 1
 						reply = "天鳳姬是這樣說的呢喵~\n" + "http://tenhou.net/2/?q=" + result + "\n";
-						
+/*	這邊沒用上...不是想要的內容		
 // https://www.daniweb.com/programming/computer-science/code/495192/get-the-content-of-a-web-page-golang
 	url := "http://tenhou.net/2/?q=" + result;
 
@@ -271,6 +271,7 @@ func determineReply(msg string) string{
     doc, _ := goquery.NewDocumentFromReader(r)
     text := doc.Find("textarea").Text()
     reply += text;
+*/	
 						break;
 					}
 				}
