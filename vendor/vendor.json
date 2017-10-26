@@ -3,6 +3,12 @@
 	"ignore": "test",
 	"package": [
 		{
+			"checksumSHA1": "L59MZSz7c6x14dyD8pWA29iDKno=",
+			"path": "github.com/PuerkitoBio/goquery",
+			"revision": "1a71cc719d0d5b9e4f14ae072bef08b576b0bab5",
+			"revisionTime": "2017-10-07T14:12:28Z"
+		},	
+		{
 			"checksumSHA1": "h8ZzyQTRljjxHgqCHniOd1hURV8=",
 			"path": "github.com/line/line-bot-sdk-go/linebot",
 			"revision": "b7e1bd128fef0e6a532d1afce049cbcd8dc5f4c8",
