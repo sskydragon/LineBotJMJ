@@ -3,6 +3,60 @@
 	"ignore": "test",
 	"package": [
 		{
+			"checksumSHA1": "LOciMFWXIh4HWzCf867Sifdcb98=",
+			"path": "github.com/robertkrimen/otto",
+			"revision": "68a29f5e29b18d7367e686c43cf74eba1900f548",
+			"revisionTime": "2017-10-11T06:05:57Z"
+		},
+		{
+			"checksumSHA1": "J3rFoeyZTcVM/wMAOgVgXesokjs=",
+			"path": "github.com/robertkrimen/otto/ast",
+			"revision": "68a29f5e29b18d7367e686c43cf74eba1900f548",
+			"revisionTime": "2017-10-11T06:05:57Z"
+		},
+		{
+			"checksumSHA1": "Ih8IyrcvYIRe1H1BbExbHs+s8kM=",
+			"path": "github.com/robertkrimen/otto/dbg",
+			"revision": "68a29f5e29b18d7367e686c43cf74eba1900f548",
+			"revisionTime": "2017-10-11T06:05:57Z"
+		},
+		{
+			"checksumSHA1": "FnQzQouypvp1tUyPE3mYbWNH6es=",
+			"path": "github.com/robertkrimen/otto/file",
+			"revision": "68a29f5e29b18d7367e686c43cf74eba1900f548",
+			"revisionTime": "2017-10-11T06:05:57Z"
+		},
+		{
+			"checksumSHA1": "oQuxJLg37BTsrLAWTS1wS3OPW0s=",
+			"path": "github.com/robertkrimen/otto/parser",
+			"revision": "68a29f5e29b18d7367e686c43cf74eba1900f548",
+			"revisionTime": "2017-10-11T06:05:57Z"
+		},
+		{
+			"checksumSHA1": "i9dRdlVYwqPt0PTRnJS6GxKoCRw=",
+			"path": "github.com/robertkrimen/otto/registry",
+			"revision": "68a29f5e29b18d7367e686c43cf74eba1900f548",
+			"revisionTime": "2017-10-11T06:05:57Z"
+		},
+		{
+			"checksumSHA1": "xtqK2psqhYePbQ/4FX4op8GjP1Q=",
+			"path": "github.com/robertkrimen/otto/terst",
+			"revision": "68a29f5e29b18d7367e686c43cf74eba1900f548",
+			"revisionTime": "2017-10-11T06:05:57Z"
+		},
+		{
+			"checksumSHA1": "KJp6P0GEODVBpNGqY8Scn+Q/0lg=",
+			"path": "github.com/robertkrimen/otto/token",
+			"revision": "68a29f5e29b18d7367e686c43cf74eba1900f548",
+			"revisionTime": "2017-10-11T06:05:57Z"
+		},
+		{
+			"checksumSHA1": "o6WCDfQvQC8VfwyVB1XPEwDweg0=",
+			"path": "github.com/robertkrimen/otto/underscore",
+			"revision": "68a29f5e29b18d7367e686c43cf74eba1900f548",
+			"revisionTime": "2017-10-11T06:05:57Z"
+		},
+		{
 			"checksumSHA1": "L59MZSz7c6x14dyD8pWA29iDKno=",
 			"path": "github.com/PuerkitoBio/goquery",
 			"revision": "1a71cc719d0d5b9e4f14ae072bef08b576b0bab5",
@@ -43,6 +97,18 @@
 			"path": "golang.org/x/net/context/ctxhttp",
 			"revision": "9ef22118a4b25863aa94546daffbc0a18feaafb3",
 			"revisionTime": "2016-11-09T21:27:32Z"
+		},
+		{
+			"checksumSHA1": "4WhOem5fx4Py7pQEc2OyM9lLLAw=",
+			"path": "gopkg.in/sourcemap.v1",
+			"revision": "6e83acea0053641eff084973fee085f0c193c61a",
+			"revisionTime": "2017-02-13T14:20:43Z"
+		},
+		{
+			"checksumSHA1": "S/V6uhcJ9Zl+/wrhJrrwkWd8UOE=",
+			"path": "gopkg.in/sourcemap.v1/base64vlq",
+			"revision": "6e83acea0053641eff084973fee085f0c193c61a",
+			"revisionTime": "2017-02-13T14:20:43Z"
 		}
 	],
 	"rootPath": "github.com/kkdai/LineBotTemplate"
