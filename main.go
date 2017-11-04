@@ -99,7 +99,7 @@ func askingL1120(msg string) bool {
 	if(strings.Contains(msg,"個室")&&strings.Contains(msg,"在哪")) {
 		return true
 	}
-	if(strings.Contains(msg,"個室")&&(strings.Contains(msg,"連結") || strings.Contains(msg,"網址")) &&(!strings.Contains(msg,".net") && !strings.Contains(msg,"http"))) {
+	if(strings.Contains(msg,"個室")&&(strings.Contains(msg,"連結") || strings.Contains(msg,"網址") || strings.Contains(msg,"位置")) &&(!strings.Contains(msg,".net") && !strings.Contains(msg,"http"))) {
 		return true
 	}
 	
