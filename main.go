@@ -115,9 +115,10 @@ func determineReply(msg string) string{
 			replyMsg = "測試 / 同好會社團 / 日本麻將介紹網站 / \n"+
 						"日麻行事曆 / 過去的活動 / [IORMC|WRC|雀鳳盃|般若盃]資訊 / \n" + "何切[0-9][mpsz] / 我想學日麻\n"+
 						"覺得有漏可以tag龍哥幫忙加, 還有一些小彩蛋就不說了喵~"
-		case (t.Sub(lastTest) > cdTest && strings.Contains(msg,"測試")):
+/*		case (t.Sub(lastTest) > cdTest && strings.Contains(msg,"測試")):
 			lastTest = t
 			replyMsg = "在測試啥呢喵~"
+*/
 		case ((strings.Contains(msg,"日麻") || strings.Contains(msg,"麻將")) && strings.Contains(msg,"介紹") && strings.Contains(msg,"網站")):
 			replyMsg = "介紹網站在 http://jmj.tw 喵~"
 		case (t.Sub(lastBullyCat) > cdBullyCat && strings.Contains(msg,"婊池田")),(strings.Contains(msg,"打爆池田")):
