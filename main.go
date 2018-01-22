@@ -147,12 +147,11 @@ func determineReply(msg string) string{
 			"http://tenhou.net/0/?L1120"
 		case ((strings.Contains(msg,"般若盃") && strings.Contains(msg,"資訊")) || (strings.Contains(msg,"!般若"))):
 			replyMsg = "般若盃是目前臺灣南部最大的例行比賽 通常在十月\n"+
-						"簡章請參考 https://goo.gl/XjHCfW\n"+
-						"今年第四屆報名時間已經過囉 下次請早喔喵QwQ"
+						"報名超額時會依天鳳段位及牌譜內容決定參與者\n"+
+						"把天鳳段位打高一點比較容易報上喔~"
 		case ((strings.Contains(msg,"雀鳳盃") && strings.Contains(msg,"資訊")) || (strings.Contains(msg,"!雀鳳"))):
 			replyMsg = "雀鳳盃是目前臺灣北部最大的例行比賽 通常在三月\n"+
-						"第四屆/2017年辦法請參考 http://goo.gl/SB4yth\n"+
-						"好期待明年的比賽呢喵~ (滾來滾去)"
+						"相關資訊能在淡大日麻社社團找到 https://goo.gl/9FFvvn\n"
 		case (strings.Contains(msg,"日麻行事曆") || (strings.Contains(msg,"!行事曆"))):
 			replyMsg = "在這在這~~ http://goo.gl/fqwswg"
 		case (strings.Contains(msg,"過去的活動")):
