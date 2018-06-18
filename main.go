@@ -131,7 +131,10 @@ func askingL1120(msg string) bool {
 }
 
 func askingNTUSlides(msg string) bool {
-	if(strings.Contains(msg,"!台大講義") || strings.Contains(msg,"!臺大講義") || strings.Contains(msg,"!社課講義")) {
+	if(strings.Contains(msg,"!台大講義") || strings.Contains(msg,"!臺大講義") || strings.Contains(msg,"!社課講義") || strings.Contains(msg,"!賓果講義") || strings.Contains(msg,"!上課錄影") ){
+		return true
+	}
+	if( (strings.Contains(msg,"台大") || strings.Contains(msg,"臺大") || strings.Contains(msg,"賓果")) && (strings.Contains(msg,"講義") || strings.Contains(msg,"錄影") || strings.Contains(msg,"教材") || strings.Contains(msg,"上課內容")) && (strings.Contains(msg,"在哪") || strings.Contains(msg,"位置") || strings.Contains(msg,"給一下") || strings.Contains(msg,"哪找") || strings.Contains(msg,"？")) || strings.Contains(msg,"哪裡找得到") ) {
 		return true
 	}
 	return false
@@ -145,6 +148,10 @@ func appendNTUSlidesInfo(msg string) string {
 	return msg
 }
 
+func appendStarflyxInfo(msg string) string {
+	msg += "星野的教學影片 - 適合任何人觀看喔~\nhttps://goo.gl/Yjeixi"
+	return msg
+}
 
 func determineReply(msg string, groupSupported bool) string{
 	var replyMsg string = ""
@@ -208,7 +215,9 @@ func determineReply(msg string, groupSupported bool) string{
 			replyMsg = "點數太多嗎？歡迎存點數進來悠喵OwO"
 		case (t.Sub(lastTeachMe) > cdTeachMe && teachMe(msg)):
 			lastTeachMe = t
-			replyMsg = "http://jmj.tw 左上角有些教學可以看\n請多加利用喔喵~"
+			replyMsg = appendNTUSlidesInfo(replyMsg)
+			replyMsg = appendStarflyxInfo(replyMsg+"\n")
+			replyMsg += "\n\nhttp://jmj.tw\n左上角還有些教學可以看 請多加利用喔喵~"
 		case (strings.Contains(msg,"何切")):
 			msg = strings.Replace(msg, " ", "", -1)
 			words := strings.Fields(msg)
