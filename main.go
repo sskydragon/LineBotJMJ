@@ -347,7 +347,7 @@ var u=function(){function b(a){var b=a&7,c=0,d=0;1==b||4==b?c=d=1:2==b&&(c=d=2);
 		case (t.Sub(lastGiveUp) > cdGiveUp && strings.Contains(msg,"棄麻")) :
 			lastGiveUp = t
 			replyMsg = "棄麻"
-		case (t.Sub(lastSlides > cdSlides && groupSupported && askingNTUSlides)) :
+		case (t.Sub(lastSlides) > cdSlides && groupSupported && askingNTUSlides(msg)) :
 			lastSlides = t
 			replyMsg = appendNTUSlidesInfo(replyMsg)
 		default:
