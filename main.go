@@ -215,8 +215,8 @@ func determineReply(msg string, groupSupported bool) string{
 			replyMsg = "點數太多嗎？歡迎存點數進來悠喵OwO"
 		case (t.Sub(lastTeachMe) > cdTeachMe && teachMe(msg)):
 			lastTeachMe = t
-			replyMsg = appendNTUSlidesInfo(replyMsg)
-			replyMsg = appendStarflyxInfo(replyMsg+"\n")
+			replyMsg = appendStarflyxInfo(replyMsg)
+			replyMsg = appendNTUSlidesInfo(replyMsg+"\n\n")
 			replyMsg += "\n\nhttp://jmj.tw\n左上角還有些教學可以看 請多加利用喔喵~"
 		case (strings.Contains(msg,"何切")):
 			msg = strings.Replace(msg, " ", "", -1)
