@@ -65,6 +65,14 @@ func main() {
 	http.ListenAndServe(addr, nil)
 }
 
+func isAdmin(msg string) bool {
+	s := os.Getenv("AdminLineIDList")
+	if(strings.Contains(s,msg)) {
+		return true
+	}
+	return false
+}
+
 func teachMe(msg string) bool {
 	if ((strings.Contains(msg,"日麻") || strings.Contains(msg,"麻將")) && strings.Contains(msg,"教學") && (strings.Contains(msg,"嗎") || strings.Contains(msg,"哪"))) {
 		return true
@@ -337,7 +345,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 					return
 				}
 
-				if replyMsg == "測試" {
+				if replyMsg == "測試" && isAdmin(event.Source.UserID){
 					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(event.Source.UserID)).Do(); err != nil {
 						log.Print(err)
 					}
