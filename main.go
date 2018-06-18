@@ -10,6 +10,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+/* required environment vars
+ChannelAccessToken
+ChannelSecret
+AdminLineIDList   	(Line UserID)
+SupportedGroups		(Line GroupID)
+*/
+
 package main
 
 import (
@@ -42,6 +49,7 @@ var cdBullyCat = 60*time.Second
 var cdSaveMe = 60*time.Second
 var cdGiveUp = 60*time.Second
 var cdWhatCutHelp = 60*time.Second
+var cdSlides = 60*time.Second
 var lastCmdList = time.Now().Add(-cdCmdList)
 var lastTest = time.Now().Add(-cdTest)
 var lastNewbie = time.Now().Add(-cdNewbie)
@@ -53,7 +61,7 @@ var lastBullyCat = time.Now().Add(-cdBullyCat)
 var lastSaveMe = time.Now().Add(-cdSaveMe)
 var lastGiveUp = time.Now().Add(-cdGiveUp)
 var lastWhatCutHelp = time.Now().Add(-cdWhatCutHelp)
-
+var lastSlides = time.Now().Add(-cdSlides)
 
 func main() {
 	var err error
@@ -67,6 +75,14 @@ func main() {
 
 func isAdmin(msg string) bool {
 	s := os.Getenv("AdminLineIDList")
+	if(strings.Contains(s,msg)) {
+		return true
+	}
+	return false
+}
+
+func isSupportedGroup(msg string) bool {
+	s := os.Getenv("SupportedGroups")
 	if(strings.Contains(s,msg)) {
 		return true
 	}
@@ -114,7 +130,23 @@ func askingL1120(msg string) bool {
 	return false
 }
 
-func determineReply(msg string) string{
+func askingNTUSlides(msg string) bool {
+	if(strings.Contains(msg,"!台大講義") || strings.Contains(msg,"!臺大講義") || strings.Contains(msg,"!社課講義")) {
+		return true
+	}
+	return false
+}
+
+func appendNTUSlidesInfo(msg string) string {
+	msg += "台大日麻社課講義 - 適合初學到進階玩家學習\n" +			
+			"上學期 https://goo.gl/bFBy9w\n" +
+			"下學期 https://goo.gl/E9rirQ\n" +
+			"社課錄影 https://goo.gl/sYS6Vd"
+	return msg
+}
+
+
+func determineReply(msg string, groupSupported bool) string{
 	var replyMsg string = ""
 	t := time.Now()
 	switch {
@@ -315,6 +347,9 @@ var u=function(){function b(a){var b=a&7,c=0,d=0;1==b||4==b?c=d=1:2==b&&(c=d=2);
 		case (t.Sub(lastGiveUp) > cdGiveUp && strings.Contains(msg,"棄麻")) :
 			lastGiveUp = t
 			replyMsg = "棄麻"
+		case (t.Sub(lastSlides > cdSlides && groupSupported && askingNTUSlides)) :
+			lastSlides = t
+			replyMsg = appendNTUSlidesInfo(replyMsg)
 		default:
 	}
 	return replyMsg
@@ -336,7 +371,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 		if event.Type == linebot.EventTypeMessage {
 			switch message := event.Message.(type) {
 			case *linebot.TextMessage:
-				replyMsg := determineReply(message.Text)
+				replyMsg := determineReply(message.Text, event.Source.Type == "group" && isSupportedGroup(event.Source.GroupID))
 				
 				if replyMsg == "棄麻" {
 					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewImageMessage("https://i.imgur.com/9kmdMYH.jpg", "https://i.imgur.com/9kmdMYH.jpg")).Do(); err != nil {
@@ -346,11 +381,12 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 				}
 
 				if replyMsg == "測試" {
-					if(isAdmin(event.Source.UserID) && event.Source.Type == "group") {
+/*					if(isAdmin(event.Source.UserID) && event.Source.Type == "group") {
 						if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(event.Source.GroupID)).Do(); err != nil {
 							log.Print(err)
 						}
 					}
+*/					
 					return
 				}				
 				
