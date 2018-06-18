@@ -338,7 +338,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 				}
 
 				if replyMsg == "測試" {
-					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(event.Source.UserId)).Do(); err != nil {
+					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(event.Source.UserID)).Do(); err != nil {
 						log.Print(err)
 					}
 					return
