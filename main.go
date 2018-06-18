@@ -345,9 +345,11 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 					return
 				}
 
-				if replyMsg == "測試" && isAdmin(event.Source.UserID){
-					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(event.Source.UserID)).Do(); err != nil {
-						log.Print(err)
+				if replyMsg == "測試" {
+					if(isAdmin(event.Source.UserID) && event.Source.Type == "group") {
+						if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(event.Source.GroupID)).Do(); err != nil {
+							log.Print(err)
+						}
 					}
 					return
 				}				
