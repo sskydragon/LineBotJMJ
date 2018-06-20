@@ -153,6 +153,11 @@ func appendStarflyxInfo(msg string) string {
 	return msg
 }
 
+func appendTaiwancoInfo(msg string) string {
+	msg += "少年與沈欸的天鳳觀戰解析 - 對特桌以上玩家較有幫助\nhttps://goo.gl/5PX5VH"
+	return msg
+}
+
 func determineReply(msg string, groupSupported bool) string{
 	var replyMsg string = ""
 	t := time.Now()
@@ -217,7 +222,16 @@ func determineReply(msg string, groupSupported bool) string{
 			lastTeachMe = t
 			replyMsg = appendStarflyxInfo(replyMsg)
 			replyMsg = appendNTUSlidesInfo(replyMsg+"\n\n")
+			replyMsg = appendTaiwancoInfo(replyMsg+"\n\n")
 			replyMsg += "\n\nhttp://jmj.tw\n左上角還有些教學可以看 請多加利用喔喵~"
+		case (strings.Contains(msg,"!何切") || strings.Contains(msg,"!討論")):
+			replyMsg ="「何切」是對一個既定場況探討該如何選擇/行動的討論方式\n" +
+			"通常會講自己的選擇, 再用對場況的解讀和一些基於客觀線索的判斷作補充說明\n" +
+			"一般用0代表赤牌 m/p/s代表萬/筒/索\n" +
+			"請試著儘量把自己的想法說明清楚, 有不懂的部分也針對回應發問\n" +
+			"避免人身攻擊或流於意識型態上的爭吵, 喵不喜歡大家吵架 ::>___<::\n\n" +
+			"如果要問參考的何切分析 請用 [何切 1112345678999m1z] 這種方式詢問\n" +
+			"後方接14個數字代表14張牌 mpsz代表花色 z是字牌喔~"
 		case (strings.Contains(msg,"何切")):
 			msg = strings.Replace(msg, " ", "", -1)
 			words := strings.Fields(msg)
