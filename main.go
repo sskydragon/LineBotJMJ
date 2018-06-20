@@ -225,11 +225,10 @@ func determineReply(msg string, groupSupported bool) string{
 			replyMsg = appendNTUSlidesInfo(replyMsg+"\n\n")
 			replyMsg = appendTaiwancoInfo(replyMsg+"\n\n")
 			replyMsg += "\n\nhttp://jmj.tw\n左上角還有些教學可以看 請多加利用喔喵~"
-		case (strings.Contains(msg,"!討論") 
+		case (strings.Contains(msg,"!討論") ):
 			/*
 			|| (strings.Contains(msg,"討論") && (strings.Contains(msg,"說明") || strings.Contains(msg,"指引")))
 			*/
-			):
 			replyMsg = "請大家跟著這樣做喔喵~\n\n" +
 					"○ 避免在討論時帶入情緒性發言\n" +
 					"○ 站在觀看者的角度, 想想看到時會有什麼感覺\n"+
@@ -241,11 +240,10 @@ func determineReply(msg string, groupSupported bool) string{
 					"✕ 避免讓人難受或生氣說話方式\n"+
 					"✕ 避免放大絕直接否定他人, 儘量用可見的線索來討論\n"+
 					"✕ 避免單純批評嗆聲, 做錯了如何改善呢？請提供你的看法做法"
-		case (strings.Contains(msg,"!何切") 
+		case (strings.Contains(msg,"!何切") ):
 			/*
 			|| (strings.Contains(msg,"何切") && (strings.Contains(msg,"說明") || strings.Contains(msg,"指引")))
 			*/
-			):
 			replyMsg ="「何切」是對一個既定場況探討該如何選擇/行動的討論方式\n" +
 			"需要準備一摸進手牌或可選擇鳴牌的情境, 遮擋他家手牌, 並開啟捨牌是否為摸打的標示\n" +
 			"通常會講自己的選擇, 再用對場況的解讀和一些基於客觀線索的判斷作補充說明\n" +
