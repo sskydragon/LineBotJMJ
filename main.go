@@ -228,6 +228,7 @@ func determineReply(msg string, groupSupported bool) string{
 		case (strings.Contains(msg,"!何切") || strings.Contains(msg,"!討論") ||
 			(strings.Contains(msg,"說明") && (strings.Contains(msg,"何切") || strings.Contains(msg,"討論")))):
 			replyMsg ="「何切」是對一個既定場況探討該如何選擇/行動的討論方式\n" +
+			"需要準備一摸進手牌或可選擇鳴牌的情境, 遮擋他家手牌, 並開啟捨牌是否為摸打的標示\n" +
 			"通常會講自己的選擇, 再用對場況的解讀和一些基於客觀線索的判斷作補充說明\n" +
 			"一般用0代表赤牌 m/p/s代表萬/筒/索\n" +
 			"請試著儘量把自己的想法說明清楚, 有不懂的部分也針對回應發問\n" +
