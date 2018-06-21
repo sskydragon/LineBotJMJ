@@ -239,8 +239,8 @@ func determineReply(msg string, groupSupported bool) string{
 		case (strings.Contains(msg,"!寶牌") || strings.Contains(msg,"!ドラ")):
 			replyMsg = "寶牌是「寶牌指示牌」的下一張, 且不能當起和飜\n"+
 						"1→2→..→9→1, 東→南→西→北→東 白→發→中→白"
-		case (strings.Contains(msg,"!全求")):
-			replyMsg = "日麻沒有全求這種東西...."
+		case (strings.Contains(msg,"!全求") || strings.Contains(msg,"!花龍")):
+			replyMsg = "日麻沒有這種東西...."
 		case (strings.Contains(msg,"!單釣") || strings.Contains(msg,"!單騎") || strings.Contains(msg,"!獨聽")):
 			replyMsg = "日麻只聽一張的情況並沒有飜, 只在符數上會有一點點加成"
 		case (strings.Contains(msg,"!立直")):
@@ -252,15 +252,15 @@ func determineReply(msg string, groupSupported bool) string{
 			replyMsg = "立直後到自己下次捨牌前和了, 且過程中沒有人鳴牌才計算"
 		case (strings.Contains(msg,"!役牌")):
 			replyMsg = "場風/自風/三元(白發中)有三張以上才算(看錯場風自風了嗎?)"
-		case (strings.Contains(msg,"!一氣")):
+		case (strings.Contains(msg,"!一氣") || strings.Contains(msg,"!一通") || strings.Contains(msg,"!一條龍")):
 			replyMsg = "和了時的拆解 必須能拆出123 456 789三組 才有一氣"
 		case (strings.Contains(msg,"!流滿") || strings.Contains(msg,"!流局滿貫")):
 			replyMsg = "捨牌全是19字、且沒有被人叫走才算。\n"+
 						"和流局聽牌狀態分開計算點數增減。"
-		case (strings.Contains(msg,"!四暗刻")):
+		case (strings.Contains(msg,"!四暗")):
 			replyMsg = "四組刻子都要自力摸進來才算\n"+
 						"最後一張榮和是來自別人的話, 要算明刻, 沒有四暗"
-		case (strings.Contains(msg,"!綠一色")):
+		case (strings.Contains(msg,"!綠一")):
 			replyMsg = "綠一只能有23468索和發。通常不需要有發。"
 		case (strings.Contains(msg,"!人和")):
 			replyMsg = "人和是地方役, 有沒有玩看各地不同(天鳳不採用)"
