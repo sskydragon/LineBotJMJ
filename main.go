@@ -230,7 +230,7 @@ func determineReply(msg string, groupSupported bool) string{
 			replyMsg = "二盃口必須門清才計算\n"+
 						"因為拆解型不同, 二盃口不計七對子"
 		case (strings.Contains(msg,"!平和")):
-			replyMsg = "平和必須門前清、聽兩面且雀頭沒有符\n"
+			replyMsg = "平和必須門前清、聽兩面且雀頭沒有符\n"+
 						"(如果某種字牌拿三張有役 當雀頭時就會有符)"
 		case (strings.Contains(msg,"!自摸") || strings.Contains(msg,"!門清") || strings.Contains(msg,"!門前清")):
 			replyMsg = "日麻自摸和門清都沒有役,\n"+
