@@ -213,6 +213,10 @@ func determineReply(msg string, groupSupported bool) string{
 			replyMsg = "喵知道過去的比賽活動有這些~！\n"+
 						"https://goo.gl/KH00SO\n" +
 						"還想提供些什麼的話也請讓喵知道喔喵~ "
+		case (strings.Contains(msg,"新手常見問題") || strings.Contains(msg,"!常見問題")):
+			replyMsg = "和牌必須要有役(寶牌以外)\n"+
+			"不能振聽(聽的牌中不能有自己打出過的牌)\n"+
+			"高取牌(和了時必須先把牌型拆開擺好, 且只計算最有利的一種)"
 		case (t.Sub(lastNewbie) > cdNewbie && strings.Contains(msg,"萌新")):
 			lastNewbie = t
 			replyMsg = "萌新是在說我嗎喵~ (探頭"
@@ -383,12 +387,26 @@ var u=function(){function b(a){var b=a&7,c=0,d=0;1==b||4==b?c=d=1:2==b&&(c=d=2);
 			}
 			if(status != 0) {replyMsg = reply}
 			if(t.Sub(lastWhatCutHelp) > cdWhatCutHelp && (strings.Contains(msg,"使用說明") || strings.Contains(msg,"用法"))) {
+/*			
 				replyMsg = "手牌必須是數字接花色的組合 m萬p筒s索 z字\n" +
 				"三色牌數字是0~9 其中0是赤\n" +
 				"字牌的話數字只能用1-7\n" + 
 				"同一種牌最多只會有四張 不要自己刻不存在的牌嘿乖～\n\n"+
 				"問何切要3n+2張牌 不然丟一張出去會相公喔！\n"+
 				"問聽牌則是要3n+1張, 可以在後面多加一張無關牌"
+*/
+				replyMsg = "何切輸入方式:必須是8/11/14張牌\n"+
+				
+				"m=萬 p=筒 s=索 z=字 0=赤\n"+
+				"字牌只有1-7z 分別代表東南西北白發中\n\n"+
+
+				"例：34567m46p6667s22z6p\n"+
+				"三四五六七四六六六六七南南 六\n"+
+				"萬萬萬萬萬筒筒索索索索風風 筒\n"+
+				"(五萬是紅的)\n\n"+
+
+				"張數正確、且確實可能出現(一種牌最多四張)才能幫你解答喔~\n"+
+				"如果少給一張的話，喵會自動幫你補一張無關牌進去，記得感謝我喔喵~"
 			}
 		case (t.Sub(lastGiveUp) > cdGiveUp && strings.Contains(msg,"棄麻")) :
 			lastGiveUp = t
