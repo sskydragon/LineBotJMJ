@@ -162,10 +162,10 @@ func determineReply(msg string, groupSupported bool) string{
 	var replyMsg string = ""
 	t := time.Now()
 	switch {
-		case (t.Sub(lastCmdList) > cdCmdList && strings.Contains(msg,"!指令")):
+		case (t.Sub(lastCmdList) > cdCmdList && (strings.Contains(msg,"!指令") || strings.Contains(msg,"!幫助") || strings.Contains(msg,"!用法") || strings.Contains(msg,"!說明"))):
 			lastCmdList = t
-			replyMsg = "測試 / 同好會社團 / 日本麻將介紹網站 / \n"+
-						"日麻行事曆 / 過去的活動 / [IORMC|WRC|雀鳳盃|般若盃]資訊 / \n" + "何切[0-9][mpsz] / 我想學日麻\n"+
+			replyMsg = "同好會社團 / 日本麻將介紹網站 / \n"+
+						"日麻行事曆 / 過去的活動 / [IORMC|WRC|雀鳳盃|般若盃]資訊 / \n" + "何切[0-9][mpsz] / 我想學日麻 / ![役種名稱] / !常見問題\n"+
 						"覺得有漏可以tag龍哥幫忙加, 還有一些小彩蛋就不說了喵~"
 /*		case (strings.Contains(msg,"測試")):
 			replyMsg = "測試"
@@ -213,7 +213,7 @@ func determineReply(msg string, groupSupported bool) string{
 			replyMsg = "喵知道過去的比賽活動有這些~！\n"+
 						"https://goo.gl/KH00SO\n" +
 						"還想提供些什麼的話也請讓喵知道喔喵~ "
-		case (strings.Contains(msg,"新手常見問題") || strings.Contains(msg,"!常見問題")):
+		case (strings.Contains(msg,"新手常見問題") || strings.Contains(msg,"!常見問題") || strings.Contains(msg,"!新手問題")):
 			replyMsg = "※和牌必須要有役(寶牌以外)\n"+
 			"※不能振聽(聽的牌中不能有自己打出過的牌,\n"+
 			"  別人打出聽的牌且自家沒攤的話, 要到自己摸牌後才解除振聽)\n"+
