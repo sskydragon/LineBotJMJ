@@ -214,10 +214,56 @@ func determineReply(msg string, groupSupported bool) string{
 						"https://goo.gl/KH00SO\n" +
 						"還想提供些什麼的話也請讓喵知道喔喵~ "
 		case (strings.Contains(msg,"新手常見問題") || strings.Contains(msg,"!常見問題")):
-			replyMsg = "和牌必須要有役(寶牌以外)\n"+
-			"不能振聽(聽的牌中不能有自己打出過的牌)\n"+
-			"高取牌(和了時必須先把牌型拆開擺好, 且只計算最有利的一種)"
-		case (t.Sub(lastNewbie) > cdNewbie && strings.Contains(msg,"萌新")):
+			replyMsg = "※和牌必須要有役(寶牌以外)\n"+
+			"※不能振聽(聽的牌中不能有自己打出過的牌, 別人若打出聽的牌且自家放過要到自己摸牌才解除)\n"+
+			"※高取牌(和了時必須先把牌型拆開擺好, 且只計算最有利的一種)\n"+
+			"※只計上位役(二盃口必含一盃口, 所以有二盃的情況不計一盃)\n"+
+			"※鳴牌降飜(部分役種在有叫牌的情況下價值會下降或不計)\n"+
+			"※役滿只能和役滿複合(有役滿的情況下不計一般役種)\n\n"+
+			
+			"各役種常見問題 請用「!役種名稱」查詢\n"
+		case (strings.Contains(msg,"!斷么")):
+			replyMsg = "斷么只能有2~8的數字牌"
+		case (strings.Contains(msg,"!一盃口")):
+			replyMsg = "一盃口必須門清才計算"
+		case (strings.Contains(msg,"!二盃口")):
+			replyMsg = "二盃口必須門清才計算\n"+
+						"因為拆解型不同, 二盃口不計七對子"
+		case (strings.Contains(msg,"!平和")):
+			replyMsg = "平和必須門前清、聽兩面且雀頭沒有符\n"
+						"(如果某種字牌拿三張有役 當雀頭時就會有符)"
+		case (strings.Contains(msg,"!自摸") || strings.Contains(msg,"!門清") || strings.Contains(msg,"!門前清")):
+			replyMsg = "日麻自摸和門清都沒有役,\n"+
+					   "只有在門前清的情況下自摸才有一飜"
+		case (strings.Contains(msg,"!寶牌") || strings.Contains(msg,"!ドラ")):
+			replyMsg = "寶牌是「寶牌指示牌」的下一張, 且不能當起和飜\n"+
+						"1→2→..→9→1, 東→南→西→北→東 白→發→中→白"
+		case (strings.Contains(msg,"!全求")):
+			replyMsg = "日麻沒有全求這種東西...."
+		case (strings.Contains(msg,"!單釣") || strings.Contains(msg,"!單騎") || strings.Contains(msg,"!獨聽")):
+			replyMsg = "日麻只聽一張的情況並沒有飜, 只在符數上會有一點點加成"
+		case (strings.Contains(msg,"!立直")):
+			replyMsg = "立直必須滿足三個條件：\n"+
+						"(1)門前清聽牌(不能有牌從別人叫來)\n"+
+						"(2)能夠支付立直供託(通常是1000點)\n"+
+						"(3)還預期有牌能摸(至少剩四張可摸牌)"
+		case (strings.Contains(msg,"!一發")):
+			replyMsg = "立直後到自己下次捨牌前和了, 且過程中沒有人鳴牌才計算"
+		case (strings.Contains(msg,"!役牌")):
+			replyMsg = "場風/自風/三元(白發中)有三張以上才算(看錯場風自風了嗎?)"
+		case (strings.Contains(msg,"!一氣")):
+			replyMsg = "和了時的拆解 必須能拆出123 456 789三組 才有一氣"
+		case (strings.Contains(msg,"!流滿") || strings.Contains(msg,"!流局滿貫")):
+			replyMsg = "捨牌全是19字、且沒有被人叫走才算。\n"+
+						"和流局聽牌狀態分開計算點數增減。"
+		case (strings.Contains(msg,"!四暗刻")):
+			replyMsg = "四組刻子都要自力摸進來才算\n"+
+						"最後一張榮和是來自別人的話, 要算明刻, 沒有四暗"
+		case (strings.Contains(msg,"!綠一色")):
+			replyMsg = "綠一只能有23468索和發。通常不需要有發。"
+		case (strings.Contains(msg,"!人和")):
+			replyMsg = "人和是地方役, 有沒有玩看各地不同(天鳳不採用)"
+		case (t.Sub(lastNewbie) > cdNewbie && strings.Contains(msg,"是萌新")):
 			lastNewbie = t
 			replyMsg = "萌新是在說我嗎喵~ (探頭"
 		case (t.Sub(lastBank) > cdBank && strings.Contains(msg,"池田銀行")):
@@ -406,7 +452,7 @@ var u=function(){function b(a){var b=a&7,c=0,d=0;1==b||4==b?c=d=1:2==b&&(c=d=2);
 				"(五萬是紅的)\n\n"+
 
 				"張數正確、且確實可能出現(一種牌最多四張)才能幫你解答喔~\n"+
-				"如果少給一張的話，喵會自動幫你補一張無關牌進去，記得感謝我喔喵~"
+				"如果少一張的話，喵會幫你補一張無關牌進去，記得感謝我喔喵~"
 			}
 		case (t.Sub(lastGiveUp) > cdGiveUp && strings.Contains(msg,"棄麻")) :
 			lastGiveUp = t
