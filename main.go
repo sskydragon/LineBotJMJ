@@ -225,9 +225,9 @@ func determineReply(msg string, groupSupported bool) string{
 			"各役種常見問題 請用「!役種名稱」查詢\n"
 		case (strings.Contains(msg,"!斷么")):
 			replyMsg = "斷么只能有2~8的數字牌"
-		case (strings.Contains(msg,"!一盃口")):
+		case (strings.Contains(msg,"!一盃")):
 			replyMsg = "一盃口必須門清才計算"
-		case (strings.Contains(msg,"!二盃口")):
+		case (strings.Contains(msg,"!二盃")):
 			replyMsg = "二盃口必須門清才計算\n"+
 						"因為拆解型不同, 二盃口不計七對子"
 		case (strings.Contains(msg,"!平和")):
