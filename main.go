@@ -274,7 +274,7 @@ func determineReply(msg string, groupSupported bool) string{
 				if numAmount > 6 && numAmount < 15{
 					if numAmount%3 == 0 {
 						status = -1
-						reply = "張數不對 這樣不能拿去問天鳳姬呢喵~ (需要說明嗎?)"
+						reply = "張數不對 這樣不能拿去問天鳳姬呢喵~ \n(需要說明嗎? 請用「何切使用說明」詢問)"
 					} else {
 						countAry := make([]int, 35)
 						for j := 0; j <= 34; j++ {
@@ -300,7 +300,7 @@ func determineReply(msg string, groupSupported bool) string{
 								countAry[num+pointer]++
 								if countAry[num+pointer] > 4 {
 									status = -1
-									reply = "每種牌只能有四張喔！ (需要說明嗎?)"
+									reply = "每種牌只能有四張喔！\n(需要說明嗎? 請用「何切使用說明」詢問)"
 									countAmtAvailable = false;
 									break;
 								}
@@ -382,7 +382,7 @@ var u=function(){function b(a){var b=a&7,c=0,d=0;1==b||4==b?c=d=1:2==b&&(c=d=2);
 				}
 			}
 			if(status != 0) {replyMsg = reply}
-			if(t.Sub(lastWhatCutHelp) > cdWhatCutHelp && (strings.Contains(msg,"說明") || strings.Contains(msg,"用法"))) {
+			if(t.Sub(lastWhatCutHelp) > cdWhatCutHelp && (strings.Contains(msg,"使用說明") || strings.Contains(msg,"用法"))) {
 				replyMsg = "手牌必須是數字接花色的組合 m萬p筒s索 z字\n" +
 				"三色牌數字是0~9 其中0是赤\n" +
 				"字牌的話數字只能用1-7\n" + 
