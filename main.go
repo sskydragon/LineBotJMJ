@@ -238,7 +238,8 @@ func determineReply(msg string, groupSupported bool) string{
 					   "只有在門前清的情況下自摸才有一飜"
 		case (strings.Contains(msg,"!寶牌") || strings.Contains(msg,"!ドラ")):
 			replyMsg = "寶牌是「寶牌指示牌」的下一張, 且不能當起和飜\n"+
-						"1→2→..→9→1, 東→南→西→北→東 白→發→中→白"
+						"1→2→..→9→1, 東→南→西→北→東 白→發→中→白\n"+
+						"裡寶牌只有立直且和出的人才計算"
 		case (strings.Contains(msg,"!全求") || strings.Contains(msg,"!花龍")):
 			replyMsg = "日麻沒有這種東西...."
 		case (strings.Contains(msg,"!單釣") || strings.Contains(msg,"!單騎") || strings.Contains(msg,"!獨聽")):
@@ -289,7 +290,6 @@ func determineReply(msg string, groupSupported bool) string{
 					"○ 以善意的角度解讀其他人的發言\n"+
 					"○ 覺得別人能做得更好時, 請提供你的看法做法\n"+
 					"○ 不要害怕被否定或不被認同, 學得到東西就值得了\n\n"+
-					
 
 					"✕ 避免情緒性發言, 生氣不能解決問題\n" +
 					"✕ 避免容易讓人誤解的玩笑\n"+
