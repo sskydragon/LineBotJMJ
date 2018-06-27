@@ -466,6 +466,8 @@ var u=function(){function b(a){var b=a&7,c=0,d=0;1==b||4==b?c=d=1:2==b&&(c=d=2);
 		case (t.Sub(lastSlides) > cdSlides && groupSupported && askingNTUSlides(msg)) :
 			lastSlides = t
 			replyMsg = appendNTUSlidesInfo(replyMsg)
+		case (strings.Contains(msg,"摸摸池田")):
+			replyMsg = "(´,,•ω•,,)開心開心"
 		default:
 	}
 	return replyMsg
