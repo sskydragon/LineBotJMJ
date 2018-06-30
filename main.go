@@ -310,7 +310,8 @@ func determineReply(msg string, groupSupported bool) string{
 			"先講自己的選擇, 再用對場況的解讀和一些基於客觀線索的判斷作補充說明\n"+
 			"儘量講得精確一點, 日麻變數太多, 籠統帶過別人可能無法瞭解你的意思by小劉\n\n"+
 			"如果要問參考的何切分析 請用 [何切 1112345678999m1z] 這種方式詢問\n" +
-			"後方接14個數字代表14張牌 mpsz代表花色 z是字牌喔~"
+			"後方接14個數字代表14張牌 mpsz代表花色 z是字牌喔~\n"+
+			"※詳細說明請用「何切使用說明」詢問"
 		case (strings.Contains(msg,"何切")):
 			msg = strings.Replace(msg, " ", "", -1)
 			words := strings.Fields(msg)
