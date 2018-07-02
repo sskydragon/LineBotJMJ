@@ -280,6 +280,18 @@ func determineReply(msg string, groupSupported bool) string{
 			replyMsg = appendNTUSlidesInfo(replyMsg+"\n\n")
 			replyMsg = appendTaiwancoInfo(replyMsg+"\n\n")
 			replyMsg += "\n\nhttp://jmj.tw\n左上角還有些教學可以看 請多加利用喔喵~"
+		case (strings.Contains(msg,"!天鳳") ):
+			replyMsg = "天鳳位置在 https://tenhou.net/0/\n"+
+						"各種說明可以在 http://tenhou.net/man/ 找到"
+		case (string.Contains(msg,"!雀姬")):
+			replyMsg = "雀姬可以從 https://goo.gl/dQJFSm 下載\n"+
+						"是手機上的遊戲喔~"
+		case (strings.Contains(msg,"!雀魂") ):
+			replyMsg = "雀魂位置在 http://majsoul.com/0/\n" +
+						"用瀏覽器遊玩, 目前仍在開發中"
+		case (strings.Contains(msg,"!戰績") ):
+			replyMsg = "戰績網位置在 https://nodocchi.moe/tenhoulog\n"+
+						"可以查到過往的戰績, 上方有過濾選項可以看特定時間或桌種"
 		case (strings.Contains(msg,"!討論") ):
 			/*
 			|| (strings.Contains(msg,"討論") && (strings.Contains(msg,"說明") || strings.Contains(msg,"指引")))
