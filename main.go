@@ -283,7 +283,7 @@ func determineReply(msg string, groupSupported bool) string{
 		case (strings.Contains(msg,"!天鳳") ):
 			replyMsg = "天鳳位置在 https://tenhou.net/0/\n"+
 						"各種說明可以在 http://tenhou.net/man/ 找到"
-		case (string.Contains(msg,"!雀姬")):
+		case (strings.Contains(msg,"!雀姬")):
 			replyMsg = "雀姬可以從 https://goo.gl/dQJFSm 下載\n"+
 						"是手機上的遊戲喔~"
 		case (strings.Contains(msg,"!雀魂") ):
