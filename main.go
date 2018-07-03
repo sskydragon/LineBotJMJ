@@ -174,6 +174,7 @@ func determineReply(msg string, groupSupported bool) string{
 			lastTest = t
 			replyMsg = "在測試啥呢喵~"
 */
+		case (strings.Contains(msg,"!網站") || strings.Contains(msg,"!介紹網站") ):
 		case ((strings.Contains(msg,"日麻") || strings.Contains(msg,"麻將")) && strings.Contains(msg,"介紹") && strings.Contains(msg,"網站")):
 			replyMsg = "介紹網站在 http://jmj.tw 喵~"
 		case (t.Sub(lastBullyCat) > cdBullyCat && strings.Contains(msg,"婊池田")),(strings.Contains(msg,"打爆池田")):
