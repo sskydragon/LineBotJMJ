@@ -300,7 +300,7 @@ func determineReply(msg string, groupSupported bool) string{
 			replyMsg = "請大家跟著這樣做喔喵~\n\n" +
 					
 					"○ 等其他討論結束再開新議題\n"+
-					"○ 用可見的線索, 完整描述自己的想法、看法\n"+
+					"○ 用客觀的線索, 完整描述自己的想法、看法\n"+
 					"○ 想想別人看到自己的發言, 會有什麼感覺\n"+
 					"○ 講完自己的觀點後, 也看看別人怎麼說\n"+
 					"○ 以善意的角度解讀其他人的發言\n"+
@@ -485,6 +485,14 @@ var u=function(){function b(a){var b=a&7,c=0,d=0;1==b||4==b?c=d=1:2==b&&(c=d=2);
 			replyMsg = appendNTUSlidesInfo(replyMsg)
 		case (strings.Contains(msg,"摸摸池田")):
 			replyMsg = "(´,,•ω•,,)開心開心"
+/*其他遊戲用途*/			
+		case (strings.Contains(msg,"黑白棋")){
+			switch {
+				case (strings.Contains(msg,"哪") && strings.Contains(msg,"玩")):
+				replyMsg = "這裡可以下黑白棋喔 ~ http://wars.fm/reversi"
+				default:
+			}
+		}
 		default:
 	}
 	return replyMsg
