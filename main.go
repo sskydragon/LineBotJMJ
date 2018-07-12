@@ -486,13 +486,12 @@ var u=function(){function b(a){var b=a&7,c=0,d=0;1==b||4==b?c=d=1:2==b&&(c=d=2);
 		case (strings.Contains(msg,"摸摸池田")):
 			replyMsg = "(´,,•ω•,,)開心開心"
 /*其他遊戲用途*/			
-		case (strings.Contains(msg,"黑白棋")){
+		case (strings.Contains(msg,"黑白棋")):
 			switch {
 				case (strings.Contains(msg,"哪") && strings.Contains(msg,"玩")):
 				replyMsg = "這裡可以下黑白棋喔 ~ http://wars.fm/reversi"
 				default:
 			}
-		}
 		default:
 	}
 	return replyMsg
