@@ -494,6 +494,8 @@ var u=function(){function b(a){var b=a&7,c=0,d=0;1==b||4==b?c=d=1:2==b&&(c=d=2);
 			}
 		case (strings.Contains(msg,"拔牙怪")):
 			replyMsg = "聽說拔牙怪是大魔王, 大家看到要趕緊逃命喔喵~~~~~"
+		case (strings.Contains(msg,"!偶數理論") || strings.Contains(msg,"!奇偶性"))
+			replyMsg = "!偶數理論"
 		default:
 	}
 	return replyMsg
@@ -518,11 +520,18 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 				replyMsg := determineReply(message.Text, event.Source.Type == "group" && isSupportedGroup(event.Source.GroupID))
 				
 				if replyMsg == "棄麻" {
-					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("123"), linebot.NewImageMessage("https://i.imgur.com/9kmdMYH.jpg", "https://i.imgur.com/9kmdMYH.jpg")).Do(); err != nil {
+					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewImageMessage("https://i.imgur.com/9kmdMYH.jpg", "https://i.imgur.com/9kmdMYH.jpg")).Do(); err != nil {
 						log.Print(err)
 					}
 					return
 				}
+/* 黑白棋名詞專區 */				
+				if replyMsg == "!偶數理論" {
+					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("偶數理論（奇偶性）：留給對手下子的每個區域內, 都留下偶數個空位的策略。\n(黑子下在黃星處後, 所有區域都剩偶數個空位)"), linebot.NewImageMessage("https://i.imgur.com/ifOGTjR.png", "https://i.imgur.com/ifOGTjR.png")).Do(); err != nil {
+						log.Print(err)
+					}
+					return
+				}				
 /*
 				if replyMsg == "測試" {
 					if(isAdmin(event.Source.UserID) && event.Source.Type == "group") {
