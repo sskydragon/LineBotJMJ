@@ -485,7 +485,10 @@ var u=function(){function b(a){var b=a&7,c=0,d=0;1==b||4==b?c=d=1:2==b&&(c=d=2);
 			replyMsg = appendNTUSlidesInfo(replyMsg)
 		case (strings.Contains(msg,"摸摸池田")):
 			replyMsg = "(´,,•ω•,,)開心開心"
-/*其他遊戲用途*/			
+/*其他遊戲用途*/
+		case (strings.Contains(msg,"!黑白棋教學")):
+			replyMsg = "素材徵求中, 目前支援名詞解說如下, 感謝草草提供~\n"+
+			"!偶數理論 !奇偶性 !餘裕手 !開放度 !機動性 !穩定子 !天王山 !逆轉奇偶 !不平衡邊 !平衡邊"
 		case (strings.Contains(msg,"黑白棋")):
 			switch {
 				case ((strings.Contains(msg,"哪") || strings.Contains(msg,"地方")) && (strings.Contains(msg,"玩")||strings.Contains(msg,"下"))):
@@ -496,6 +499,20 @@ var u=function(){function b(a){var b=a&7,c=0,d=0;1==b||4==b?c=d=1:2==b&&(c=d=2);
 			replyMsg = "聽說拔牙怪是大魔王, 大家看到要趕緊逃命喔喵~~~~~"
 		case (strings.Contains(msg,"!偶數理論") || strings.Contains(msg,"!奇偶性")):
 			replyMsg = "!偶數理論"
+		case (strings.Contains(msg,"!餘裕手")):
+			replyMsg = "!餘裕手"
+		case (strings.Contains(msg,"!開放度")):
+			replyMsg = "!開放度"
+		case (strings.Contains(msg,"!機動性")):
+			replyMsg = "!機動性"
+		case (strings.Contains(msg,"!穩定子")):
+			replyMsg = "!穩定子"
+		case (strings.Contains(msg,"!天王山")):
+			replyMsg = "!天王山"
+		case (strings.Contains(msg,"!逆轉奇偶")):
+			replyMsg = "!逆轉奇偶"
+		case (strings.Contains(msg,"!不平衡邊") || strings.Contains(msg,"!平衡邊")):
+			replyMsg = "!平衡邊"			
 		default:
 	}
 	return replyMsg
@@ -531,7 +548,58 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 						log.Print(err)
 					}
 					return
-				}				
+				}
+				
+				if replyMsg == "!餘裕手" {
+					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("餘裕手：不會為對手帶來新的落子選擇的好棋。\n(黑子下在黃星處後, 對手可以下的地方並不會變多)"), linebot.NewImageMessage("https://i.imgur.com/Ku3q3aE.png", "https://i.imgur.com/Ku3q3aE.png")).Do(); err != nil {
+						log.Print(err)
+					}
+					return
+				}	
+
+				if replyMsg == "!開放度" {
+					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("開放度：被翻轉的棋子中，每一子周圍(八格)的空格數總和，開放度越小越好。\n(黑子下在標示處, 一共只翻轉一顆白子, 開放度總和為1)"), linebot.NewImageMessage("https://i.imgur.com/3CqwA56.png", "https://i.imgur.com/3CqwA56.png")).Do(); err != nil {
+						log.Print(err)
+					}
+					return
+				}	
+
+				if replyMsg == "!機動性" {
+					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("機動性(Mobility)：可以落子的地方，機動性越高越有利。\n(打x的是黑棋可以選擇落子的地方, 這個例子的機動性是5)"), linebot.NewImageMessage("https://i.imgur.com/VNbe0Zj.png", "https://i.imgur.com/VNbe0Zj.png")).Do(); err != nil {
+						log.Print(err)
+					}
+					return
+				}	
+
+				if replyMsg == "!穩定子" {
+					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("穩定子：永遠不會被翻轉的棋。(如下圖中的黑子)"), linebot.NewImageMessage("https://i.imgur.com/W1GY2PZ.png", "https://i.imgur.com/W1GY2PZ.png")).Do(); err != nil {
+						log.Print(err)
+					}
+					return
+				}	
+
+				if replyMsg == "!天王山" {
+					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("天王山：對黑白兩方都有利的位置。\n(兩邊下在黃星處後, 都不會幫對手增加多少選擇)"), linebot.NewImageMessage("https://i.imgur.com/8sznr55.png", "https://i.imgur.com/8sznr55.png")).Do(); err != nil {
+						log.Print(err)
+					}
+					return
+				}	
+
+				if replyMsg == "!逆轉奇偶" {
+					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("逆轉奇偶：利用棄權，讓對手被迫先下入偶數區堿而陷入不利狀態的戰術。\n(白棋的選擇被限制了, 在這個區域內先落子的人不利)"), linebot.NewImageMessage("https://i.imgur.com/ADexsHc.png", "https://i.imgur.com/ADexsHc.png")).Do(); err != nil {
+						log.Print(err)
+					}
+					return
+				}	
+
+				if replyMsg == "!平衡邊" {
+					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("不平衡邊：自己只有連續3~5顆棋的邊(紅框處)，這類棋型容易遭到對手攻擊。\n
+平衡邊：六子邊(藍框處)，這種棋型較為安全。"), linebot.NewImageMessage("https://i.imgur.com/lddPkl1.png", "https://i.imgur.com/lddPkl1.png")).Do(); err != nil {
+						log.Print(err)
+					}
+					return
+				}	
+				
 /*
 				if replyMsg == "測試" {
 					if(isAdmin(event.Source.UserID) && event.Source.Type == "group") {
