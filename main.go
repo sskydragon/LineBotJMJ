@@ -593,8 +593,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 				}	
 
 				if replyMsg == "!平衡邊" {
-					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("不平衡邊：自己只有連續3~5顆棋的邊(紅框處)，這類棋型容易遭到對手攻擊。\n
-平衡邊：六子邊(藍框處)，這種棋型較為安全。"), linebot.NewImageMessage("https://i.imgur.com/lddPkl1.png", "https://i.imgur.com/lddPkl1.png")).Do(); err != nil {
+					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("不平衡邊：自己只有連續3~5顆棋的邊(紅框處)，這類棋型容易遭到對手攻擊。\n平衡邊：六子邊(藍框處)，這種棋型較為安全。"), linebot.NewImageMessage("https://i.imgur.com/lddPkl1.png", "https://i.imgur.com/lddPkl1.png")).Do(); err != nil {
 						log.Print(err)
 					}
 					return
