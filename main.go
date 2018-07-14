@@ -518,22 +518,24 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 				replyMsg := determineReply(message.Text, event.Source.Type == "group" && isSupportedGroup(event.Source.GroupID))
 				
 				if replyMsg == "棄麻" {
+					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("123")).Do(); err != nil {
+						log.Print(err)
+					}
 					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewImageMessage("https://i.imgur.com/9kmdMYH.jpg", "https://i.imgur.com/9kmdMYH.jpg")).Do(); err != nil {
 						log.Print(err)
 					}
 					return
 				}
-
+/*
 				if replyMsg == "測試" {
-/*					if(isAdmin(event.Source.UserID) && event.Source.Type == "group") {
+					if(isAdmin(event.Source.UserID) && event.Source.Type == "group") {
 						if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(event.Source.GroupID)).Do(); err != nil {
 							log.Print(err)
 						}
 					}
-*/					
 					return
 				}				
-				
+*/				
 				if replyMsg != "" {
 					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(replyMsg)).Do(); err != nil {
 						log.Print(err)
