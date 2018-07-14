@@ -518,7 +518,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 				replyMsg := determineReply(message.Text, event.Source.Type == "group" && isSupportedGroup(event.Source.GroupID))
 				
 				if replyMsg == "棄麻" {
-					if _, err = bot.ReplyMessage(event.ReplyToken, llinebot.NewTextMessage("123"), inebot.NewImageMessage("https://i.imgur.com/9kmdMYH.jpg", "https://i.imgur.com/9kmdMYH.jpg")).Do(); err != nil {
+					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("123"), linebot.NewImageMessage("https://i.imgur.com/9kmdMYH.jpg", "https://i.imgur.com/9kmdMYH.jpg")).Do(); err != nil {
 						log.Print(err)
 					}
 					return
