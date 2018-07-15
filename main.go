@@ -579,7 +579,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 				}	
 
 				if replyMsg == "!天王山" {
-					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("天王山：對黑白兩方都有利的位置。\n(兩邊下在黃星處後, 都不會幫對手增加多少選擇)"), linebot.NewImageMessage("https://i.imgur.com/8sznr55.png", "https://i.imgur.com/8sznr55.png")).Do(); err != nil {
+					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("天王山：對黑白兩方都有利的位置。\n(兩邊下在黃星處後, 都不會幫對手增加多少選擇)"), linebot.NewImageMessage("https://i.imgur.com/hv3SkiV.png", "https://i.imgur.com/hv3SkiV.png")).Do(); err != nil {
 						log.Print(err)
 					}
 					return
