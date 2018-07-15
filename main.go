@@ -551,21 +551,21 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 				}
 				
 				if replyMsg == "!餘裕手" {
-					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("餘裕手：不會為對手帶來新的落子選擇的好棋。\n(黑子下在黃星處後, 對手可以下的地方並不會變多)"), linebot.NewImageMessage("https://i.imgur.com/Ku3q3aE.png", "https://i.imgur.com/Ku3q3aE.png")).Do(); err != nil {
+					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("餘裕手：不會為對手帶來新的落子選擇的好棋。\n(黑子先下1再下2, 對手就會因為沒有其他選擇, 而被迫讓出角落)"), linebot.NewImageMessage("https://i.imgur.com/gezuvEV.png", "https://i.imgur.com/gezuvEV.png")).Do(); err != nil {
 						log.Print(err)
 					}
 					return
 				}	
 
 				if replyMsg == "!開放度" {
-					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("開放度：被翻轉的棋子中，每一子周圍(八格)的空格數總和，開放度越小越好。\n(黑子下在標示處, 一共只翻轉一顆白子, 開放度總和為1)"), linebot.NewImageMessage("https://i.imgur.com/3CqwA56.png", "https://i.imgur.com/3CqwA56.png")).Do(); err != nil {
+					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("開放度：被翻轉的棋子中，每一子周圍(八格)的空格數總和，開放度越小越好。\n(黑子下在標示處, 一共只翻轉一顆白子, 開放度總和為1)"), linebot.NewImageMessage("https://i.imgur.com/Vdhu1Si.png", "https://i.imgur.com/Vdhu1Si.png")).Do(); err != nil {
 						log.Print(err)
 					}
 					return
 				}	
 
 				if replyMsg == "!機動性" {
-					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("機動性(Mobility)：可以落子的地方，機動性越高越有利。\n(打x的是黑棋可以選擇落子的地方, 這個例子的機動性是5)"), linebot.NewImageMessage("https://i.imgur.com/VNbe0Zj.png", "https://i.imgur.com/VNbe0Zj.png")).Do(); err != nil {
+					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("機動性(Mobility)：可以落子的地方。\n一般來說, 機動性越高越有利, 因為愈可能存在較佳的路線；\n相對地, 選擇少的時候, 就容易被對手逼死\n(打x的是黑棋可以選擇落子的地方, 這個例子的機動性是5)"), linebot.NewImageMessage("https://i.imgur.com/VNbe0Zj.png", "https://i.imgur.com/VNbe0Zj.png")).Do(); err != nil {
 						log.Print(err)
 					}
 					return
