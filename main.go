@@ -551,7 +551,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 				}
 				
 				if replyMsg == "!餘裕手" {
-					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("餘裕手：不會為對手帶來新的落子選擇的好棋。\n(黑子先下1再下2, 對手就會因為沒有其他選擇, 而被迫讓出角落)"), linebot.NewImageMessage("https://i.imgur.com/gezuvEV.png", "https://i.imgur.com/gezuvEV.png")).Do(); err != nil {
+					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("餘裕手：不會為對手帶來新的落子選擇的好棋。\n(下例中黑子先下1再下2, 對手就會因為沒有其他選擇, 而被迫讓出角落)"), linebot.NewImageMessage("https://i.imgur.com/gezuvEV.png", "https://i.imgur.com/gezuvEV.png")).Do(); err != nil {
 						log.Print(err)
 					}
 					return
