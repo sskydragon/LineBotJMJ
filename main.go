@@ -486,12 +486,12 @@ var u=function(){function b(a){var b=a&7,c=0,d=0;1==b||4==b?c=d=1:2==b&&(c=d=2);
 		case (strings.Contains(msg,"摸摸池田的")):
 			switch {
 				case ((strings.Contains(msg,"摸摸池田的肚子") || strings.Contains(msg,"摸摸池田的頭") || (strings.Contains(msg,"摸摸池田的耳朵") ||strings.Contains(msg,"摸摸池田的尾巴") || strings.Contains(msg,"摸摸池田的額頭") || strings.Contains(msg,"摸摸池田的下巴"))) && !strings.Contains(msg,"和")):
-				replyMsg = "(´,,•ω•,,)開心開心"
+				replyMsg = "1(´,,•ω•,,)開心開心"
 				default:
-				replyMsg = "欸？不可以亂來喔喵 > <"
+				replyMsg = "2欸？不可以亂來喔喵 > <"
 			}
 		case (strings.Contains(msg,"摸摸池田")):
-			replyMsg = "(´,,•ω•,,)開心開心"
+			replyMsg = "3(´,,•ω•,,)開心開心"
 /*其他遊戲用途*/
 		case (strings.Contains(msg,"!黑白棋教學")):
 			replyMsg = "素材徵求中, 目前支援名詞解說如下, 感謝草草提供~\n"+
