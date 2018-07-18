@@ -490,7 +490,7 @@ var u=function(){function b(a){var b=a&7,c=0,d=0;1==b||4==b?c=d=1:2==b&&(c=d=2);
 				default:
 				replyMsg = "欸？不可以亂來喔喵 > <"
 			}
-		case (strings.Contains(msg,"摸摸池田")):
+		case (strings.Contains(msg,"摸摸池田") || strings.Contains(msg,"抱抱池田")):
 			replyMsg = "(´,,•ω•,,)開心開心"
 /*其他遊戲用途*/
 		case (strings.Contains(msg,"!黑白棋教學")):
