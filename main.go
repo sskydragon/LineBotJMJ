@@ -483,6 +483,13 @@ var u=function(){function b(a){var b=a&7,c=0,d=0;1==b||4==b?c=d=1:2==b&&(c=d=2);
 		case (t.Sub(lastSlides) > cdSlides && askingNTUSlides(msg)) :
 			lastSlides = t
 			replyMsg = appendNTUSlidesInfo(replyMsg)
+		case (strings.Contains(msg,"摸摸池田的")):
+			switch {
+				case ((strings.Contains(msg,"摸摸池田的肚子") || strings.Contains(msg,"摸摸池田的頭") || (strings.Contains(msg,"摸摸池田的耳朵") ||strings.Contains(msg,"摸摸池田的尾巴") || strings.Contains(msg,"摸摸池田的額頭"))) && !strings.Contains(msg,"和")):
+				replyMsg = "(´,,•ω•,,)開心開心"
+				default:
+				replyMsg = "欸？不可以亂來喔喵 > <"
+			}
 		case (strings.Contains(msg,"摸摸池田")):
 			replyMsg = "(´,,•ω•,,)開心開心"
 /*其他遊戲用途*/
@@ -538,6 +545,13 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 				
 				if replyMsg == "棄麻" {
 					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewImageMessage("https://i.imgur.com/9kmdMYH.jpg", "https://i.imgur.com/9kmdMYH.jpg")).Do(); err != nil {
+						log.Print(err)
+					}
+					return
+				}
+				
+				if replyMsg == "欸？不可以亂來喔喵 > <" {
+					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("欸？不可以亂來喔喵 > <"), linebot.NewImageMessage("https://i.imgur.com/9Zy1CXe.jpg", "https://i.imgur.com/9Zy1CXe.jpg")).Do(); err != nil {
 						log.Print(err)
 					}
 					return
