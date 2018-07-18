@@ -483,6 +483,8 @@ var u=function(){function b(a){var b=a&7,c=0,d=0;1==b||4==b?c=d=1:2==b&&(c=d=2);
 		case (t.Sub(lastSlides) > cdSlides && askingNTUSlides(msg)) :
 			lastSlides = t
 			replyMsg = appendNTUSlidesInfo(replyMsg)
+		case (strings.Contains(msg,"是不是被玩爆了")):
+			replyMsg = "正常運作中.."
 		case (strings.Contains(msg,"摸摸池田的")):
 			switch {
 				case ((strings.Contains(msg,"摸摸池田的肚子") || strings.Contains(msg,"摸摸池田的肚肚") || strings.Contains(msg,"摸摸池田的頭") || (strings.Contains(msg,"摸摸池田的耳朵") ||strings.Contains(msg,"摸摸池田的尾巴") || strings.Contains(msg,"摸摸池田的額頭") || strings.Contains(msg,"摸摸池田的下巴"))) && !strings.Contains(msg,"和")):
