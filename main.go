@@ -492,7 +492,7 @@ var u=function(){function b(a){var b=a&7,c=0,d=0;1==b||4==b?c=d=1:2==b&&(c=d=2);
 			}
 		case (strings.Contains(msg,"摸摸池田") || strings.Contains(msg,"抱抱池田")):
 			switch {
-				case (strings.Contains(msg,"胸") || strings.Contains(msg,"屁") || strings.Contains(msg,"內") || (strings.Contains(msg,"陰") ||strings.Contains(msg,"婊") || strings.Contains(msg,"打") || strings.Contains(msg,"胖")) || strings.Contains(msg,"歐") || strings.Contains(msg,"腿") || strings.Contains(msg,"和")):
+				case (strings.Contains(msg,"胸") || strings.Contains(msg,"屁") || strings.Contains(msg,"內") || (strings.Contains(msg,"陰") ||strings.Contains(msg,"婊") || strings.Contains(msg,"打") || strings.Contains(msg,"揍") || strings.Contains(msg,"胖")) || strings.Contains(msg,"歐") || strings.Contains(msg,"腿") || strings.Contains(msg,"和")):
 				replyMsg = "欸？不可以亂來喔喵 > <"
 				default:
 				replyMsg = "(´,,•ω•,,)開心開心"
