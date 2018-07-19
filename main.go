@@ -263,12 +263,12 @@ func determineReply(msg string, groupSupported bool) string{
 			replyMsg = "捨牌全是19字、且沒有被人叫走才算。\n"+
 						"在天鳳和流局聽牌狀態分開計算點數增減。不一定有玩的規則。"
 		case (strings.Contains(msg,"!四暗")):
-			replyMsg = "四組刻子都要自力摸進來才算\n"+
+			replyMsg = "四暗刻的四組刻子都要自力摸進來才算\n"+
 						"最後一張榮和是來自別人的話, 要算明刻, 沒有四暗"
 		case (strings.Contains(msg,"!綠一")):
-			replyMsg = "綠一只能有23468索和發。通常不需要有發。"
+			replyMsg = "(地方役)(常見) 綠一只能有23468索和發。通常不需要有發。"
 		case (strings.Contains(msg,"!人和")):
-			replyMsg = "人和是地方役, 有沒有玩看各地不同(天鳳不採用)"
+			replyMsg = "(地方役) 自己摸到牌前、無人鳴牌的情況下榮和(天鳳不採用)"
 		case (strings.Contains(msg,"!役種")):
 			replyMsg = "一般役種說明請參考 http://jmj.tw/extra/yakutable.pdf\n"	 +
 						"除此之外還有些地方役, 不見得每個地方都玩, 要先問規則喔~"
@@ -320,8 +320,8 @@ func determineReply(msg string, groupSupported bool) string{
 		case (strings.Contains(msg,"!開牌立直") || strings.Contains(msg,"!開立")):
 			replyMsg = "(地方役) 立直時打牌全部或部分的手牌(依規定不同), 算兩飜\n"+
 						"若非立直狀態下銃了開立直的人, 以役滿計算"
-		case (strings.Contains(msg,"!八連莊") || strings.Contains(msg,"!阻止八連莊") ):
-			replyMsg = "(地方役) 親家「連續和了」八次時, 第八次(含以後)不論牌型皆以役滿計算\n"+
+		case (strings.Contains(msg,"!八連莊") || strings.Contains(msg,"!阻止八連莊") || strings.Contains(msg,"!破回八連莊") ):
+			replyMsg = "(地方役)(罕見) 親家「連續和了」八次時, 第八次(含以後)不論牌型皆以役滿計算\n"+
 						"只有和了才算, 中間有流局要重新計算。\n"+
 						"有些規則會把阻止親家的第八次和了也當作役滿"
 		case (strings.Contains(msg,"!一色三步高")):
@@ -341,15 +341,45 @@ func determineReply(msg string, groupSupported bool) string{
 		case (strings.Contains(msg,"!混老頭")):
 			replyMsg = "和牌時手牌全由19數牌和字牌組成。(沒有字的話是清老頭)"
 		case (strings.Contains(msg,"!金門橋") || strings.Contains(msg,"!金門大橋")):
-			replyMsg = "(地方役) 和了時包含同一色的123 345 567 789四組順子, 算役滿\n"+
+			replyMsg = "(地方役)(罕見) 和了時包含同一色的123 345 567 789四組順子, 算役滿\n"+
 						"沒玩的時候是連一飜都沒有的喔...."
 		case (strings.Contains(msg,"!黑一色")):
-			replyMsg = "(地方役) 和了時只有248筒和東南西北風牌, 算役滿"
+			replyMsg = "(地方役)(罕見) 和了時只有248筒和東南西北風牌, 算役滿"
 		case (strings.Contains(msg,"!紅孔雀")):
-			replyMsg = "(地方役) 和了時只有1579索和中, 算役滿"
+			replyMsg = "(地方役)(罕見) 和了時只有1579索和中, 算役滿"
 		case (strings.Contains(msg,"!大三索")):
 			replyMsg = "參考 https://zh.moegirl.org/zh-tw/三索必须死\n"+
 						"科學麻將不考慮這種超能力麻將情節的....(汗"
+		case (strings.Contains(msg,"!大七星")):
+			replyMsg = "(地方役) 東東南南西西北北白白發發中中 的七對子, 雙役滿"
+		case (strings.Contains(msg,"!石上三年") || strings.Contains(msg,"!鐵杵成針") || strings.Contains(msg,"!石の上にも三年")):
+			replyMsg = "(地方役)(罕見) 雙立直+海底撈月同時成立, 算役滿"
+		case (strings.Contains(msg,"!超立直")):
+			replyMsg = "(地方役)(罕見) 支付五千點立直, 和了時寶牌指示牌前後一張都算寶牌。"
+		case (strings.Contains(msg,"!尾行") || strings.Contains(msg,"!真似滿") || strings.Contains(msg,"!まねまん")):
+			replyMsg = "(地方役)(罕見) 無人鳴牌的情況下, 和風位在前的玩家捨牌完全相同\n"+
+						"一般至少要跟出四張才能和, 跟出一張算一飜"
+		case (strings.Contains(msg,"!大車輪") || strings.Contains(msg,"!大數鄰") || strings.Contains(msg,"!大竹林") || strings.Contains(msg,"!大萬華") || strings.Contains(msg,"!大数隣")):
+			replyMsg = "(地方役) 2-8各兩張的門前清清一色。\n"+
+						"根據花色不同, 而有大數鄰or大萬華(萬)/大車輪(筒)/大竹林(索)的稱呼"
+		case (strings.Contains(msg,"!小車輪") || strings.Contains(msg,"!小數鄰") || || strings.Contains(msg,"!小竹林") || || strings.Contains(msg,"!小萬華") || strings.Contains(msg,"!小数隣")):
+			replyMsg = "(地方役) 1-7或3-9各兩張的門前清清一色。(偏一邊)\n"+
+						"根據花色不同, 而有小數鄰or小萬華(萬)/小車輪(筒)/小竹林(索)的稱呼"
+		case (strings.Contains(msg,"!東北新幹線")):
+			replyMsg = "(地方役)(罕見) 含有南、北及一氣通貫的混一色\n"+
+						"一般必須門前清, 視規則可能只承認筒子和/或索子"
+		case (strings.Contains(msg,"!十三不搭") || strings.Contains(msg,"!十三不塔")):
+			replyMsg = "(地方役) 起手摸進牌後除了一對以外無法形成任何搭子且先前沒人鳴牌。役滿。"
+		case (strings.Contains(msg,"!十四不靠") || strings.Contains(msg,"!十四無靠")):
+			replyMsg = "(地方役) 起手摸進牌後無法形成任何搭子且先前沒人鳴牌。役滿。"
+		case (strings.Contains(msg,"!燕返") || strings.Contains(msg,"!燕返し")):
+			replyMsg = "(地方役)(罕見) 和別人的立直宣言牌。一飜。\n"+
+						"(一般講燕返し不是指地方役, 而是從牌山換回整副手牌的作弊方法)"
+		
+		
+		case (strings.Contains(msg,"!螢返") || strings.Contains(msg,"!蛍返")):
+			replyMsg = "一種帥氣的倒牌方式！！ 可參考 https://youtu.be/Qde65PVTR4I"
+			
 
 		case (t.Sub(lastNewbie) > cdNewbie && strings.Contains(msg,"是萌新")):
 			lastNewbie = t
