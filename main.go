@@ -362,7 +362,7 @@ func determineReply(msg string, groupSupported bool) string{
 		case (strings.Contains(msg,"!大車輪") || strings.Contains(msg,"!大數鄰") || strings.Contains(msg,"!大竹林") || strings.Contains(msg,"!大萬華") || strings.Contains(msg,"!大数隣")):
 			replyMsg = "(地方役) 2-8各兩張的門前清清一色。\n"+
 						"根據花色不同, 而有大數鄰or大萬華(萬)/大車輪(筒)/大竹林(索)的稱呼"
-		case (strings.Contains(msg,"!小車輪") || strings.Contains(msg,"!小數鄰") || || strings.Contains(msg,"!小竹林") || || strings.Contains(msg,"!小萬華") || strings.Contains(msg,"!小数隣")):
+		case (strings.Contains(msg,"!小車輪") || strings.Contains(msg,"!小數鄰") || strings.Contains(msg,"!小竹林") || strings.Contains(msg,"!小萬華") || strings.Contains(msg,"!小数隣")):
 			replyMsg = "(地方役) 1-7或3-9各兩張的門前清清一色。(偏一邊)\n"+
 						"根據花色不同, 而有小數鄰or小萬華(萬)/小車輪(筒)/小竹林(索)的稱呼"
 		case (strings.Contains(msg,"!東北新幹線")):
