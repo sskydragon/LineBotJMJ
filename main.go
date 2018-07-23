@@ -224,7 +224,7 @@ func determineReply(msg string, groupSupported bool) string{
 			"※役滿只能和役滿複合(有役滿的情況下不計一般役種)\n\n"+
 
 			"各役種常見問題 請用「!役種名稱」查詢\n"
-		case (strings.Contains(msg,"!斷么")):
+		case (strings.Contains(msg,"!斷么") || strings.Contains(msg,"!斷公九") || || strings.Contains(msg,"!断公九")):
 			replyMsg = "斷么只能有2~8的數字牌"
 		case (strings.Contains(msg,"!一盃")):
 			replyMsg = "一盃口必須門清才計算"
@@ -269,6 +269,15 @@ func determineReply(msg string, groupSupported bool) string{
 			replyMsg = "(地方役)(常見) 綠一只能有23468索和發。通常不需要有發。"
 		case (strings.Contains(msg,"!人和")):
 			replyMsg = "(地方役) 自己摸到牌前、無人鳴牌的情況下榮和(天鳳不採用)"
+		case (strings.Contains(msg,"!搶槓") || strings.Contains(msg,"!槍槓")):
+			replyMsg = "加槓的那張牌剛好是和了牌。因為槓牌失敗了, 所以不會開新寶牌。\n"+
+						"部分規則下允許國士無雙搶暗槓, 除此之外沒有例外(一般不能搶暗槓)"
+		case (strings.Contains(msg,"!加槓")):
+			replyMsg = "已經碰出一組牌後, 再摸到相同的牌可以「加槓」, 從牌山後方補牌\n"+
+						"開新寶牌的時機一般有兩種, 一種是補牌前開, 一種是捨牌/再槓時同時開"
+		case (strings.Contains(msg,"!大明槓")):
+			replyMsg = "手中拿出三張一樣的牌, 去槓別人丟出的第四張牌\n"+
+						"開新寶牌的時機一般有兩種, 一種是補牌前開, 一種是捨牌/再槓時同時開"
 		case (strings.Contains(msg,"!役種")):
 			replyMsg = "一般役種說明請參考 http://jmj.tw/extra/yakutable.pdf\n"	 +
 						"除此之外還有些地方役, 不見得每個地方都玩, 要先問規則喔~"
