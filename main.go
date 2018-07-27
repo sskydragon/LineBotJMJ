@@ -628,8 +628,8 @@ var u=function(){function b(a){var b=a&7,c=0,d=0;1==b||4==b?c=d=1:2==b&&(c=d=2);
 				replyMsg = "這裡可以下黑白棋喔 ~ http://wars.fm/reversi"
 				default:
 			}
-		case (strings.Contains(msg,"拔牙怪")):
-			replyMsg = "聽說拔牙怪是大魔王, 大家看到要趕緊逃命喔喵~~~~~"
+/*		case (strings.Contains(msg,"拔牙怪")):
+			replyMsg = "聽說拔牙怪是大魔王, 大家看到要趕緊逃命喔喵~~~~~"*/
 		case (strings.Contains(msg,"!偶數理論") || strings.Contains(msg,"!奇偶性")):
 			replyMsg = "!偶數理論"
 		case (strings.Contains(msg,"!餘裕手")):
