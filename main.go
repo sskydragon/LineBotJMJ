@@ -613,7 +613,7 @@ var u=function(){function b(a){var b=a&7,c=0,d=0;1==b||4==b?c=d=1:2==b&&(c=d=2);
 			}
 		case (strings.Contains(msg,"摸摸池田") || strings.Contains(msg,"抱抱池田")):
 			switch {
-				case (strings.Contains(msg,"胸") || strings.Contains(msg,"屁") || strings.Contains(msg,"內") || (strings.Contains(msg,"陰") ||strings.Contains(msg,"婊") || strings.Contains(msg,"打") || strings.Contains(msg,"揍") || strings.Contains(msg,"胖")) || strings.Contains(msg,"歐") || strings.Contains(msg,"腿") || strings.Contains(msg,"和")):
+				case (strings.Contains(msg,"胸") || strings.Contains(msg,"屁") || strings.Contains(msg,"內") || (strings.Contains(msg,"陰") ||strings.Contains(msg,"婊") || strings.Contains(msg,"打") || strings.Contains(msg,"揍") || strings.Contains(msg,"胖")) || strings.Contains(msg,"歐") || strings.Contains(msg,"腿") || strings.Contains(msg,"雞") || strings.Contains(msg,"懶") || strings.Contains(msg,"P") || strings.Contains(msg,"bra") || strings.Contains(msg,"和")):
 				replyMsg = "欸？不可以亂來喔喵 > <"
 				default:
 				replyMsg = "(´,,•ω•,,)開心開心"
@@ -628,7 +628,7 @@ var u=function(){function b(a){var b=a&7,c=0,d=0;1==b||4==b?c=d=1:2==b&&(c=d=2);
 				replyMsg = "這裡可以下黑白棋喔 ~ http://wars.fm/reversi"
 				case ((strings.Contains(msg,"哪") || strings.Contains(msg,"地方")) && (strings.Contains(msg,"手機")||strings.Contains(msg,"APP")||strings.Contains(msg,"App"))):
 				replyMsg = "手機上玩黑白棋嗎~? 試試這個吧 ~\n"+ "https://play.google.com/store/apps/details?id=fm.wars.reversi"
-				default:
+				default:	
 			}
 /*		case (strings.Contains(msg,"拔牙怪")):
 			replyMsg = "聽說拔牙怪是大魔王, 大家看到要趕緊逃命喔喵~~~~~"*/
