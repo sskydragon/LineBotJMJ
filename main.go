@@ -626,6 +626,8 @@ var u=function(){function b(a){var b=a&7,c=0,d=0;1==b||4==b?c=d=1:2==b&&(c=d=2);
 			switch {
 				case ((strings.Contains(msg,"哪") || strings.Contains(msg,"地方")) && (strings.Contains(msg,"玩")||strings.Contains(msg,"下"))):
 				replyMsg = "這裡可以下黑白棋喔 ~ http://wars.fm/reversi"
+				case ((strings.Contains(msg,"哪") || strings.Contains(msg,"地方")) && (strings.Contains(msg,"手機")||strings.Contains(msg,"APP")||strings.Contains(msg,"App"))):
+				replyMsg = "手機上玩黑白棋嗎~? 試試這個吧 ~\n"+ "https://play.google.com/store/apps/details?id=fm.wars.reversi"
 				default:
 			}
 /*		case (strings.Contains(msg,"拔牙怪")):
