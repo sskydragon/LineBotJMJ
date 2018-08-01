@@ -237,6 +237,12 @@ func determineReply(msg string, groupSupported bool) string{
 		case (strings.Contains(msg,"!平和")):
 			replyMsg = "平和必須門前清、聽兩面且雀頭沒有符\n"+
 						"(如果某種字牌拿三張有役 當雀頭時就會有符)"
+		case (strings.Contains(msg,"!門清狂")):
+			replyMsg = "門清狂是熟悉清一色的好遊戲~！\n"+
+						"http://hinakin.main.jp/mckonweb/index.htm"
+		case (strings.Contains(msg,"!BAMBOO")):
+			replyMsg = "BAMBOO是清一色對戰麻雀, 破關有隱藏模式可以期待唷~\n"+
+						"http://www.gamedesign.jp/flash/bamboo/bamboo.html"
 		case (strings.Contains(msg,"!自摸") || strings.Contains(msg,"!門清") || strings.Contains(msg,"!門前清")):
 			replyMsg = "日麻自摸和門清都沒有役,\n"+
 					   "只有在門前清的情況下自摸才有一飜"
