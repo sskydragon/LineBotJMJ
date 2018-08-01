@@ -89,6 +89,14 @@ func isSupportedGroup(msg string) bool {
 	return false
 }
 
+func isExcludedGroup(msg string) bool {
+	s := os.Getenv("ExcludedGroups")
+	if(strings.Contains(s,msg)) {
+		return true
+	}
+	return false
+}
+
 func teachMe(msg string) bool {
 	if ((strings.Contains(msg,"日麻") || strings.Contains(msg,"麻將")) && strings.Contains(msg,"教學") && (strings.Contains(msg,"嗎") || strings.Contains(msg,"哪"))) {
 		return true
@@ -158,7 +166,11 @@ func appendTaiwancoInfo(msg string) string {
 	return msg
 }
 
-func determineReply(msg string, groupSupported bool) string{
+func determineReply(msg string, groupSupported bool, groupExcluded bool) string{
+
+/*	groupSupported是用來限制哪些功能是給日麻相關群組用的
+	groupExcluded則是用來限制太過閒聊的功能在要專心討論的群組裡不要開放
+*/
 	var replyMsg string = ""
 	t := time.Now()
 	switch {
@@ -610,14 +622,14 @@ var u=function(){function b(a){var b=a&7,c=0,d=0;1==b||4==b?c=d=1:2==b&&(c=d=2);
 		case (t.Sub(lastSlides) > cdSlides && askingNTUSlides(msg)) :
 			lastSlides = t
 			replyMsg = appendNTUSlidesInfo(replyMsg)
-		case (strings.Contains(msg,"摸摸池田的")):
+		case (!groupExcluded && strings.Contains(msg,"摸摸池田的")):
 			switch {
 				case ((strings.Contains(msg,"摸摸池田的肚子") || strings.Contains(msg,"摸摸池田的肚肚") || strings.Contains(msg,"摸摸池田的頭") || (strings.Contains(msg,"摸摸池田的耳朵") ||strings.Contains(msg,"摸摸池田的尾巴") || strings.Contains(msg,"摸摸池田的額頭") || strings.Contains(msg,"摸摸池田的下巴"))) && !strings.Contains(msg,"和")):
 				replyMsg = "(´,,•ω•,,)開心開心"
 				default:
 				replyMsg = "欸？不可以亂來喔喵 > <"
 			}
-		case (strings.Contains(msg,"摸摸池田") || strings.Contains(msg,"抱抱池田")):
+		case (!groupExcluded && (strings.Contains(msg,"摸摸池田") || strings.Contains(msg,"抱抱池田"))):
 			switch {
 				case (strings.Contains(msg,"胸") || strings.Contains(msg,"屁") || strings.Contains(msg,"內") || (strings.Contains(msg,"陰") ||strings.Contains(msg,"婊") || strings.Contains(msg,"打") || strings.Contains(msg,"揍") || strings.Contains(msg,"胖")) || strings.Contains(msg,"歐") || strings.Contains(msg,"腿") || strings.Contains(msg,"雞") || strings.Contains(msg,"懶") || strings.Contains(msg,"P") || strings.Contains(msg,"bra") || strings.Contains(msg,"和")):
 				replyMsg = "欸？不可以亂來喔喵 > <"
@@ -675,7 +687,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 		if event.Type == linebot.EventTypeMessage {
 			switch message := event.Message.(type) {
 			case *linebot.TextMessage:
-				replyMsg := determineReply(message.Text, event.Source.Type == "group" && isSupportedGroup(event.Source.GroupID))
+				replyMsg := determineReply(message.Text, event.Source.Type == "group" && isSupportedGroup(event.Source.GroupID), event.Source.Type == "group" && isExcludedGroup(event.Source.GroupID))
 
 				if replyMsg == "棄麻" {
 					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewImageMessage("https://i.imgur.com/9kmdMYH.jpg", "https://i.imgur.com/9kmdMYH.jpg")).Do(); err != nil {
