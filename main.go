@@ -393,7 +393,7 @@ func determineReply(msg string, groupSupported bool, groupExcluded bool) string{
 			replyMsg = "(地方役) 1-7或3-9各兩張的門前清清一色。(偏一邊)\n"+
 						"根據花色不同, 而有小數鄰or小萬華(萬)/小車輪(筒)/小竹林(索)的稱呼"
 		case (strings.Contains(msg,"!東北新幹線")):
-			replyMsg = "(地方役)(罕見) 含有南、北及一氣通貫的混一色\n"+
+			replyMsg = "(地方役)(罕見) 含有東、北及一氣通貫的混一色\n"+
 						"一般必須門前清, 視規則可能只承認筒子和/或索子"
 		case (strings.Contains(msg,"!十三不搭") || strings.Contains(msg,"!十三不塔")):
 			replyMsg = "(地方役) 起手摸進牌後除了一對以外無法形成任何搭子且先前沒人鳴牌。役滿。"
