@@ -107,8 +107,7 @@ func teachMe(msg string) bool {
 	if ((strings.Contains(msg,"日麻") || strings.Contains(msg,"麻將")) && strings.Contains(msg,"教我")){
 		return true
 	}
-	if (strings.Contains(msg,"!教學"))
-	{
+	if (strings.Contains(msg,"!教學")) {
 		return true
 	}
 	return false
