@@ -182,7 +182,7 @@ func determineReply(msg string, groupSupported bool, groupExcluded bool) string{
 			lastCmdList = t
 			replyMsg = "指令都用!開頭, 我會告訴你一些我知道的東西喔喵~\n"+
 						"學習 | !教學 !何切 !討論 !常見問題 ![役種名稱]\n"+
-						"遊玩 | !天鳳 !雀姬 !雀魂 !戰績網\n"+
+						"遊玩 | !天鳳 !雀姬 !雀魂 !個室 !戰績網\n"+
 						"社群 | !社團 !網站\n"+
 						"活動 | !IORMC !WRC !雀鳳 !般若 !行事曆 !歷史活動\n"+
 						"其他 | !黑白棋教學  (!?)\n"+
