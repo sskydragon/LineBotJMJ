@@ -38,7 +38,6 @@ import (
 )
 //global cd會造成不同對話群組間互相影響的問題(再研究)
 var bot *linebot.Client
-var cdCmdList = 60*time.Second
 var cdTest = 60*time.Second
 var cdNewbie = 60*time.Second
 var cdBank = 60*time.Second
@@ -50,7 +49,6 @@ var cdSaveMe = 60*time.Second
 var cdGiveUp = 60*time.Second
 var cdWhatCutHelp = 60*time.Second
 var cdSlides = 60*time.Second
-var lastCmdList = time.Now().Add(-cdCmdList)
 var lastTest = time.Now().Add(-cdTest)
 var lastNewbie = time.Now().Add(-cdNewbie)
 var lastBank = time.Now().Add(-cdBank)
@@ -178,8 +176,7 @@ func determineReply(msg string, groupSupported bool, groupExcluded bool) string{
 	var replyMsg string = ""
 	t := time.Now()
 	switch {
-		case (t.Sub(lastCmdList) > cdCmdList && (strings.Contains(msg,"!指令") || strings.Contains(msg,"!幫助") || strings.Contains(msg,"!用法") || strings.Contains(msg,"!說明"))):
-			lastCmdList = t
+		case ((strings.Contains(msg,"!指令") || strings.Contains(msg,"!幫助") || strings.Contains(msg,"!用法") || strings.Contains(msg,"!說明"))):
 			replyMsg = "指令都用!開頭, 我會告訴你一些我知道的東西喔喵~\n"+
 						"學習 | !教學 !何切 !討論 !常見問題 ![役種名稱]\n"+
 						"遊玩 | !天鳳 !雀姬 !雀魂 !個室 !戰績網\n"+
