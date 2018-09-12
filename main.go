@@ -690,6 +690,9 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 		if event.Type == linebot.EventTypeMessage {
 			switch message := event.Message.(type) {
 			case *linebot.TextMessage:
+				/*把全型！轉成半型!*/
+				message.Text = strings.Replace(message.Text, "！", "!", -1)
+				
 				replyMsg := determineReply(message.Text, event.Source.Type == "group" && isSupportedGroup(event.Source.GroupID), event.Source.Type == "group" && isExcludedGroup(event.Source.GroupID))
 
 				if replyMsg == "棄麻" {
