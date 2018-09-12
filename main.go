@@ -114,6 +114,7 @@ func teachMe(msg string) bool {
 }
 
 func askingLobby(msg string) bool {
+/* 時效已過
 	if(strings.Contains(msg,"!大會")) {
 		return true
 	}
@@ -123,7 +124,7 @@ func askingLobby(msg string) bool {
 	if(strings.Contains(msg,"大會室")&&(strings.Contains(msg,"連結") || strings.Contains(msg,"網址")) &&(!strings.Contains(msg,".net") && !strings.Contains(msg,"http"))) {
 		return true
 	}
-
+*/
 	return false
 }
 
@@ -179,9 +180,13 @@ func determineReply(msg string, groupSupported bool, groupExcluded bool) string{
 	switch {
 		case (t.Sub(lastCmdList) > cdCmdList && (strings.Contains(msg,"!指令") || strings.Contains(msg,"!幫助") || strings.Contains(msg,"!用法") || strings.Contains(msg,"!說明"))):
 			lastCmdList = t
-			replyMsg = "同好會社團 / 日本麻將介紹網站 / \n"+
-						"日麻行事曆 / 過去的活動 / [IORMC|WRC|雀鳳盃|般若盃]資訊 / \n" + "何切[0-9][mpsz] / 我想學日麻 / ![役種名稱] / !常見問題\n"+
-						"覺得有漏可以tag龍哥幫忙加, 還有一些小彩蛋就不說了喵~"
+			replyMsg = "指令都用!開頭, 我會告訴你一些我知道的東西喔喵~\n"+
+						"學習 | !教學 !何切 !討論 !常見問題 ![役種名稱]\n"+
+						"遊玩 | !天鳳 !雀姬 !雀魂 !戰績網\n"+
+						"社群 | !社團 !網站\n"+
+						"活動 | !IORMC !WRC !雀鳳 !般若 !行事曆 !歷史活動\n"+
+						"其他 | !黑白棋教學  (!?)\n"+
+						"喵想知道大家還需要什麼幫助！快叫天空龍教我吧~~(翻滾)"
 /*		case (strings.Contains(msg,"測試")):
 			replyMsg = "測試"
 */
@@ -189,9 +194,8 @@ func determineReply(msg string, groupSupported bool, groupExcluded bool) string{
 			lastTest = t
 			replyMsg = "在測試啥呢喵~"
 */
-		case (strings.Contains(msg,"!網站") || strings.Contains(msg,"!介紹網站") ):
-		case ((strings.Contains(msg,"日麻") || strings.Contains(msg,"麻將")) && strings.Contains(msg,"介紹") && strings.Contains(msg,"網站")):
-			replyMsg = "介紹網站在 http://jmj.tw 喵~"
+		case ((strings.Contains(msg,"!網站") || strings.Contains(msg,"!介紹網站"))||((strings.Contains(msg,"日麻") || strings.Contains(msg,"麻將")) && strings.Contains(msg,"介紹") && strings.Contains(msg,"網站"))):
+			replyMsg = "日本麻將介紹網站在 http://jmj.tw 喔喵~"
 		case (t.Sub(lastBullyCat) > cdBullyCat && strings.Contains(msg,"婊池田")),(strings.Contains(msg,"打爆池田")):
 			lastBullyCat = t
 			replyMsg = "不要欺負池田喵好嗎 QQ"
@@ -225,7 +229,7 @@ func determineReply(msg string, groupSupported bool, groupExcluded bool) string{
 						"相關資訊能在淡大日麻社社團找到 https://goo.gl/9FFvvn\n"
 		case (strings.Contains(msg,"日麻行事曆") || (strings.Contains(msg,"!行事曆"))):
 			replyMsg = "在這在這~~ http://goo.gl/fqwswg"
-		case (strings.Contains(msg,"過去的活動")):
+		case (strings.Contains(msg,"過去的活動") || strings.Contains(msg,"!歷史活動")):
 			replyMsg = "喵知道過去的比賽活動有這些~！\n"+
 						"https://goo.gl/KH00SO\n" +
 						"還想提供些什麼的話也請讓喵知道喔喵~ "
