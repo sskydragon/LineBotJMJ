@@ -179,7 +179,7 @@ func determineReply(msg string, groupSupported bool, groupExcluded bool) string{
 		case ((strings.Contains(msg,"!指令") || strings.Contains(msg,"!幫助") || strings.Contains(msg,"!用法") || strings.Contains(msg,"!說明"))):
 			replyMsg = "指令都用!開頭, 我會告訴你一些我知道的東西喔喵~\n"+
 						"學習 | !教學 !何切 !討論 !常見問題 ![役種名稱]\n"+
-						"遊玩 | !天鳳 !雀姬 !雀魂 !個室 !戰績網\n"+
+						"遊玩 | !天鳳 !雀姬 !雀魂 !個室 !戰績網 !門清狂 !BAMBOO\n"+
 						"社群 | !社團 !網站\n"+
 						"活動 | !IORMC !WRC !雀鳳 !般若 !行事曆 !歷史活動\n"+
 						"其他 | !黑白棋教學  (!?)\n"+
@@ -199,11 +199,11 @@ func determineReply(msg string, groupSupported bool, groupExcluded bool) string{
 		case (t.Sub(lastSaveMe) > cdSaveMe && strings.Contains(msg,"龍哥救我")):
 			lastSaveMe = t
 			replyMsg = "需要幫忙嗎喵~？"
-		case ((strings.Contains(msg,"IORMC") && strings.Contains(msg,"資訊")) || (strings.Contains(msg,"!IORMC"))):
+		case ((strings.Contains(msg,"iormc") && strings.Contains(msg,"資訊")) || (strings.Contains(msg,"!iormc"))):
 			replyMsg =  "IORMC是韓國辦的國際交流賽\n" +
 						"2017的預選資訊在 https://goo.gl/2XJyYw\n" +
 						"2016的比賽結果在 https://goo.gl/jatIHN"
-		case (strings.Contains(msg,"WRC資訊") || (strings.Contains(msg,"!WRC"))):
+		case (strings.Contains(msg,"wrc資訊") || (strings.Contains(msg,"!wrc"))):
 			replyMsg =  "WRC是三年一次的世界日麻大賽(暫譯)\n"+
 						"2017.10.4-8在拉斯維加斯, 網站在 http://www.wrc2017vegas.com/\n"+
 						"預計2020年在歐洲、2023年在日本舉行"
@@ -256,7 +256,7 @@ func determineReply(msg string, groupSupported bool, groupExcluded bool) string{
 		case (strings.Contains(msg,"!門清狂")):
 			replyMsg = "門清狂是熟悉清一色的好遊戲~！\n"+
 						"http://hinakin.main.jp/mckonweb/index.htm"
-		case (strings.Contains(msg,"!BAMBOO")):
+		case (strings.Contains(msg,"!bamboo")):
 			replyMsg = "BAMBOO是清一色對戰麻雀, 破關有隱藏模式可以期待唷~\n"+
 						"http://www.gamedesign.jp/flash/bamboo/bamboo.html"
 		case (strings.Contains(msg,"!自摸") || strings.Contains(msg,"!門清") || strings.Contains(msg,"!門前清")):
@@ -635,7 +635,7 @@ var u=function(){function b(a){var b=a&7,c=0,d=0;1==b||4==b?c=d=1:2==b&&(c=d=2);
 			}
 		case (!groupExcluded && (strings.Contains(msg,"摸摸池田") || strings.Contains(msg,"抱抱池田"))):
 			switch {
-				case (strings.Contains(msg,"胸") || strings.Contains(msg,"屁") || strings.Contains(msg,"內") || (strings.Contains(msg,"陰") ||strings.Contains(msg,"婊") || strings.Contains(msg,"打") || strings.Contains(msg,"揍") || strings.Contains(msg,"胖")) || strings.Contains(msg,"歐") || strings.Contains(msg,"腿") || strings.Contains(msg,"雞") || strings.Contains(msg,"懶") || strings.Contains(msg,"P") || strings.Contains(msg,"bra") || strings.Contains(msg,"和")):
+				case (strings.Contains(msg,"胸") || strings.Contains(msg,"屁") || strings.Contains(msg,"內") || (strings.Contains(msg,"陰") ||strings.Contains(msg,"婊") || strings.Contains(msg,"打") || strings.Contains(msg,"揍") || strings.Contains(msg,"胖")) || strings.Contains(msg,"歐") || strings.Contains(msg,"腿") || strings.Contains(msg,"雞") || strings.Contains(msg,"懶") || strings.Contains(msg,"p") || strings.Contains(msg,"j") || strings.Contains(msg,"bra") || strings.Contains(msg,"和")):
 				replyMsg = "欸？不可以亂來喔喵 > <"
 				default:
 				replyMsg = "(´,,•ω•,,)開心開心"
@@ -693,6 +693,8 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 			case *linebot.TextMessage:
 				/*把全型！轉成半型!*/
 				message.Text = strings.Replace(message.Text, "！", "!", -1)
+				/*把大寫轉小寫*/
+				message.Text = strings.ToLower(message.Text)
 				
 				replyMsg := determineReply(message.Text, event.Source.Type == "group" && isSupportedGroup(event.Source.GroupID), event.Source.Type == "group" && isExcludedGroup(event.Source.GroupID))
 
