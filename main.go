@@ -641,7 +641,7 @@ var u=function(){function b(a){var b=a&7,c=0,d=0;1==b||4==b?c=d=1:2==b&&(c=d=2);
 				replyMsg = "(´,,•ω•,,)開心開心"
 			}
 /*其他遊戲用途*/
-		case (strings.Contains(msg,"!dt")):
+		case (strings.Contains(msg,"!dt")): /*dt dt砲 dt cannon*/
 			replyMsg = "!dt"
 		case (strings.Contains(msg,"!黑白棋教學")):
 			replyMsg = "素材徵求中, 目前支援名詞解說如下, 感謝草草提供~\n"+
@@ -716,11 +716,35 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 				}
 /*puyo tetris 名詞專區*/
 				if replyMsg == "!dt" {
-					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("test1234"), linebot.NewVideoMessage("https://i.imgur.com/F5lmXur.mp4", "https://i.imgur.com/U7CNgL5.png")).Do(); err != nil {
+					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("[Tetris] DT砲：\n攻勢由兩個T轉組成，分別消2,3行，故被稱為Double Triple Cannon，兩個T轉合共能至少造成11行傷害。\n擁有搭建便利，爆發力高，後續接招方法廣泛的特點，是為目前最受歡迎的開局之一。"), linebot.NewVideoMessage("https://i.imgur.com/F5lmXur.mp4", "https://i.imgur.com/U7CNgL5.png")).Do(); err != nil {
 						log.Print(err)
 					}
 					return
 				}
+				if replyMsg == "!pc" {
+					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("[Tetris] Perfect Clear / PC / 全消：\n當玩家把場上所有方塊都消除後會發動追加攻擊，造成額外10行傷害，為目前單發傷害最高的攻擊手段。\n"), linebot.NewVideoMessage("https://i.imgur.com/I7bCJGz.mp4", "https://i.imgur.com/5PJrPfL.png")).Do(); err != nil {
+						log.Print(err)
+					}
+					return
+				}				
+				if replyMsg == "!c4w" {
+					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("[Tetris]c4w / 4w / 4-wide /  留四：\n在中間留下一道4行寛的深坑，能承受大量攻擊，也能通過連擊的加成作出反擊。\n常出現被對手速攻壓制，或反擊秒殺對手的局面。\n也有將四行空格留於側邊的排法(側邊留四)。\n留四統稱4w(4-wide)"), linebot.NewVideoMessage("https://i.imgur.com/mCz46GS.mp4", "https://i.imgur.com/GNXzIoO.png")).Do(); err != nil {
+						log.Print(err)
+					}
+					return
+				}				
+				if replyMsg == "!tki" {
+					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("[Tetris] TKI：\n以開局穩定作出大量T轉為目標的排法。\n有成功率高、易上手、好變化等優點"), linebot.NewVideoMessage("https://i.imgur.com/CueyM1O.mp4", "https://i.imgur.com/7TwPyvH.png")).Do(); err != nil {
+						log.Print(err)
+					}
+					return
+				}				
+				if replyMsg == "!連鎖尾" {
+					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("[Puyo]連鎖尾：\n在主要連鎖最後不好發展的部分多排一些氣泡，增加連鎖的長度和攻擊量。"), linebot.NewVideoMessage("https://i.imgur.com/v4NgNqZ.mp4", "https://i.imgur.com/qGIT73p.png")).Do(); err != nil {
+						log.Print(err)
+					}
+					return
+				}				
 				
 /* 黑白棋名詞專區 */
 				if replyMsg == "!偶數理論" {
