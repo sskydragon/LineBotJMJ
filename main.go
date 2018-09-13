@@ -199,7 +199,7 @@ func determineReply(msg string, groupSupported bool, groupExcluded bool) string{
 						"社群 | !社團 !網站\n"+
 						"活動 | !IORMC !WRC !雀鳳 !般若 !行事曆 !歷史活動\n"+
 						"其他 | !黑白棋教學 !氣泡教學 !方塊教學 (!?)\n"+
-						"喵想知道大家還需要什麼幫助！快叫天空龍教我吧~~(翻滾)"
+						"喵想知道大家還對什麼有興趣！快叫天空龍教我吧~~(翻滾)"
 		case ((strings.Contains(msg,"!網站") || strings.Contains(msg,"!介紹網站"))||((strings.Contains(msg,"日麻") || strings.Contains(msg,"麻將")) && strings.Contains(msg,"介紹") && strings.Contains(msg,"網站"))):
 			replyMsg = "日本麻將介紹網站在 http://jmj.tw 喔喵~"
 		case (t.Sub(lastBullyCat) > cdBullyCat && strings.Contains(msg,"婊池田")),(strings.Contains(msg,"打爆池田")):
