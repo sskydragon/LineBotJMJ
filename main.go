@@ -71,6 +71,22 @@ func main() {
 	http.ListenAndServe(addr, nil)
 }
 
+func reply1msg1video(replyToken string , msg string , videoSrc string , picSrc string ) {
+
+	if _, err = bot.ReplyMessage(replyToken, linebot.NewTextMessage(msg), linebot.NewVideoMessage(videoSrc, picSrc)).Do(); err != nil {
+		log.Print(err)
+	}
+	
+}
+
+func reply1msg1pic(replyToken string, msg string, picSrc string) {
+
+	if _, err = bot.ReplyMessage(replyToken, linebot.NewTextMessage(msg), linebot.NewImageMessage(picSrc, picSrc)).Do(); err != nil {
+		log.Print(err)
+	}
+
+}
+
 func isAdmin(msg string) bool {
 	s := os.Getenv("AdminLineIDList")
 	if(strings.Contains(s,msg)) {
@@ -641,6 +657,7 @@ var u=function(){function b(a){var b=a&7,c=0,d=0;1==b||4==b?c=d=1:2==b&&(c=d=2);
 				replyMsg = "(´,,•ω•,,)開心開心"
 			}
 /*其他遊戲用途*/
+/*puyo tetris 上方是影片 下方是圖片*/
 		case (strings.Contains(msg,"!dt")): 
 			replyMsg = "!dt"
 		case (strings.Contains(msg,"!pc")): 
@@ -651,6 +668,18 @@ var u=function(){function b(a){var b=a&7,c=0,d=0;1==b||4==b?c=d=1:2==b&&(c=d=2);
 			replyMsg = "!tki"
 		case (strings.Contains(msg,"!連鎖尾")):
 			replyMsg = "!連鎖尾"
+		case (strings.Contains(msg,"!b2b")):
+			replyMsg = "!b2b"
+		case (strings.Contains(msg,"!gtr") || strings.Contains(msg,"!新gtr")):
+			replyMsg = "!gtr"
+		case (strings.Contains(msg,"!key")):
+			replyMsg = "!key"
+		case (strings.Contains(msg,"!階梯") || strings.Contains(msg,"!31流")):
+			replyMsg = "!31流"
+		case (strings.Contains(msg,"!折返")):
+			replyMsg = "!折返"
+
+/*黑白棋*/		
 		case (strings.Contains(msg,"!黑白棋教學")):
 			replyMsg = "素材徵求中, 目前支援名詞解說如下, 感謝草草提供~\n"+
 			"!偶數理論 !奇偶性 !餘裕手 !開放度 !機動性 !穩定子 !天王山 !逆轉奇偶 !不平衡邊 !平衡邊"
@@ -717,97 +746,127 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 				}
 
 				if replyMsg == "欸？不可以亂來喔喵 > <" {
-					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("欸？不可以亂來喔喵 > <"), linebot.NewImageMessage("https://i.imgur.com/9Zy1CXe.jpg", "https://i.imgur.com/9Zy1CXe.jpg")).Do(); err != nil {
-						log.Print(err)
-					}
+					reply1msg1pic(event.ReplyToken, "欸？不可以亂來喔喵 > <", "https://i.imgur.com/9Zy1CXe.jpg")
 					return
 				}
 /*puyo tetris 名詞專區*/
 				if replyMsg == "!dt" {
-					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("[Tetris] DT砲：\n攻勢由兩個T轉組成，分別消2,3行，故被稱為Double Triple Cannon，兩個T轉合共能至少造成11行傷害。\n擁有搭建便利，爆發力高，後續接招方法廣泛的特點，是為目前最受歡迎的開局之一。"), linebot.NewVideoMessage("https://i.imgur.com/F5lmXur.mp4", "https://i.imgur.com/U7CNgL5.png")).Do(); err != nil {
-						log.Print(err)
-					}
+					reply1msg1video(event.ReplyToken,
+					"[Tetris] DT砲：\n攻勢由兩個T轉組成，分別消2,3行，故被稱為Double Triple Cannon，兩個T轉合共能至少造成11行傷害。\n擁有搭建便利，爆發力高，後續接招方法廣泛的特點，是為目前最受歡迎的開局之一。",
+					"https://i.imgur.com/F5lmXur.mp4",
+					"https://i.imgur.com/U7CNgL5.png")
 					return
 				}
 				if replyMsg == "!pc" {
-					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("[Tetris] Perfect Clear / PC / 全消：\n當玩家把場上所有方塊都消除後會發動追加攻擊，造成額外10行傷害，為目前單發傷害最高的攻擊手段。\n"), linebot.NewVideoMessage("https://i.imgur.com/I7bCJGz.mp4", "https://i.imgur.com/5PJrPfL.png")).Do(); err != nil {
-						log.Print(err)
-					}
+					reply1msg1video(event.ReplyToken,
+					"[Tetris] Perfect Clear / PC / 全消：\n當玩家把場上所有方塊都消除後會發動追加攻擊，造成額外10行傷害，為目前單發傷害最高的攻擊手段。\n",
+					"https://i.imgur.com/I7bCJGz.mp4",
+					"https://i.imgur.com/5PJrPfL.png")
 					return
 				}				
 				if replyMsg == "!c4w" {
-					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("[Tetris]c4w / 4w / 4-wide：\n在中間留下一道4行寛的深坑，能承受大量攻擊，也能通過連擊的加成作出反擊。\n常出現被對手速攻壓制，或反擊秒殺對手的局面。\n也有將四行空格留於側邊的排法。留四統稱4w(4-wide)"), linebot.NewVideoMessage("https://i.imgur.com/mCz46GS.mp4", "https://i.imgur.com/GNXzIoO.png")).Do(); err != nil {
-						log.Print(err)
-					}
+					reply1msg1video(event.ReplyToken,
+					"[Tetris] c4w / 4w / 4-wide：\n在中間留下一道4行寛的深坑，能承受大量攻擊，也能通過連擊的加成作出反擊。\n常出現被對手速攻壓制，或反擊秒殺對手的局面。\n也有將四行空格留於側邊的排法。留四統稱4w(4-wide)",
+					"https://i.imgur.com/mCz46GS.mp4",
+					"https://i.imgur.com/GNXzIoO.png")
 					return
 				}				
 				if replyMsg == "!tki" {
-					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("[Tetris] TKI：\n以開局穩定作出大量T轉為目標的排法。\n有成功率高、易上手、好變化等優點"), linebot.NewVideoMessage("https://i.imgur.com/CueyM1O.mp4", "https://i.imgur.com/7TwPyvH.png")).Do(); err != nil {
-						log.Print(err)
-					}
+					reply1msg1video(event.ReplyToken,
+					"[Tetris] TKI：\n以開局穩定作出大量T轉為目標的排法。\n有成功率高、易上手、好變化等優點",
+					"https://i.imgur.com/CueyM1O.mp4",
+					"https://i.imgur.com/7TwPyvH.png")
 					return
 				}				
 				if replyMsg == "!連鎖尾" {
-					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("[Puyo]連鎖尾：\n在主要連鎖最後不好發展的部分多排一些氣泡，增加連鎖的長度和攻擊量。"), linebot.NewVideoMessage("https://i.imgur.com/v4NgNqZ.mp4", "https://i.imgur.com/qGIT73p.png")).Do(); err != nil {
-						log.Print(err)
-					}
+					reply1msg1video(event.ReplyToken,
+					"[Puyo]連鎖尾：\n在主要連鎖最後不好發展的部分多排一些氣泡，增加連鎖的長度和攻擊量。",
+					"https://i.imgur.com/v4NgNqZ.mp4",
+					"https://i.imgur.com/qGIT73p.png")
 					return
 				}				
+				if replyMsg == "!b2b" {
+					reply1msg1pic(event.ReplyToken,
+					"[Tetris]Back-To-Back / b2b：\n當玩家做出T轉或Tetris消除行數時會進入B2B狀態，\n在這狀態下消除T轉或Tetris時會追加1行攻擊",
+					"https://i.imgur.com/pL0Rxm9.png")
+					return
+				}
+				if replyMsg == "!gtr" {
+					reply1msg1pic(event.ReplyToken,
+					"[Puyo] GTR / 新GTR：\n魔法氣泡中很常見的折返(轉彎)排法，\n因為形狀較為扁平，上方比較容易延伸連鎖\n(GTR和新GTR的差別在轉彎處的寬度)",
+					"https://i.imgur.com/byUTOEQ.png")
+					return
+				}				
+				if replyMsg == "!key" {
+					reply1msg1pic(event.ReplyToken,
+					"[Puyo] Key / 三明治 / 鑰匙排法：\n因為排列起來很像一層夾著一層的三明治，也很像鑰匙的形狀而得名。\n在排列上變化較為自由，可以與其他折返排法合併使用。",
+					"https://i.imgur.com/RlELvNo.png")
+					return
+				}				
+				if replyMsg == "!31流" {
+					reply1msg1pic(event.ReplyToken,"[Puyo] 31流 / 階梯排法：\n階梯排法的優點是直觀好上手，依照氣泡數量不同又分為3-1階梯、2-2階梯等，\n但在折返(轉彎)處，可能發生連鎖中誤消氣泡的情形，\n因此在往上發展時較為弱勢，也較難快速的排至第二層。",
+					"https://i.imgur.com/ifOGTjR.png")
+					return
+				}				
+				if replyMsg == "!折返" {
+					reply1msg1pic(event.ReplyToken,
+					"[Puyo] 折返 / 轉彎：\n魔法氣泡的排列空間只有六行，大連鎖需要排到第二層以上。\n我們稱往上排的地方為「折返」。",
+					"https://i.imgur.com/ifOGTjR.png")
+					return
+				}				
+
 				
 /* 黑白棋名詞專區 */
 				if replyMsg == "!偶數理論" {
-					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("偶數理論（奇偶性）：留給對手下子的每個區域內, 都留下偶數個空位的策略。\n(黑子下在黃星處後, 所有區域都剩偶數個空位)"), linebot.NewImageMessage("https://i.imgur.com/ifOGTjR.png", "https://i.imgur.com/ifOGTjR.png")).Do(); err != nil {
-						log.Print(err)
-					}
+					reply1msg1pic(event.ReplyToken,
+					"偶數理論（奇偶性）：留給對手下子的每個區域內, 都留下偶數個空位的策略。\n(黑子下在黃星處後, 所有區域都剩偶數個空位)",
+					"https://i.imgur.com/ifOGTjR.png")
 					return
 				}
 
 				if replyMsg == "!餘裕手" {
-					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("餘裕手：不會為對手帶來新的落子選擇的好棋。\n(下例中黑子先下1再下2, 對手就會因為沒有其他選擇, 而被迫讓出角落)"), linebot.NewImageMessage("https://i.imgur.com/gezuvEV.png", "https://i.imgur.com/gezuvEV.png")).Do(); err != nil {
-						log.Print(err)
-					}
+					reply1msg1pic(event.ReplyToken, 
+					"餘裕手：不會為對手帶來新的落子選擇的好棋。\n(下例中黑子先下1再下2, 對手就會因為沒有其他選擇, 而被迫讓出角落)",
+					"https://i.imgur.com/gezuvEV.png")
 					return
 				}
 
 				if replyMsg == "!開放度" {
-					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("開放度：被翻轉的棋子中，每一子周圍(八格)的空格數總和，開放度越小越好。\n(黑子下在標示處, 一共只翻轉一顆白子, 開放度總和為1)"), linebot.NewImageMessage("https://i.imgur.com/Vdhu1Si.png", "https://i.imgur.com/Vdhu1Si.png")).Do(); err != nil {
-						log.Print(err)
-					}
+					reply1msg1pic(event.ReplyToken,					"開放度：被翻轉的棋子中，每一子周圍(八格)的空格數總和，開放度越小越好。\n(黑子下在標示處, 一共只翻轉一顆白子, 開放度總和為1)",
+					"https://i.imgur.com/Vdhu1Si.png")
 					return
 				}
 
 				if replyMsg == "!機動性" {
-					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("機動性(Mobility)：可以落子的地方。\n一般來說, 機動性越高越有利, 因為愈可能存在較佳的路線；\n相對地, 選擇少的時候, 就容易被對手逼死\n(打x的是黑棋可以選擇落子的地方, 這個例子的機動性是5)"), linebot.NewImageMessage("https://i.imgur.com/VNbe0Zj.png", "https://i.imgur.com/VNbe0Zj.png")).Do(); err != nil {
-						log.Print(err)
-					}
+					reply1msg1pic(event.ReplyToken, 
+					"機動性(Mobility)：可以落子的地方。\n一般來說, 機動性越高越有利, 因為愈可能存在較佳的路線；\n相對地, 選擇少的時候, 就容易被對手逼死\n(打x的是黑棋可以選擇落子的地方, 這個例子的機動性是5)",
+					"https://i.imgur.com/VNbe0Zj.png")
 					return
 				}
 
 				if replyMsg == "!穩定子" {
-					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("穩定子：永遠不會被翻轉的棋。(如下圖中的黑子)"), linebot.NewImageMessage("https://i.imgur.com/W1GY2PZ.png", "https://i.imgur.com/W1GY2PZ.png")).Do(); err != nil {
-						log.Print(err)
-					}
+					reply1msg1pic(event.ReplyToken,
+					"穩定子：永遠不會被翻轉的棋。(如下圖中的黑子)",
+					"https://i.imgur.com/W1GY2PZ.png")
 					return
 				}
 
 				if replyMsg == "!天王山" {
-					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("天王山：對黑白兩方都有利的位置。\n(兩邊下在黃星處後, 都不會幫對手增加多少選擇)"), linebot.NewImageMessage("https://i.imgur.com/hv3SkiV.png", "https://i.imgur.com/hv3SkiV.png")).Do(); err != nil {
-						log.Print(err)
-					}
+					reply1msg1pic(event.ReplyToken,
+					"天王山：對黑白兩方都有利的位置。\n(兩邊下在黃星處後, 都不會幫對手增加多少選擇)",
+					"https://i.imgur.com/hv3SkiV.png")
 					return
 				}
 
 				if replyMsg == "!逆轉奇偶" {
-					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("逆轉奇偶：利用棄權，讓對手被迫先下入偶數區堿而陷入不利狀態的戰術。\n(白棋的選擇被限制了, 在這個區域內先落子的人不利)"), linebot.NewImageMessage("https://i.imgur.com/ADexsHc.png", "https://i.imgur.com/ADexsHc.png")).Do(); err != nil {
-						log.Print(err)
-					}
+					reply1msg1pic(event.ReplyToken,					"逆轉奇偶：利用棄權，讓對手被迫先下入偶數區堿而陷入不利狀態的戰術。\n(白棋的選擇被限制了, 在這個區域內先落子的人不利)",
+					"https://i.imgur.com/ADexsHc.png")
 					return
 				}
 
 				if replyMsg == "!平衡邊" {
-					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("不平衡邊：自己只有連續3~5顆棋的邊(紅框處)，這類棋型容易遭到對手攻擊。\n平衡邊：六子邊(藍框處)，這種棋型較為安全。"), linebot.NewImageMessage("https://i.imgur.com/lddPkl1.png", "https://i.imgur.com/lddPkl1.png")).Do(); err != nil {
-						log.Print(err)
-					}
+					reply1msg1pic(event.ReplyToken,					"不平衡邊：自己只有連續3~5顆棋的邊(紅框處)，這類棋型容易遭到對手攻擊。\n平衡邊：六子邊(藍框處)，這種棋型較為安全。",
+					"https://i.imgur.com/lddPkl1.png")
 					return
 				}
 
