@@ -198,15 +198,8 @@ func determineReply(msg string, groupSupported bool, groupExcluded bool) string{
 						"遊玩 | !天鳳 !雀姬 !雀魂 !個室 !戰績網 !門清狂 !BAMBOO\n"+
 						"社群 | !社團 !網站\n"+
 						"活動 | !IORMC !WRC !雀鳳 !般若 !行事曆 !歷史活動\n"+
-						"其他 | !黑白棋教學  (!?)\n"+
+						"其他 | !黑白棋教學 !氣泡教學 !方塊教學 (!?)\n"+
 						"喵想知道大家還需要什麼幫助！快叫天空龍教我吧~~(翻滾)"
-/*		case (strings.Contains(msg,"測試")):
-			replyMsg = "測試"
-*/
-/*		case (t.Sub(lastTest) > cdTest && strings.Contains(msg,"測試")):
-			lastTest = t
-			replyMsg = "在測試啥呢喵~"
-*/
 		case ((strings.Contains(msg,"!網站") || strings.Contains(msg,"!介紹網站"))||((strings.Contains(msg,"日麻") || strings.Contains(msg,"麻將")) && strings.Contains(msg,"介紹") && strings.Contains(msg,"網站"))):
 			replyMsg = "日本麻將介紹網站在 http://jmj.tw 喔喵~"
 		case (t.Sub(lastBullyCat) > cdBullyCat && strings.Contains(msg,"婊池田")),(strings.Contains(msg,"打爆池田")):
@@ -658,6 +651,12 @@ var u=function(){function b(a){var b=a&7,c=0,d=0;1==b||4==b?c=d=1:2==b&&(c=d=2);
 			}
 /*其他遊戲用途*/
 /*puyo tetris 上方是影片 下方是圖片*/
+		case (strings.Contains(msg,"!氣泡教學")):
+			replyMsg = "(魔法氣泡)目前支援名詞解說如下~\n"+
+			"!連鎖尾 !GTR !KEY !31流 !折返"
+		case (strings.Contains(msg,"!方塊教學")):
+			replyMsg = "(俄羅斯方塊)目前支援名詞解說如下~\n"+
+			"!DT砲 !PC !4w !TKI !b2b"			
 		case (strings.Contains(msg,"!dt")): 
 			replyMsg = "!dt"
 		case (strings.Contains(msg,"!pc")): 
@@ -692,8 +691,6 @@ var u=function(){function b(a){var b=a&7,c=0,d=0;1==b||4==b?c=d=1:2==b&&(c=d=2);
 				default:	
 			}
 
-/*		case (strings.Contains(msg,"拔牙怪")):
-			replyMsg = "聽說拔牙怪是大魔王, 大家看到要趕緊逃命喔喵~~~~~"*/
 		case (strings.Contains(msg,"!偶數理論") || strings.Contains(msg,"!奇偶性")):
 			replyMsg = "!偶數理論"
 		case (strings.Contains(msg,"!餘裕手")):
