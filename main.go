@@ -716,7 +716,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 				}
 /*puyo tetris 名詞專區*/
 				if replyMsg == "!dt" {
-					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("test1234"), linebot.NewVideoMessage("https://i.imgur.com/F5lmXur.mp4", "https://i.imgur.com/F5lmXur.mp4")).Do(); err != nil {
+					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("test1234"), linebot.NewVideoMessage("https://i.imgur.com/F5lmXur.mp4", "https://i.imgur.com/U7CNgL5.png")).Do(); err != nil {
 						log.Print(err)
 					}
 					return
