@@ -711,6 +711,14 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 					}
 					return
 				}
+/*puyo tetris 名詞專區*/
+				if replyMsg == "!dt" {
+					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("test1234"), linebot.NewVideoMessage("https://i.imgur.com/F5lmXur.mp4", "https://i.imgur.com/F5lmXur.mp4")).Do(); err != nil {
+						log.Print(err)
+					}
+					return
+				}
+				
 /* 黑白棋名詞專區 */
 				if replyMsg == "!偶數理論" {
 					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("偶數理論（奇偶性）：留給對手下子的每個區域內, 都留下偶數個空位的策略。\n(黑子下在黃星處後, 所有區域都剩偶數個空位)"), linebot.NewImageMessage("https://i.imgur.com/ifOGTjR.png", "https://i.imgur.com/ifOGTjR.png")).Do(); err != nil {
