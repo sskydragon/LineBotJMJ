@@ -641,6 +641,8 @@ var u=function(){function b(a){var b=a&7,c=0,d=0;1==b||4==b?c=d=1:2==b&&(c=d=2);
 				replyMsg = "(´,,•ω•,,)開心開心"
 			}
 /*其他遊戲用途*/
+		case (strings.Contains(msg,"!dt")):
+			replyMsg = "!dt"
 		case (strings.Contains(msg,"!黑白棋教學")):
 			replyMsg = "素材徵求中, 目前支援名詞解說如下, 感謝草草提供~\n"+
 			"!偶數理論 !奇偶性 !餘裕手 !開放度 !機動性 !穩定子 !天王山 !逆轉奇偶 !不平衡邊 !平衡邊"
@@ -652,6 +654,7 @@ var u=function(){function b(a){var b=a&7,c=0,d=0;1==b||4==b?c=d=1:2==b&&(c=d=2);
 				replyMsg = "手機上玩黑白棋嗎~? 試試這個吧 ~\n"+ "https://play.google.com/store/apps/details?id=fm.wars.reversi"
 				default:	
 			}
+
 /*		case (strings.Contains(msg,"拔牙怪")):
 			replyMsg = "聽說拔牙怪是大魔王, 大家看到要趕緊逃命喔喵~~~~~"*/
 		case (strings.Contains(msg,"!偶數理論") || strings.Contains(msg,"!奇偶性")):
