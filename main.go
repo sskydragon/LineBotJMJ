@@ -805,13 +805,13 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 				}				
 				if replyMsg == "!31流" {
 					reply1msg1pic(event.ReplyToken,"[Puyo] 31流 / 階梯排法：\n階梯排法的優點是直觀好上手，依照氣泡數量不同又分為3-1階梯、2-2階梯等，\n但在折返(轉彎)處，可能發生連鎖中誤消氣泡的情形，\n因此在往上發展時較為弱勢，也較難快速的排至第二層。",
-					"https://i.imgur.com/ifOGTjR.png")
+					"https://i.imgur.com/irmkrlt.png")
 					return
 				}				
 				if replyMsg == "!折返" {
 					reply1msg1pic(event.ReplyToken,
 					"[Puyo] 折返 / 轉彎：\n魔法氣泡的排列空間只有六行，大連鎖需要排到第二層以上。\n我們稱往上排的地方為「折返」。",
-					"https://i.imgur.com/ifOGTjR.png")
+					"https://i.imgur.com/Uxkmm9f.png")
 					return
 				}				
 
