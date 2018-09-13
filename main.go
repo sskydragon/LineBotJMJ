@@ -72,7 +72,7 @@ func main() {
 }
 
 func reply1msg1video(replyToken string , msg string , videoSrc string , picSrc string ) {
-
+	var err error
 	if _, err = bot.ReplyMessage(replyToken, linebot.NewTextMessage(msg), linebot.NewVideoMessage(videoSrc, picSrc)).Do(); err != nil {
 		log.Print(err)
 	}
@@ -80,7 +80,7 @@ func reply1msg1video(replyToken string , msg string , videoSrc string , picSrc s
 }
 
 func reply1msg1pic(replyToken string, msg string, picSrc string) {
-
+	var err error
 	if _, err = bot.ReplyMessage(replyToken, linebot.NewTextMessage(msg), linebot.NewImageMessage(picSrc, picSrc)).Do(); err != nil {
 		log.Print(err)
 	}
