@@ -641,8 +641,16 @@ var u=function(){function b(a){var b=a&7,c=0,d=0;1==b||4==b?c=d=1:2==b&&(c=d=2);
 				replyMsg = "(´,,•ω•,,)開心開心"
 			}
 /*其他遊戲用途*/
-		case (strings.Contains(msg,"!dt")): /*dt dt砲 dt cannon*/
+		case (strings.Contains(msg,"!dt")): 
 			replyMsg = "!dt"
+		case (strings.Contains(msg,"!pc")): 
+			replyMsg = "!pc"
+		case (strings.Contains(msg,"!c4w") || strings.Contains(msg,"!4w")):
+			replyMsg = "!c4w"
+		case (strings.Contains(msg,"!tki")):
+			replyMsg = "!tki"
+		case (strings.Contains(msg,"!連鎖尾")):
+			replyMsg = "!連鎖尾"
 		case (strings.Contains(msg,"!黑白棋教學")):
 			replyMsg = "素材徵求中, 目前支援名詞解說如下, 感謝草草提供~\n"+
 			"!偶數理論 !奇偶性 !餘裕手 !開放度 !機動性 !穩定子 !天王山 !逆轉奇偶 !不平衡邊 !平衡邊"
@@ -728,7 +736,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 					return
 				}				
 				if replyMsg == "!c4w" {
-					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("[Tetris]c4w / 4w / 4-wide /  留四：\n在中間留下一道4行寛的深坑，能承受大量攻擊，也能通過連擊的加成作出反擊。\n常出現被對手速攻壓制，或反擊秒殺對手的局面。\n也有將四行空格留於側邊的排法(側邊留四)。\n留四統稱4w(4-wide)"), linebot.NewVideoMessage("https://i.imgur.com/mCz46GS.mp4", "https://i.imgur.com/GNXzIoO.png")).Do(); err != nil {
+					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("[Tetris]c4w / 4w / 4-wide：\n在中間留下一道4行寛的深坑，能承受大量攻擊，也能通過連擊的加成作出反擊。\n常出現被對手速攻壓制，或反擊秒殺對手的局面。\n也有將四行空格留於側邊的排法。留四統稱4w(4-wide)"), linebot.NewVideoMessage("https://i.imgur.com/mCz46GS.mp4", "https://i.imgur.com/GNXzIoO.png")).Do(); err != nil {
 						log.Print(err)
 					}
 					return
