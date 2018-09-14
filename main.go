@@ -115,7 +115,7 @@ func teachMe(msg string) bool {
 	if ((strings.Contains(msg,"日麻") || strings.Contains(msg,"麻將")) && strings.Contains(msg,"教學") && (strings.Contains(msg,"嗎") || strings.Contains(msg,"哪"))) {
 		return true
 	}
-	if ((strings.Contains(msg,"日麻") || strings.Contains(msg,"麻將")) && (strings.Contains(msg,"想") || strings.Contains(msg,"要")) && (strings.Contains(msg,"學") || strings.Contains(msg,"玩")) && strings.Contains(msg,"我")) {
+	if ((strings.Contains(msg,"日麻") || strings.Contains(msg,"麻將")) && (strings.Contains(msg,"想") || strings.Contains(msg,"要")) && strings.Contains(msg,"學") && strings.Contains(msg,"我")) {
 		return true
 	}
 	if ((strings.Contains(msg,"日麻") || strings.Contains(msg,"麻將")) && strings.Contains(msg,"教我")){
