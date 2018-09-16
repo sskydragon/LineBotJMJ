@@ -259,9 +259,9 @@ func determineReply(msg string, groupSupported bool, groupExcluded bool) string{
 		case (strings.Contains(msg,"!七對")):
 			replyMsg = "七對必須有七組「不同」的對子, 符數是固定25符\n"+
 						"因為拆解型不同, 所以採用七對時不計算一般型的役種"
-		case (strings.Contains(msg,"!平和")):
-			replyMsg = "平和必須門前清、聽兩面且雀頭沒有符\n"+
-						"(如果某種字牌拿三張有役 當雀頭時就會有符)"
+		case (strings.Contains(msg,"!平和") || strings.Contains(msg,"!平胡")):
+			replyMsg = "平和必須門前清、聽兩面且牌型沒有符\n"+
+						"(整手牌都是123這樣的順面組合 而且雀頭不是役牌)"
 		case (strings.Contains(msg,"!門清狂")):
 			replyMsg = "門清狂是熟悉清一色的好遊戲~！\n"+
 						"http://hinakin.main.jp/mckonweb/index.htm"
