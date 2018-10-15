@@ -61,6 +61,36 @@ var lastGiveUp = time.Now().Add(-cdGiveUp)
 var lastWhatCutHelp = time.Now().Add(-cdWhatCutHelp)
 var lastSlides = time.Now().Add(-cdSlides)
 
+_001_help := regexp.MustCompile("!(指|命)令|(幫|帮|幇|鞤)助|菜(单|單|単)|功能|用法|使用方法|(説|说|說)明)")
+_002_website := regexp.MustCompile("(!(介紹)?網站)|((日麻|麻將).*介紹.*網站)")
+_003_bullycat := regexp.MustCompile("(婊|打).*池田")
+_004_saveme := regexp.MustCompile("救我")
+_005_iormc := regexp.MustCompile("(!iormc)|iormc.*資訊")
+_006_wrc := regexp.MustCompile("(!wrc)|wrc.*資訊")
+_007_fbgroup := regexp.MustCompile("(!社團|同好會)|(社團|同好會).*(哪|那)")
+_008_banro := regexp.MustCompile("(!般若)|般若.*資訊")
+_009_janfun := regexp.MustCompile("(!雀鳳)|雀鳳.*資訊")
+_010_calendar := regexp.MustCompile("(!行事曆)|日麻行事曆")
+_011_pastactivity := regexp.MustCompile("(!(歷史|過去)?活動)|過去.*活動")
+_012_faq := regexp.MustCompile("((!(常見|新手)問題)|(新手|常見(的)?)問題")
+_013_tanyao := regexp.MustCompile("!斷(么|公)(九)?")
+_014_tsumo := regexp.MustCompile("!(自摸|門(前)?清)")
+_015_notexist := regexp.MustCompile("!(全求|花龍|一色四順|四歸一|組合龍)")
+_016_onlywaitone := regexp.MustCompile("!(單釣|單騎|獨聽|嵌張|崁張|邊張)")
+_017_iitsu := regexp.MustCompile("!(一氣|一通|一條龍)")
+_018_nagashimangan := regexp.MustCompile("!(流滿|流局滿貫|流し滿貫)")
+_019_chonbo := regexp.MustCompile("!(醬爆|錯和|チョンボ)")
+_020_kyotaku := regexp.MustCompile("!(供託|託供|供托|托供|きょうたく)")
+_021_2to8 := regexp.MustCompile("!(大車輪|大數鄰|大竹林|大萬華|大数隣)")
+_022_1to7or3to9 := regexp.MustCompile("!(小車輪|小數鄰|小竹林|小萬華|小数隣)")
+_023_following := regexp.MustCompile("!(尾行|真似滿|まねまん)")
+_024_usage := regexp.MustCompile("使用說明|用法")
+_025_wheretoplay := regexp.MustCompile("(哪|地方).*(玩|下)")
+_026_wheretoplayonmobile := regexp.MustCompile("(哪|地方).*(手機|app)")
+_027_ikedaok := regexp.MustCompile("摸摸池田(的)?(肚子|肚肚|頭|耳朵|尾巴|額頭|下巴)")
+_028_ikedang := regexp.MustCompile("戳|揍|扁|k|胸|屁|內|陰|婊|打|揍|胖次|歐派|腿|雞|懶|p|j|bra")
+_029_interact := regexp.MustCompile("(摸摸|抱抱|拉拉)池田")
+
 func main() {
 	var err error
 	bot, err = linebot.New(os.Getenv("ChannelSecret"), os.Getenv("ChannelAccessToken"))
@@ -192,31 +222,31 @@ func determineReply(msg string, groupSupported bool, groupExcluded bool) string{
 	var replyMsg string = ""
 	t := time.Now()
 	switch {
-		case ((strings.Contains(msg,"!指令") || strings.Contains(msg,"!幫助") || strings.Contains(msg,"!用法") || strings.Contains(msg,"!說明"))):
-			replyMsg = "指令都用!開頭, 我會告訴你一些我知道的東西喔喵~\n"+
+		case (_001_help.MatchString(msg)):
+			replyMsg = "指令都用!開頭, 目前只能使用繁體詢問\n"+ 		   "我會告訴你一些我知道的東西喔喵~\n"+
 						"學習 | !教學 !何切 !討論 !常見問題 ![役種名稱]\n"+
 						"遊玩 | !天鳳 !雀姬 !雀魂 !個室 !戰績網 !門清狂 !BAMBOO\n"+
 						"社群 | !社團 !網站\n"+
 						"活動 | !IORMC !WRC !雀鳳 !般若 !行事曆 !歷史活動\n"+
 						"其他 | !黑白棋教學 !氣泡教學 !方塊教學 (!?)\n"+
 						"喵想知道大家還對什麼有興趣！快叫天空龍教我吧~~(翻滾)"
-		case ((strings.Contains(msg,"!網站") || strings.Contains(msg,"!介紹網站"))||((strings.Contains(msg,"日麻") || strings.Contains(msg,"麻將")) && strings.Contains(msg,"介紹") && strings.Contains(msg,"網站"))):
+		case (_002_website.MatchString(msg)):
 			replyMsg = "日本麻將介紹網站在 http://jmj.tw 喔喵~"
-		case (t.Sub(lastBullyCat) > cdBullyCat && strings.Contains(msg,"婊池田")),(strings.Contains(msg,"打爆池田")):
+		case (t.Sub(lastBullyCat) > cdBullyCat && _003_bullycat.MatchString(msg)):
 			lastBullyCat = t
 			replyMsg = "不要欺負池田喵好嗎 QQ"
-		case (t.Sub(lastSaveMe) > cdSaveMe && strings.Contains(msg,"龍哥救我")):
+		case (t.Sub(lastSaveMe) > cdSaveMe && _004_saveme.MatchString(msg)):
 			lastSaveMe = t
 			replyMsg = "需要幫忙嗎喵~？"
-		case ((strings.Contains(msg,"iormc") && strings.Contains(msg,"資訊")) || (strings.Contains(msg,"!iormc"))):
+		case (_005_iormc.MatchString(msg)):
 			replyMsg =  "IORMC是韓國辦的國際交流賽\n" +
 						"2017的預選資訊在 https://goo.gl/2XJyYw\n" +
 						"2016的比賽結果在 https://goo.gl/jatIHN"
-		case (strings.Contains(msg,"wrc資訊") || (strings.Contains(msg,"!wrc"))):
+		case (_006_wrc.MatchString(msg)"))):
 			replyMsg =  "WRC是三年一次的世界日麻大賽(暫譯)\n"+
 						"2017.10.4-8在拉斯維加斯, 網站在 http://www.wrc2017vegas.com/\n"+
 						"預計2020年在歐洲、2023年在日本舉行"
-		case (strings.Contains(msg,"同好會社團") || (strings.Contains(msg,"!社團"))):
+		case (_007_fbgroup.MatchString(msg)):
 			replyMsg = "我們的社團在這喔喵つ https://www.facebook.com/groups/twjmj/"
 		case (t.Sub(lastLobby) > cdLobby && askingLobby(msg)):
 			lastLobby = t
@@ -226,20 +256,20 @@ func determineReply(msg string, groupSupported bool, groupExcluded bool) string{
 			lastL1120 = t
 			replyMsg = "平常用來交流的個室在這喔喵~\n"+
 			"http://tenhou.net/0/?L1120"
-		case ((strings.Contains(msg,"般若盃") && strings.Contains(msg,"資訊")) || (strings.Contains(msg,"!般若"))):
+		case (_008_banro.MatchString(msg)):
 			replyMsg = "般若盃是目前臺灣南部最大的例行比賽 通常在十月\n"+
 						"報名超額時會依天鳳段位及牌譜內容決定參與者\n"+
 						"把天鳳段位打高一點比較容易報上喔~"
-		case ((strings.Contains(msg,"雀鳳盃") && strings.Contains(msg,"資訊")) || (strings.Contains(msg,"!雀鳳"))):
+		case (_009_janfun.MatchString(msg)):
 			replyMsg = "雀鳳盃是目前臺灣北部最大的例行比賽 通常在三月\n"+
 						"相關資訊能在淡大日麻社社團找到 https://goo.gl/9FFvvn\n"
-		case (strings.Contains(msg,"日麻行事曆") || (strings.Contains(msg,"!行事曆"))):
+		case (_010_calendar.MatchString(msg)):
 			replyMsg = "在這在這~~ http://goo.gl/fqwswg"
-		case (strings.Contains(msg,"過去的活動") || strings.Contains(msg,"!歷史活動")):
+		case (_011_pastactivity.MatchString(msg)):
 			replyMsg = "喵知道過去的比賽活動有這些~！\n"+
 						"https://goo.gl/KH00SO\n" +
 						"還想提供些什麼的話也請讓喵知道喔喵~ "
-		case (strings.Contains(msg,"新手常見問題") || strings.Contains(msg,"!常見問題") || strings.Contains(msg,"!新手問題")):
+		case (_012_faq.MatchString(msg)):
 			replyMsg = "※和牌必須要有役(寶牌以外)\n"+
 			"※不能振聽(聽的牌中不能有自己打出過的牌,\n"+
 			"  別人打出聽的牌且自家沒攤的話, 要到自己摸牌後才解除振聽)\n"+
@@ -249,7 +279,7 @@ func determineReply(msg string, groupSupported bool, groupExcluded bool) string{
 			"※役滿只能和役滿複合(有役滿的情況下不計一般役種)\n\n"+
 
 			"各役種常見問題 請用「!役種名稱」查詢\n"
-		case (strings.Contains(msg,"!斷么") || strings.Contains(msg,"!斷公九") || strings.Contains(msg,"!断公九")):
+		case (_013_tanyao.MatchString(msg)):
 			replyMsg = "斷么只能有2~8的數字牌"
 		case (strings.Contains(msg,"!一盃")):
 			replyMsg = "一盃口必須門清才計算"
@@ -268,16 +298,16 @@ func determineReply(msg string, groupSupported bool, groupExcluded bool) string{
 		case (strings.Contains(msg,"!bamboo")):
 			replyMsg = "BAMBOO是清一色對戰麻雀, 破關有隱藏模式可以期待唷~\n"+
 						"http://www.gamedesign.jp/flash/bamboo/bamboo.html"
-		case (strings.Contains(msg,"!自摸") || strings.Contains(msg,"!門清") || strings.Contains(msg,"!門前清")):
+		case (_014_tsumo.MatchString(msg)):
 			replyMsg = "日麻自摸和門清都沒有役,\n"+
 					   "只有在門前清的情況下自摸才有一飜"
 		case (strings.Contains(msg,"!寶牌") || strings.Contains(msg,"!ドラ")):
 			replyMsg = "寶牌是「寶牌指示牌」的下一張, 且不能當起和飜\n"+
 						"1→2→..→9→1, 東→南→西→北→東 白→發→中→白\n"+
 						"裡寶牌只有立直且和出的人才計算"
-		case (strings.Contains(msg,"!全求") || strings.Contains(msg,"!花龍")):
+		case (_015_notexist.MatchString(msg)):
 			replyMsg = "日麻沒有這種東西...."
-		case (strings.Contains(msg,"!單釣") || strings.Contains(msg,"!單騎") || strings.Contains(msg,"!獨聽")):
+		case (_016_onlywaitone.MatchString(msg)):
 			replyMsg = "日麻只聽一張的情況並沒有飜, 只在符數上會有一點點加成"
 		case (strings.Contains(msg,"!立直")):
 			replyMsg = "立直必須滿足三個條件：\n"+
@@ -288,9 +318,9 @@ func determineReply(msg string, groupSupported bool, groupExcluded bool) string{
 			replyMsg = "立直後到自己下次捨牌前和了, 且過程中沒有人鳴牌才計算"
 		case (strings.Contains(msg,"!役牌")):
 			replyMsg = "場風/自風/三元(白發中)有三張以上才算(看錯場風自風了嗎?)"
-		case (strings.Contains(msg,"!一氣") || strings.Contains(msg,"!一通") || strings.Contains(msg,"!一條龍")):
+		case (_017_iitsu.MatchString(msg)):
 			replyMsg = "和了時的拆解 必須能拆出123 456 789三組同色的順子 才有一氣"
-		case (strings.Contains(msg,"!流滿") || strings.Contains(msg,"!流局滿貫")||strings.Contains(msg,"!流し滿貫")):
+		case (_018_nagashimangan.MatchString(msg)):
 			replyMsg = "捨牌全是19字、且沒有被人叫走才算。\n"+
 						"在天鳳和流局聽牌狀態分開計算點數增減。不一定有玩的規則。"
 		case (strings.Contains(msg,"!四暗")):
@@ -315,7 +345,7 @@ func determineReply(msg string, groupSupported bool, groupExcluded bool) string{
 		case (strings.Contains(msg,"!段位")):
 			replyMsg = "各平台都有自己的段位系統, 天鳳的較有參考價值\n" +
 						"天鳳的段級位制請參考 http://tenhou.net/man/#DAN"
-		case (strings.Contains(msg,"!醬爆") || strings.Contains(msg,"!錯和") || strings.Contains(msg,"!チョンボ")):
+		case (_019_chonbo.MatchString(msg)):
 			replyMsg = "錯和/チョンボ/醬爆\n"+
 						"通常是指在不能和牌的情況下和牌、或立直卻沒聽等嚴重影響牌局的錯行為\n" +
 						"罰則視規定不同, 一般有罰自摸滿貫 或是結束後扣大量分數的兩種做法"
@@ -333,7 +363,7 @@ func determineReply(msg string, groupSupported bool, groupExcluded bool) string{
 			replyMsg = "實際行為與出聲不同, 例如喊碰後改用吃的方式拿牌"
 		case (strings.Contains(msg,"!叫牌修正")):
 			replyMsg = "宣告鳴牌後, 因為無法鳴下或突然不想鳴等原因取消"
-		case (strings.Contains(msg,"!供託") || strings.Contains(msg,"!託供") || strings.Contains(msg,"!供托") || strings.Contains(msg,"!托供")):
+		case (_020_kyotaku.MatchString(msg)):
 			replyMsg = "「供託」：放在場上的千點棒, 包括立直時付出的千點、和輕微犯規時罰的千點\n"+
 						"只有「供託」是正確的寫法喔！"
 		case (strings.Contains(msg,"!積棒") || strings.Contains(msg,"!本場棒")):
@@ -396,13 +426,13 @@ func determineReply(msg string, groupSupported bool, groupExcluded bool) string{
 			replyMsg = "(地方役)(罕見) 雙立直+海底撈月同時成立, 算役滿"
 		case (strings.Contains(msg,"!超立直")):
 			replyMsg = "(地方役)(罕見) 支付五千點立直, 和了時寶牌指示牌前後一張都算寶牌。"
-		case (strings.Contains(msg,"!尾行") || strings.Contains(msg,"!真似滿") || strings.Contains(msg,"!まねまん")):
+		case (_023_following.MatchString(msg)):
 			replyMsg = "(地方役)(罕見) 無人鳴牌的情況下, 和風位在前的玩家捨牌完全相同\n"+
 						"一般至少要跟出四張才能和, 跟出一張算一飜"
-		case (strings.Contains(msg,"!大車輪") || strings.Contains(msg,"!大數鄰") || strings.Contains(msg,"!大竹林") || strings.Contains(msg,"!大萬華") || strings.Contains(msg,"!大数隣")):
+		case (_021_2to8.MatchString(msg)):
 			replyMsg = "(地方役) 2-8各兩張的門前清清一色。\n"+
 						"根據花色不同, 而有大數鄰or大萬華(萬)/大車輪(筒)/大竹林(索)的稱呼"
-		case (strings.Contains(msg,"!小車輪") || strings.Contains(msg,"!小數鄰") || strings.Contains(msg,"!小竹林") || strings.Contains(msg,"!小萬華") || strings.Contains(msg,"!小数隣")):
+		case (_022_1to7or3to9.MatchString(msg)):
 			replyMsg = "(地方役) 1-7或3-9各兩張的門前清清一色。(偏一邊)\n"+
 						"根據花色不同, 而有小數鄰or小萬華(萬)/小車輪(筒)/小竹林(索)的稱呼"
 		case (strings.Contains(msg,"!東北新幹線")):
@@ -446,9 +476,6 @@ func determineReply(msg string, groupSupported bool, groupExcluded bool) string{
 			replyMsg = "戰績網位置在 https://nodocchi.moe/tenhoulog\n"+
 						"可以查到過往的戰績, 上方有過濾選項可以看特定時間或桌種"
 		case (strings.Contains(msg,"!討論") ):
-			/*
-			|| (strings.Contains(msg,"討論") && (strings.Contains(msg,"說明") || strings.Contains(msg,"指引")))
-			*/
 			replyMsg = "請大家跟著這樣做喔喵~\n\n" +
 
 					"○ 等其他討論結束再開新議題\n"+
@@ -465,9 +492,6 @@ func determineReply(msg string, groupSupported bool, groupExcluded bool) string{
 					"✕ 避免放大絕直接否定他人或中斷討論, 好好講就好了\n"
 
 		case (strings.Contains(msg,"!何切") ):
-			/*
-			|| (strings.Contains(msg,"何切") && (strings.Contains(msg,"說明") || strings.Contains(msg,"指引")))
-			*/
 			replyMsg ="「何切」是對一個既定場況探討該如何選擇/行動的討論方式\n\n" +
 			"適合討論的場況需要：\n"+
 			"✔是摸進手牌後、或可以選擇是否鳴牌的情境\n"+
@@ -607,7 +631,7 @@ var u=function(){function b(a){var b=a&7,c=0,d=0;1==b||4==b?c=d=1:2==b&&(c=d=2);
 				}
 			}
 			if(status != 0) {replyMsg = reply}
-			if(t.Sub(lastWhatCutHelp) > cdWhatCutHelp && (strings.Contains(msg,"使用說明") || strings.Contains(msg,"用法"))) {
+			if(t.Sub(lastWhatCutHelp) > cdWhatCutHelp && _024_usage.MatchString(msg)) {
 /*
 				replyMsg = "手牌必須是數字接花色的組合 m萬p筒s索 z字\n" +
 				"三色牌數字是0~9 其中0是赤\n" +
@@ -635,20 +659,16 @@ var u=function(){function b(a){var b=a&7,c=0,d=0;1==b||4==b?c=d=1:2==b&&(c=d=2);
 		case (t.Sub(lastSlides) > cdSlides && askingNTUSlides(msg)) :
 			lastSlides = t
 			replyMsg = appendNTUSlidesInfo(replyMsg)
-		case (!groupExcluded && strings.Contains(msg,"摸摸池田的")):
+		case (!groupExcluded && _029_interact.MatchString(msg)):
 			switch {
-				case ((strings.Contains(msg,"摸摸池田的肚子") || strings.Contains(msg,"摸摸池田的肚肚") || strings.Contains(msg,"摸摸池田的頭") || (strings.Contains(msg,"摸摸池田的耳朵") ||strings.Contains(msg,"摸摸池田的尾巴") || strings.Contains(msg,"摸摸池田的額頭") || strings.Contains(msg,"摸摸池田的下巴"))) && !strings.Contains(msg,"和")):
+				case (_028_ikedang.MatchString(msg)):
+				replyMsg = "欸？不可以亂來喔喵 > <"
+				case (_027_ikedaok.MatchString(msg)):
 				replyMsg = "(´,,•ω•,,)開心開心"
 				default:
-				replyMsg = "欸？不可以亂來喔喵 > <"
+				replyMsg = "不是很懂這人是想做啥呢喵～？"
 			}
-		case (!groupExcluded && (strings.Contains(msg,"摸摸池田") || strings.Contains(msg,"抱抱池田"))):
-			switch {
-				case (strings.Contains(msg,"胸") || strings.Contains(msg,"屁") || strings.Contains(msg,"內") || (strings.Contains(msg,"陰") ||strings.Contains(msg,"婊") || strings.Contains(msg,"打") || strings.Contains(msg,"揍") || strings.Contains(msg,"胖")) || strings.Contains(msg,"歐") || strings.Contains(msg,"腿") || strings.Contains(msg,"雞") || strings.Contains(msg,"懶") || strings.Contains(msg,"p") || strings.Contains(msg,"j") || strings.Contains(msg,"bra") || strings.Contains(msg,"和")):
-				replyMsg = "欸？不可以亂來喔喵 > <"
-				default:
-				replyMsg = "(´,,•ω•,,)開心開心"
-			}
+
 /*其他遊戲用途*/
 /*puyo tetris 上方是影片 下方是圖片*/
 		case (strings.Contains(msg,"!氣泡教學")):
@@ -684,9 +704,9 @@ var u=function(){function b(a){var b=a&7,c=0,d=0;1==b||4==b?c=d=1:2==b&&(c=d=2);
 			"!偶數理論 !奇偶性 !餘裕手 !開放度 !機動性 !穩定子 !天王山 !逆轉奇偶 !不平衡邊 !平衡邊"
 		case (strings.Contains(msg,"黑白棋")):
 			switch {
-				case ((strings.Contains(msg,"哪") || strings.Contains(msg,"地方")) && (strings.Contains(msg,"玩")||strings.Contains(msg,"下"))):
+				case (_025_wheretoplay.MatchString(msg)):
 				replyMsg = "這裡可以下黑白棋喔 ~ http://wars.fm/reversi"
-				case ((strings.Contains(msg,"哪") || strings.Contains(msg,"地方")) && (strings.Contains(msg,"手機")||strings.Contains(msg,"APP")||strings.Contains(msg,"App"))):
+				case (_026_wheretoplayonmobile.MatchString(msg)):
 				replyMsg = "手機上玩黑白棋嗎~? 試試這個吧 ~\n"+ "https://play.google.com/store/apps/details?id=fm.wars.reversi"
 				default:	
 			}
