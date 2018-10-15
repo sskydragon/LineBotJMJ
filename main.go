@@ -61,7 +61,7 @@ var lastGiveUp = time.Now().Add(-cdGiveUp)
 var lastWhatCutHelp = time.Now().Add(-cdWhatCutHelp)
 var lastSlides = time.Now().Add(-cdSlides)
 
-var _001_help = regexp.MustCompile("!(指|命)令|(幫|帮|幇|鞤)助|菜(单|單|単)|功能|用法|使用方法|(説|说|說)明)")
+var _001_help = regexp.MustCompile("!(指|命)令|(幫|帮|幇|鞤)助|菜(单|單|単)|功能|用法|使用方法|(説|说|說)明")
 var _002_website = regexp.MustCompile("(!(介紹)?網站)|((日麻|麻將).*介紹.*網站)")
 var _003_bullycat = regexp.MustCompile("(婊|打).*池田")
 var _004_saveme = regexp.MustCompile("救我")
