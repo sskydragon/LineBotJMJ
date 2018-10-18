@@ -88,7 +88,7 @@ var _024_usage = regexp.MustCompile("使用說明|用法")
 var _025_wheretoplay = regexp.MustCompile("(哪|地方).*(玩|下)")
 var _026_wheretoplayonmobile = regexp.MustCompile("(哪|地方).*(手機|app)")
 var _027_ikedaok = regexp.MustCompile("摸摸池田(的)?(肚子|肚肚|頭|耳朵|尾巴|額頭|下巴)")
-var _028_ikedang = regexp.MustCompile("戳|揍|扁|k|胸|屁|內|陰|婊|打|揍|胖次|歐派|腿|雞|懶|p|j|bra")
+var _028_ikedang = regexp.MustCompile("戳|揍|扁|k|胸|屁|內|陰|婊|打|揍|胖次|歐派|腿|雞|懶|p|j|gg|bra")
 var _029_interact = regexp.MustCompile("(摸摸|抱抱|拉拉)池田")
 
 func main() {
