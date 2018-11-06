@@ -240,8 +240,10 @@ func determineReply(msg string, groupSupported bool, groupExcluded bool) string{
 			replyMsg = "需要幫忙嗎喵~？"
 		case (_005_iormc.MatchString(msg)):
 			replyMsg =  "IORMC是韓國辦的國際交流賽\n" +
-						"2017的預選資訊在 https://goo.gl/2XJyYw\n" +
-						"2016的比賽結果在 https://goo.gl/jatIHN"
+						"歷年紀錄請參考：\n"+
+						"2018 https://goo.gl/YdzR5A\n"+
+						"2017 https://goo.gl/VXvK3W\n"+
+						"2016 https://goo.gl/jatIHN"
 		case (_006_wrc.MatchString(msg)):
 			replyMsg =  "WRC是三年一次的世界日麻大賽(暫譯)\n"+
 						"2017.10.4-8在拉斯維加斯, 網站在 http://www.wrc2017vegas.com/\n"+
