@@ -391,7 +391,7 @@ func determineReply(msg string, groupSupported bool, groupExcluded bool) string{
 			replyMsg = "(地方役) 清一色且數牌加起來總和有到100, 以役滿計算\n"+
 						"若總和恰為100, 稱為「加賀百万石」或「純正百万石」, 通常算雙役滿"
 		case (strings.Contains(msg,"!開牌立直") || strings.Contains(msg,"!開立")):
-			replyMsg = "(地方役) 立直時打牌全部或部分的手牌(依規定不同), 算兩飜\n"+
+			replyMsg = "(地方役) 立直時打開全部或部分的手牌(依規定不同), 算兩飜\n"+
 						"若非立直狀態下銃了開立直的人, 以役滿計算"
 		case (strings.Contains(msg,"!八連莊") || strings.Contains(msg,"!阻止八連莊") || strings.Contains(msg,"!破回八連莊") ):
 			replyMsg = "(地方役)(罕見) 親家「連續和了」八次時, 第八次(含以後)不論牌型皆以役滿計算\n"+
