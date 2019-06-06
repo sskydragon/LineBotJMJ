@@ -415,7 +415,7 @@ func determineReply(msg string, groupSupported bool, groupExcluded bool) string{
 			replyMsg = "和牌時手牌全由19數牌和字牌組成。(沒有字的話是清老頭)"
 		case (strings.Contains(msg,"!金門橋") || strings.Contains(msg,"!金門大橋")):
 			replyMsg = "(地方役)(罕見) 和了時包含同一色的123 345 567 789四組順子。Local役滿。\n"+
-						"沒玩的時候連一飜都沒有的喔, 連和牌都不行...."
+						"沒玩這個規則的話, 可能會連和牌都不行呢...."
 		case (strings.Contains(msg,"!黑一色")):
 			replyMsg = "(地方役)(罕見) 和了時只有248筒和東南西北風牌。Local役滿。"
 		case (strings.Contains(msg,"!紅孔雀")):
