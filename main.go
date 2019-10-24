@@ -197,7 +197,7 @@ func askingNTUSlides(msg string) bool {
 }
 
 func appendNTUSlidesInfo(msg string) string {
-	msg += "台大日麻社課講義 - 適合初學到進階玩家學習\n" +
+	msg += "台大日麻社課講義by賓果 - 適合初學到進階玩家學習\n" +
 			"上學期 https://goo.gl/bFBy9w\n" +
 			"下學期 https://goo.gl/E9rirQ\n" +
 			"社課錄影 https://goo.gl/sYS6Vd"
