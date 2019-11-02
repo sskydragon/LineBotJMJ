@@ -478,7 +478,7 @@ func determineReply(msg string, groupSupported bool, groupExcluded bool) string{
 			replyMsg = "雀姬可以從 https://goo.gl/dQJFSm 下載\n"+
 						"是手機上的遊戲喔~"
 		case (strings.Contains(msg,"!雀魂") ):
-			replyMsg = "雀魂位置在 http://majsoul.union-game.com/0/\n" +
+			replyMsg = "雀魂位置在 https://www.majsoul.com/\n" +
 						"用瀏覽器遊玩, 是個玩起來很舒服的遊戲~"
 		case (strings.Contains(msg,"!戰績") ):
 			replyMsg = "戰績網位置在 https://nodocchi.moe/tenhoulog\n"+
