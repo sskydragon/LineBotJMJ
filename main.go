@@ -90,6 +90,10 @@ var _026_wheretoplayonmobile = regexp.MustCompile("(哪|地方).*(手機|app)")
 var _027_ikedaok = regexp.MustCompile("摸摸池田(的)?(肚子|肚肚|頭|耳朵|尾巴|額頭|下巴)")
 var _028_ikedang = regexp.MustCompile("戳|揍|扁|k|胸|屁|內|陰|婊|打|揍|胖次|歐派|腿|雞|懶|p|j|gg|bra")
 var _029_interact = regexp.MustCompile("(摸摸|抱抱|拉拉)池田")
+var _030_askDragon = regexp.MustCompile("!(天空龍|龍龍|蘿莉龍)")
+var _031_askStarflyx = regexp.MustCompile("!星野")
+var _032_askBingo = regexp.MustCompile("!賓果")
+var _033_askTaiwanco = regexp.MustCompile("!(少年|沈皇|沈凰)")
 
 func main() {
 	var err error
@@ -106,7 +110,7 @@ func reply1msg1video(replyToken string , msg string , videoSrc string , picSrc s
 	if _, err = bot.ReplyMessage(replyToken, linebot.NewTextMessage(msg), linebot.NewVideoMessage(videoSrc, picSrc)).Do(); err != nil {
 		log.Print(err)
 	}
-	
+
 }
 
 func reply1msg1pic(replyToken string, msg string, picSrc string) {
@@ -194,6 +198,12 @@ func askingNTUSlides(msg string) bool {
 		return true
 	}
 	return false
+}
+
+func appendSkyInfo(msg string) string {
+	msg += "天空龍的頻道上可以找到整理好的影片分享\n" +
+			"https://www.youtube.com/c/sskytw"
+	return msg
 }
 
 func appendNTUSlidesInfo(msg string) string {
@@ -453,11 +463,11 @@ func determineReply(msg string, groupSupported bool, groupExcluded bool) string{
 		case (strings.Contains(msg,"!燕返") || strings.Contains(msg,"!燕返し")):
 			replyMsg = "(地方役)(罕見) 和別人的立直宣言牌。一飜。\n"+
 						"(一般講燕返し不是指地方役, 而是從牌山換回整副手牌的作弊方法)"
-		
-		
+
+
 		case (strings.Contains(msg,"!螢返") || strings.Contains(msg,"!蛍返")):
 			replyMsg = "一種帥氣的倒牌方式！！ 可參考 https://youtu.be/Qde65PVTR4I"
-			
+
 
 		case (t.Sub(lastNewbie) > cdNewbie && strings.Contains(msg,"是萌新")):
 			lastNewbie = t
@@ -467,7 +477,8 @@ func determineReply(msg string, groupSupported bool, groupExcluded bool) string{
 			replyMsg = "點數太多嗎？歡迎存點數進來悠喵OwO"
 		case (t.Sub(lastTeachMe) > cdTeachMe && teachMe(msg)):
 			lastTeachMe = t
-			replyMsg = appendStarflyxInfo(replyMsg)
+			replyMsg = appendSkyInfo(replyMsg)
+			replyMsg = appendStarflyxInfo(replyMsg+"\n\n")
 			replyMsg = appendNTUSlidesInfo(replyMsg+"\n\n")
 			replyMsg = appendTaiwancoInfo(replyMsg+"\n\n")
 			replyMsg += "\n\nhttp://jmj.tw\n左上角還有些教學可以看 請多加利用喔喵~"
@@ -676,6 +687,14 @@ var u=function(){function b(a){var b=a&7,c=0,d=0;1==b||4==b?c=d=1:2==b&&(c=d=2);
 				default:
 				replyMsg = "不是很懂這人是想做啥呢喵～？"
 			}
+		case(_030_askDragon.MatchString(msg)):
+			replyMsg = appendSkyInfo(replyMsg)
+		case(_031_askStarflyx.MatchString(msg)):
+			replyMsg = appendStarflyxInfo(replyMsg)
+		case(_032_askBingo.MatchString(msg)):
+			replyMsg = appendNTUSlidesInfo(replyMsg)
+		case(_033_askTaiwanco.MatchString(msg)):
+			replyMsg = appendTaiwancoInfo(replyMsg)
 
 /*其他遊戲用途*/
 /*puyo tetris 上方是影片 下方是圖片*/
@@ -684,10 +703,10 @@ var u=function(){function b(a){var b=a&7,c=0,d=0;1==b||4==b?c=d=1:2==b&&(c=d=2);
 			"!連鎖尾 !GTR !KEY !31流 !折返"
 		case (strings.Contains(msg,"!方塊教學")):
 			replyMsg = "(俄羅斯方塊)目前支援名詞解說如下~\n"+
-			"!DT砲 !PC !4w !TKI !b2b"			
-		case (strings.Contains(msg,"!dt")): 
+			"!DT砲 !PC !4w !TKI !b2b"
+		case (strings.Contains(msg,"!dt")):
 			replyMsg = "!dt"
-		case (strings.Contains(msg,"!pc")): 
+		case (strings.Contains(msg,"!pc")):
 			replyMsg = "!pc"
 		case (strings.Contains(msg,"!c4w") || strings.Contains(msg,"!4w")):
 			replyMsg = "!c4w"
@@ -706,7 +725,7 @@ var u=function(){function b(a){var b=a&7,c=0,d=0;1==b||4==b?c=d=1:2==b&&(c=d=2);
 		case (strings.Contains(msg,"!折返")):
 			replyMsg = "!折返"
 
-/*黑白棋*/		
+/*黑白棋*/
 		case (strings.Contains(msg,"!黑白棋教學")):
 			replyMsg = "素材徵求中, 目前支援名詞解說如下, 感謝草草提供~\n"+
 			"!偶數理論 !奇偶性 !餘裕手 !開放度 !機動性 !穩定子 !天王山 !逆轉奇偶 !不平衡邊 !平衡邊"
@@ -716,7 +735,7 @@ var u=function(){function b(a){var b=a&7,c=0,d=0;1==b||4==b?c=d=1:2==b&&(c=d=2);
 				replyMsg = "這裡可以下黑白棋喔 ~ http://wars.fm/reversi"
 				case (_026_wheretoplayonmobile.MatchString(msg)):
 				replyMsg = "手機上玩黑白棋嗎~? 試試這個吧 ~\n"+ "https://play.google.com/store/apps/details?id=fm.wars.reversi"
-				default:	
+				default:
 			}
 
 		case (strings.Contains(msg,"!偶數理論") || strings.Contains(msg,"!奇偶性")):
@@ -760,7 +779,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 				message.Text = strings.Replace(message.Text, "！", "!", -1)
 				/*把大寫轉小寫*/
 				message.Text = strings.ToLower(message.Text)
-				
+
 				replyMsg := determineReply(message.Text, event.Source.Type == "group" && isSupportedGroup(event.Source.GroupID), event.Source.Type == "group" && isExcludedGroup(event.Source.GroupID))
 
 				if replyMsg == "棄麻" {
@@ -788,28 +807,28 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 					"https://i.imgur.com/I7bCJGz.mp4",
 					"https://i.imgur.com/5PJrPfL.png")
 					return
-				}				
+				}
 				if replyMsg == "!c4w" {
 					reply1msg1video(event.ReplyToken,
 					"[Tetris] c4w / 4w / 4-wide：\n在中間留下一道4行寛的深坑，能承受大量攻擊，也能通過連擊的加成作出反擊。\n常出現被對手速攻壓制，或反擊秒殺對手的局面。\n也有將四行空格留於側邊的排法。留四統稱4w(4-wide)",
 					"https://i.imgur.com/mCz46GS.mp4",
 					"https://i.imgur.com/GNXzIoO.png")
 					return
-				}				
+				}
 				if replyMsg == "!tki" {
 					reply1msg1video(event.ReplyToken,
 					"[Tetris] TKI：\n以開局穩定作出大量T轉為目標的排法。\n有成功率高、易上手、好變化等優點",
 					"https://i.imgur.com/CueyM1O.mp4",
 					"https://i.imgur.com/7TwPyvH.png")
 					return
-				}				
+				}
 				if replyMsg == "!連鎖尾" {
 					reply1msg1video(event.ReplyToken,
 					"[Puyo]連鎖尾：\n在主要連鎖最後不好發展的部分多排一些氣泡，增加連鎖的長度和攻擊量。",
 					"https://i.imgur.com/v4NgNqZ.mp4",
 					"https://i.imgur.com/qGIT73p.png")
 					return
-				}				
+				}
 				if replyMsg == "!b2b" {
 					reply1msg1pic(event.ReplyToken,
 					"[Tetris]Back-To-Back / b2b：\n當玩家做出T轉或Tetris消除行數時會進入B2B狀態，\n在這狀態下消除T轉或Tetris時會追加1行攻擊",
@@ -821,26 +840,26 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 					"[Puyo] GTR / 新GTR：\n魔法氣泡中很常見的折返(轉彎)排法，\n因為形狀較為扁平，上方比較容易延伸連鎖\n(GTR和新GTR的差別在轉彎處的寬度)",
 					"https://i.imgur.com/byUTOEQ.png")
 					return
-				}				
+				}
 				if replyMsg == "!key" {
 					reply1msg1pic(event.ReplyToken,
 					"[Puyo] Key / 三明治 / 鑰匙排法：\n因為排列起來很像一層夾著一層的三明治，也很像鑰匙的形狀而得名。\n在排列上變化較為自由，可以與其他折返排法合併使用。",
 					"https://i.imgur.com/RlELvNo.png")
 					return
-				}				
+				}
 				if replyMsg == "!31流" {
 					reply1msg1pic(event.ReplyToken,"[Puyo] 31流 / 階梯排法：\n階梯排法的優點是直觀好上手，依照氣泡數量不同又分為3-1階梯、2-2階梯等，\n但在折返(轉彎)處，可能發生連鎖中誤消氣泡的情形，\n因此在往上發展時較為弱勢，也較難快速的排至第二層。",
 					"https://i.imgur.com/irmkrlt.png")
 					return
-				}				
+				}
 				if replyMsg == "!折返" {
 					reply1msg1pic(event.ReplyToken,
 					"[Puyo] 折返 / 轉彎：\n魔法氣泡的排列空間只有六行，大連鎖需要排到第二層以上。\n我們稱往上排的地方為「折返」。",
 					"https://i.imgur.com/Uxkmm9f.png")
 					return
-				}				
+				}
 
-				
+
 /* 黑白棋名詞專區 */
 				if replyMsg == "!偶數理論" {
 					reply1msg1pic(event.ReplyToken,
@@ -850,7 +869,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 				}
 
 				if replyMsg == "!餘裕手" {
-					reply1msg1pic(event.ReplyToken, 
+					reply1msg1pic(event.ReplyToken,
 					"餘裕手：不會為對手帶來新的落子選擇的好棋。\n(下例中黑子先下1再下2, 對手就會因為沒有其他選擇, 而被迫讓出角落)",
 					"https://i.imgur.com/gezuvEV.png")
 					return
@@ -863,7 +882,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 				}
 
 				if replyMsg == "!機動性" {
-					reply1msg1pic(event.ReplyToken, 
+					reply1msg1pic(event.ReplyToken,
 					"機動性(Mobility)：可以落子的地方。\n一般來說, 機動性越高越有利, 因為愈可能存在較佳的路線；\n相對地, 選擇少的時候, 就容易被對手逼死\n(打x的是黑棋可以選擇落子的地方, 這個例子的機動性是5)",
 					"https://i.imgur.com/VNbe0Zj.png")
 					return
