@@ -201,16 +201,17 @@ func askingNTUSlides(msg string) bool {
 }
 
 func appendSkyInfo(msg string) string {
-	msg += "天空龍的頻道上可以找到整理好的影片分享\n" +
+	msg += "天空龍的頻道上可以找到同好們的影片分享\n" +
+			"內容已由淺至深整理，找教學先來這吧！" +
 			"https://www.youtube.com/c/sskytw"
 	return msg
 }
 
 func appendNTUSlidesInfo(msg string) string {
-	msg += "台大日麻社課講義by賓果 - 適合初學到進階玩家學習\n" +
+	msg += "想在理論上鑽研的話，可以研讀賓果寫的講義\n" +
 			"上學期 https://goo.gl/bFBy9w\n" +
-			"下學期 https://goo.gl/E9rirQ\n" +
-			"社課錄影 https://goo.gl/sYS6Vd"
+			"下學期 https://goo.gl/E9rirQ\n"
+//			+"社課錄影 https://goo.gl/sYS6Vd"
 	return msg
 }
 
@@ -478,10 +479,10 @@ func determineReply(msg string, groupSupported bool, groupExcluded bool) string{
 		case (t.Sub(lastTeachMe) > cdTeachMe && teachMe(msg)):
 			lastTeachMe = t
 			replyMsg = appendSkyInfo(replyMsg)
-			replyMsg = appendStarflyxInfo(replyMsg+"\n\n")
+//			replyMsg = appendStarflyxInfo(replyMsg+"\n\n")
 			replyMsg = appendNTUSlidesInfo(replyMsg+"\n\n")
-			replyMsg = appendTaiwancoInfo(replyMsg+"\n\n")
-			replyMsg += "\n\nhttp://jmj.tw\n左上角還有些教學可以看 請多加利用喔喵~"
+//			replyMsg = appendTaiwancoInfo(replyMsg+"\n\n")
+//			replyMsg += "\n\nhttp://jmj.tw\n左上角還有些教學可以看 請多加利用喔喵~"
 		case (strings.Contains(msg,"!天鳳") ):
 			replyMsg = "天鳳位置在 https://tenhou.net/0/\n"+
 						"各種說明可以在 http://tenhou.net/man/ 找到"
