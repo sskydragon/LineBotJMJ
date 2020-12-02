@@ -202,7 +202,7 @@ func askingNTUSlides(msg string) bool {
 
 func appendSkyInfo(msg string) string {
 	msg += "天空龍的頻道上可以找到同好們的影片分享\n" +
-			"內容已由淺至深整理，找教學先來這吧！" +
+			"內容已由淺至深整理，找教學先來這吧！\n" +
 			"https://www.youtube.com/c/sskytw"
 	return msg
 }
