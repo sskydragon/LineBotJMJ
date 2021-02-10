@@ -61,13 +61,14 @@ var lastGiveUp = time.Now().Add(-cdGiveUp)
 var lastWhatCutHelp = time.Now().Add(-cdWhatCutHelp)
 var lastSlides = time.Now().Add(-cdSlides)
 
-var _001_help = regexp.MustCompile("!((指|命)令|(幫|帮|幇|鞤)助|菜(单|單|単)|功能|用法|使用方法|(説|说|說)明)")
+var _000_contact = regexp.MustCompile("!天空龍")
+var _001_help = regexp.MustCompile("!((指|命)令|(幫|帮|幇|鞤)助|菜(单|單|単)|功能|用法|使用(方法|(説|说|說)明)|(説|说|說)明)")
 var _002_website = regexp.MustCompile("(!(介紹)?網站)|((日麻|麻將).*介紹.*網站)")
 var _003_bullycat = regexp.MustCompile("(婊|打).*池田")
 var _004_saveme = regexp.MustCompile("救我")
 var _005_iormc = regexp.MustCompile("(!iormc)|iormc.*資訊")
 var _006_wrc = regexp.MustCompile("(!wrc)|wrc.*資訊")
-var _007_fbgroup = regexp.MustCompile("(!(社團|同好會))|(社團|同好會).*(在哪|在那)")
+var _007_socialgroup = regexp.MustCompile("(!(社團|同好會|龍窩|discord|dc))|(社團|同好會|龍窩|discord|dc).*(在哪|在那)")
 var _008_banro = regexp.MustCompile("(!般若)|般若.*資訊")
 var _009_janfun = regexp.MustCompile("(!雀鳳)|雀鳳.*資訊")
 var _010_calendar = regexp.MustCompile("(!行事曆)|日麻行事曆")
@@ -94,6 +95,7 @@ var _030_askDragon = regexp.MustCompile("!(天空龍|龍龍|蘿莉龍)")
 var _031_askStarflyx = regexp.MustCompile("!星野")
 var _032_askBingo = regexp.MustCompile("!賓果")
 var _033_askTaiwanco = regexp.MustCompile("!(少年|沈皇|沈凰)")
+var _034_linegroup = regexp.MustCompile("!line")
 
 func main() {
 	var err error
@@ -233,6 +235,8 @@ func determineReply(msg string, groupSupported bool, groupExcluded bool) string{
 	var replyMsg string = ""
 	t := time.Now()
 	switch {
+		case (_000_contact.MatchString(msg)):
+			replyMsg = "這邊能夠找到龍龍的聯絡方式！\nhttp://ssky.tw"
 		case (_001_help.MatchString(msg)):
 			replyMsg = "指令都用!開頭, 目前只能使用繁體詢問\n"+ 		   "我會告訴你一些我知道的東西喔喵~\n"+
 						"學習 | !教學 !何切 !討論 !常見問題 ![役種名稱]\n"+
@@ -259,8 +263,9 @@ func determineReply(msg string, groupSupported bool, groupExcluded bool) string{
 			replyMsg =  "WRC是三年一次的世界日麻大賽(暫譯)\n"+
 						"2017.10.4-8在拉斯維加斯, 網站在 http://www.wrc2017vegas.com/\n"+
 						"預計2020年在歐洲、2023年在日本舉行"
-		case (_007_fbgroup.MatchString(msg)):
-			replyMsg = "我們的社團在這喔喵つ https://www.facebook.com/groups/twjmj/"
+		case (_007_socialgroup.MatchString(msg)):
+			replyMsg = 	"龍窩社群在這つ http://ssky.tw/dc\n"+
+						"同好會社團在這つ https://fb.com/groups/twjmj/"
 		case (t.Sub(lastLobby) > cdLobby && askingLobby(msg)):
 			lastLobby = t
 			replyMsg = "限時開放的IORMC練習大會室在這喔喵~\n"+
@@ -696,6 +701,10 @@ var u=function(){function b(a){var b=a&7,c=0,d=0;1==b||4==b?c=d=1:2==b&&(c=d=2);
 			replyMsg = appendNTUSlidesInfo(replyMsg)
 		case(_033_askTaiwanco.MatchString(msg)):
 			replyMsg = appendTaiwancoInfo(replyMsg)
+		case(_034_linegroup.MatchString(msg)):
+			replyMsg = "日麻Line群的入口，\n可以從社團置頂找到哦！\n" +
+						"https://fb.com/groups/twjmj/"
+			 
 
 /*其他遊戲用途*/
 /*puyo tetris 上方是影片 下方是圖片*/
