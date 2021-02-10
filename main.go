@@ -498,7 +498,8 @@ func determineReply(msg string, groupSupported bool, groupExcluded bool) string{
 			replyMsg = "雀魂位置在 https://www.majsoul.com/\n" +
 						"用瀏覽器遊玩, 是個玩起來很舒服的遊戲~"
 		case (strings.Contains(msg,"!戰績") ):
-			replyMsg = "戰績網位置在 https://nodocchi.moe/tenhoulog\n"+
+			replyMsg = "天鳳戰績網 https://nodocchi.moe/tenhoulog\n"+
+						"雀魂戰績網 https://amae-koromo.sapk.ch/\n" +
 						"可以查到過往的戰績, 上方有過濾選項可以看特定時間或桌種"
 		case (strings.Contains(msg,"!討論") ):
 			replyMsg = "請大家跟著這樣做喔喵~\n\n" +
